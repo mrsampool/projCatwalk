@@ -1,4 +1,12 @@
 import React from 'react';
-export const RatingAndReview = () =>{
-  return <div id='RatingsReviews'></div>
+
+import ReviewsList from './ReviewsList.jsx';
+
+export const RatingsReviews = () =>{
+  return (
+  <div id='RatingsReviews'>
+    <p>RatingsReviews component</p>
+    <ReviewsList />
+  </div>
+  );
 }
