@@ -5,5 +5,5 @@ import React from 'react';
 import './sizeSelector.css'
 
 export const SizeSelector = (props) =>{
-  return <div id='SizeSelector'></div>
+  return <div id='SizeSelector' data-testid='select-size'></div>
 };

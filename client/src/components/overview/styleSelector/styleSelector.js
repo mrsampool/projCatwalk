@@ -5,5 +5,7 @@ import React from 'react';
 import './styleSelector.css'
 
 export const StyleSelector = (props) =>{
-  return <div id='StyleSelector'></div>
+  return(
+    <div id='StyleSelector'         data-testid='select-style'></div>
+  )
 };
