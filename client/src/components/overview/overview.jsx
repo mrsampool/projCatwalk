@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ImgGallery } from './imgGallery/imgGallery';
 import { QtySelector } from './qtySelector/qtySelector';
 import { SizeSelector } from './sizeSelector/sizeSelector';
-import { StyleSelector } from './styleSelector/styleSelector';
 import { StarRating } from '../starRating/starRating';
+import { StyleSelector } from './styleSelector/StyleSelector.jsx';
 
 export const Overview = (props) =>{
   const {category, name, slogan, description} = props.product;
-  const {styles} = props.styles.results;
+  const styles = props.styles.results;
+
+  const [currentStyle, setCurrentStyle] = useState(null);
+
   return(
-    <div id='Overview'>
+    <div id='Overview' data-testid='Overview'>
 
       <div>
 
@@ -21,7 +24,11 @@ export const Overview = (props) =>{
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
-          <StyleSelector styles={styles}/>
+          <StyleSelector
+            styles={styles}
+            currentStyle={currentStyle}
+            setCurrentStyle={setCurrentStyle}
+          />
           <div>
             <SizeSelector/>
             <QtySelector/>

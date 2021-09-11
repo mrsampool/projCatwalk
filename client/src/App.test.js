@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 
 import {App} from './App.jsx';
 
@@ -12,6 +12,19 @@ describe("App", ()=>{
     let element = container.querySelector('#App');
     expect(element).toBeTruthy();
 
+  });
+
+  [
+    'Overview',
+    'RelatedProducts',
+    'QAndA',
+    'RatingsReviews'
+  ].forEach( widget =>{
+    it(`Renders a ${widget} widget`, ()=>{
+      render( <App/> );
+      let renderedWidget = screen.queryByTestId(widget);
+      expect( renderedWidget ).toBeTruthy();
+    });
   });
 
 });

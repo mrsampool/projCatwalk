@@ -35,10 +35,9 @@ describe("Overview", ()=>{
     'select-size',
   ].forEach( element => {
 
-    it(`Contains a ${element} element`, ()=>{
+    it(`Renders a ${element} component`, ()=>{
       render( <Overview product={product} styles={styles} /> );
       let rendered = screen.queryByTestId(element);
-      console.log( rendered );
       expect( rendered ).toBeTruthy();
     })
 
