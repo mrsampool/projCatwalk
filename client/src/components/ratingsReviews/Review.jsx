@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Review(props) {
   return (
-    <div id='Review' reviewid={props.review.review_id}>
+    <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
       <p data-testid='reviewrating'>Rating: {props.review.rating}</p>
       <h3 data-testid='reviewsummary'>{props.review.summary}</h3>
       <h5 data-testid='reviewer_name'>{props.review.reviewer_name}</h5>

@@ -1,13 +1,16 @@
 import React from 'react';
 
 import Review from './Review.jsx';
-import {reviewsList} from '../../dummyData/reviewsList.js';
 
-export default function ReviewsList() {
+export const ReviewsList = function(props) {
   return (
-    <div id='ReviewList'>
+    <div id='ReviewsList'>
       <p>ReviewList component</p>
-      <Review review={reviewsList.results[0]}/>
+      {props.reviewslist.results.map((reviewdata) => {
+        return (
+          <Review review={reviewdata}/>
+        );
+      })}
     </div>
   );
 }
