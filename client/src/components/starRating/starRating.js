@@ -1,9 +1,9 @@
 //React
-import React from 'react'; 
+import React from 'react';
 
 //Stylesheet
-import './starRating.css' 
+import './starRating.css'
 
-export const starRating = (props) =>{
-
+export const StarRating = (props) =>{
+  return <div className='StarRating'></div>
 };

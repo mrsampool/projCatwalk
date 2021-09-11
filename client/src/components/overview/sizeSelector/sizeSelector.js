@@ -1,9 +1,9 @@
 //React
-import React from 'react'; 
+import React from 'react';
 
 //Stylesheet
-import './sizeSelector.css' 
+import './sizeSelector.css'
 
-export const sizeSelector = (props) =>{
-
+export const SizeSelector = (props) =>{
+  return <div id='SizeSelector' data-testid='select-size'></div>
 };
