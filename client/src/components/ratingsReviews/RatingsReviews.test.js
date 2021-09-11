@@ -1,5 +1,6 @@
 import React from 'react';
 import { RatingsReviews } from './RatingsReviews';
+import { ReviewsList } from './ReviewsList';
 
 import {reviewsList} from '../../dummyData/reviewsList.js';
 
@@ -21,7 +22,7 @@ describe('Ratings and Reviews rendering', () => {
   });
 
   it('renders a ReviewList component', () => {
-    let element = document.querySelector('#ReviewList');
+    let element = document.querySelector('#ReviewsList');
     expect(element).toBeTruthy();
   });
 
@@ -68,5 +69,11 @@ describe('Review component', () => {
 });
 
 describe('ReviewList component', () => {
-  test.todo('discover items to test');
+  beforeEach(() => {
+    render( <ReviewsList reviewslist={reviewsList}/> )
+  });
+
+  it('should render two Review components (according to dummy data)', () => {
+    expect( screen.getAllByTestId('Review') ).toHaveLength(2);
+  });
 });
