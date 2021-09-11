@@ -1,9 +1,9 @@
 //React
-import React from 'react'; 
+import React from 'react';
 
 //Stylesheet
-import './styleSelector.css' 
+import './styleSelector.css'
 
-export const styleSelector = (props) =>{
-
+export const StyleSelector = (props) =>{
+  return <div id='StyleSelector'></div>
 };

@@ -1,9 +1,9 @@
 //React
-import React from 'react'; 
+import React from 'react';
 
 //Stylesheet
-import './qtySelector.css' 
+import './qtySelector.css'
 
-export const qtySelector = (props) =>{
-
+export const QtySelector = (props) =>{
+  return <div id='QtySelector'></div>
 };

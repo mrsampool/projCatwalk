@@ -1,9 +1,9 @@
 //React
-import React from 'react'; 
+import React from 'react';
 
 //Stylesheet
-import './imgGallery.css' 
+import './imgGallery.css'
 
-export const imgGallery = (props) =>{
-
+export const ImgGallery = (props) =>{
+  return <div id='ImgGallery'></div>
 };

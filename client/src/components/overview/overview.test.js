@@ -1,7 +1,14 @@
+// Libraries
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 
+// Components
 import {Overview} from './Overview.jsx';
+
+// Mock Data
+import { singleProduct as product } from '../../dummyData/productsList';
+
+
 
 describe("Overview", ()=>{
 
@@ -9,25 +16,42 @@ describe("Overview", ()=>{
   let component = container.querySelector('#Overview');
 
   it("Renders without crashing", ()=>{
-
     expect(component).toBeTruthy();
-
   });
 
   [
-    '#prod-category',
-    '#prod-title',
-    '#prod-description',
+    'category',
+    'name',
+    'description',
+    'slogan',
+  ].forEach( text => {
+    render( <Overview product={product} /> );
+    it(`Should display product ${ text }`, ()=>{
+      expect( screen.getByText(product[text]).toBeTruthy() );
+    });
+  });
+
+  /*
+  [
+    'category',
+    'name',
+    'description',
+    'slogan',
     '#prod-price',
-    '#prod-description',
     '#select-style',
     '#select-size',
     '#add-cart',
   ].forEach( element => {
-    it(`Contains a ${element.slice(5)} element`, ()=>{
-      let element = component.querySelector(element);
+
+    it(`Contains a ${element.slice(1)} element`, ()=>{
+
+      console.log(component);
+
+      let element = component.querySelectorAll(element);
+      console.log(element.length);
       expect(element).toBeTruthy();
     })
+
   });
 
   describe("Product Price", ()=>{
@@ -41,5 +65,7 @@ describe("Overview", ()=>{
     test.todo('if no stock, button should be hidden');
     test.todo('if valid size and qty are selected, clicking will add to cart');
   });
+
+  */
 
 });
