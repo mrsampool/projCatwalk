@@ -17,7 +17,7 @@ export const App = () => {
 
   return (
     <div id='App'>
-      <Overview product={singleProduct}/>
+      <Overview product={singleProduct} styles={singleProductStyles}/>
       <RelatedProducts />
       <QAndA />
       <RatingsReviews />
