@@ -12,7 +12,6 @@ export const reviewsMeta = {
   },
   "recommended": {
     0: 5
-    // ...
   },
   "characteristics": {
     "Size": {
@@ -26,6 +25,6 @@ export const reviewsMeta = {
     "Comfort": {
       "id": 16,
       "value": "4.0000"
-    },
-    // ...
+    }
+  }
 }
