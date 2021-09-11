@@ -9,7 +9,7 @@ import { RelatedProducts } from './components/relatedProducts/relatedProducts.js
 
 //Dummy Data
 import { listQuestions, answersList } from './dummyData/anwsersList';
-import { productList, singleProduct } from './dummyData/productsList';
+import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
 
