@@ -6,13 +6,13 @@ import {render, screen} from '@testing-library/react';
 import {Overview} from './Overview.jsx';
 
 // Mock Data
-import { singleProduct as product } from '../../dummyData/productsList';
+import { singleProduct as product, singleProductStyles as styles } from '../../dummyData/productsList';
 
 
 
 describe("Overview", ()=>{
 
-  const {container} = render( <Overview/> );
+  const {container} = render( <Overview product={product} styles={styles} /> );
   let component = container.querySelector('#Overview');
 
   it("Renders without crashing", ()=>{
@@ -25,9 +25,9 @@ describe("Overview", ()=>{
     'description',
     'slogan',
   ].forEach( text => {
-    render( <Overview product={product} /> );
     it(`Should display product ${ text }`, ()=>{
-      expect( screen.getByText(product[text]).toBeTruthy() );
+      const {container} = render( <Overview product={product} styles={styles} /> );
+      expect( screen.getByText(product[text]) ).toBeTruthy();
     });
   });
 
