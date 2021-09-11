@@ -14,7 +14,7 @@ export const reviewsList = {
       "rating": 3,
       "summary": "I'm enjoying wearing these shades",
       "recommend": false,
-      "response": null,
+      "response": "Some sort of response",
       "body": "Comfortable and practical.",
       "date": "2019-04-14T00:00:00.000Z",
       "reviewer_name": "shortandsweeet",
