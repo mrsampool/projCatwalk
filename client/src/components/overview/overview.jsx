@@ -6,8 +6,8 @@ import { StyleSelector } from './styleSelector/styleSelector';
 import { StarRating } from '../starRating/starRating';
 
 export const Overview = (props) =>{
-  //console.log(props.product.category);
-  //const {category, name} = props.product;
+  //console.log(props.product);
+  const {category, name, slogan, description} = props.product;
   return(
     <div id='Overview'>
 
@@ -19,8 +19,8 @@ export const Overview = (props) =>{
 
         <span>
           <StarRating/>
-          <p id='prod-category'></p>
-          <p id='prod-title'></p>
+          <p id='prod-category'>{category}</p>
+          <p id='prod-title'>{name}</p>
           <StyleSelector/>
           <div>
             <SizeSelector/>
@@ -31,7 +31,10 @@ export const Overview = (props) =>{
 
       </div>
 
-      <div id='prod-description'></div>
+      <div id='prod-description'>
+        <p id='prod-slogan'>{slogan}</p>
+        <p>{description}</p>
+      </div>
 
     </div>
   )
