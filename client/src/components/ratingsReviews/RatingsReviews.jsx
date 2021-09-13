@@ -5,7 +5,7 @@ import {reviewsList} from '../../dummyData/reviewsList.js';
 
 export const RatingsReviews = () =>{
   return (
-  <div id='RatingsReviews'>
+  <div id='RatingsReviews' data-testid='RatingsReviews'>
     <h3>Ratings and Reviews</h3>
     <ReviewsList reviewslist={reviewsList}/>
   </div>
