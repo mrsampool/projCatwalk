@@ -49,7 +49,10 @@ describe('Review component', () => {
   it('Test for date', () => {
     expect( screen.getByText(/2019-04-14T00:00:00.000Z/) ).toBeTruthy();
   });
-  test.todo('Test for reviewer_name');
+
+  it('Test for reviewer_name', () => {
+    expect( screen.getByText(/shortandsweeet/) ).toBeTruthy();
+  });
 
   it('Test for body', () => {
     expect( screen.findByText(/Comfortable and practical./) ).toBeTruthy();
@@ -76,4 +79,14 @@ describe('ReviewList component', () => {
   it('should render two Review components (according to dummy data)', () => {
     expect( screen.getAllByTestId('Review') ).toHaveLength(2);
   });
+});
+
+describe('Ratings component', () => {
+  test.todo('Ratings component is rendered');
+  test.todo('Aggregate rating number is rendered');
+  test.todo('"Percentage of reviews that recommend" is rendered');
+  test.todo('"5-4-3-2-1" breakdown is rendered');
+  test.todo('Average size rating is rendered');
+  test.todo('Average comfort rating is rendered');
+
 });
