@@ -35,7 +35,7 @@ describe('Ratings and Reviews rendering', () => {
 
 describe('Review component', () => {
   beforeEach(() => {
-    render( <RatingsReviews review={reviewsList.results[0]}/> )
+    render( <ReviewsList reviewslist={reviewsList}/> )
   });
 
   it('Test for rating', () => {
@@ -71,7 +71,7 @@ describe('Review component', () => {
   });
 });
 
-describe('ReviewList component', () => {
+describe('ReviewsList component', () => {
   beforeEach(() => {
     render( <ReviewsList reviewslist={reviewsList}/> )
   });
