@@ -4,7 +4,7 @@ import { ReviewsList } from './ReviewsList';
 
 import {reviewsList} from '../../dummyData/reviewsList.js';
 
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 import { TestWatcher } from '@jest/core';
 
 
@@ -81,6 +81,18 @@ describe('Review component', () => {
   it('should show the Show More button when review is over 250 characters', () => {
     expect( screen.queryByText(/Show More/) ).toBeTruthy();
     expect( screen.queryAllByText(/Show More/) ).toHaveLength(1);
+  });
+
+  it('should show the full review text when Show More is clicked', () => {
+    fireEvent(
+      screen.queryByText(/Show More/),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    )
+
+    expect( screen.queryByText(/magic rings from Tiara/) ).toBeTruthy();
   });
 });
 
