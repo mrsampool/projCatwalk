@@ -2,11 +2,15 @@ import React from 'react';
 
 import Review from './Review.jsx';
 
-export default function ReviewsList() {
+export const ReviewsList = function(props) {
   return (
-    <div id='ReviewList'>
+    <div id='ReviewsList'>
       <p>ReviewList component</p>
-      <Review />
+      {props.reviewslist.results.map((reviewdata) => {
+        return (
+          <Review review={reviewdata}/>
+        );
+      })}
     </div>
   );
 }
