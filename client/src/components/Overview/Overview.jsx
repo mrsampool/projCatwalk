@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 //Sub-Components
-import { ImgGallery } from './ImgGallery/ImgGallery.jxs';
+import { ImgGallery } from './ImgGallery/ImgGallery.jsx';
 import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
