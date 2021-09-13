@@ -16,7 +16,6 @@ describe("App", ()=>{
 
   [
     'Overview',
-    'RelatedProducts',
     'QAndA',
     'RatingsReviews'
   ].forEach( widget =>{
