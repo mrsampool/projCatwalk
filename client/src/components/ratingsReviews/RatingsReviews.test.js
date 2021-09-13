@@ -73,6 +73,11 @@ describe('Review component', () => {
   it('Test for helpfulness', () => {
     expect( screen.queryAllByText(/Helpfulness: 5/) ).toHaveLength(2);
   });
+
+  it('should show the Show More button when review is over 250 characters', () => {
+    expect( screen.queryByTestId(/showMoreBtn/) ).toBeTruthy();
+    expect( screen.queryAllByTestId(/showMoreBtn/) ).toHaveLength(1);
+  });
 });
 
 describe('ReviewsList component', () => {
