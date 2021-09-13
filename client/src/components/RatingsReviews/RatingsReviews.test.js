@@ -1,7 +1,7 @@
 import React from 'react';
 import { RatingsReviews } from './RatingsReviews';
 import { ReviewsList } from './ReviewsList';
-import { RatingBreakdown } from './RatingBreakdown';
+import { RatingsBreakdown } from './RatingsBreakdown';
 
 import {reviewsList} from '../../dummyData/reviewsList.js';
 
@@ -109,7 +109,7 @@ describe('ReviewsList component', () => {
 
 describe('RatingsBreakdown component', () => {
   beforeEach(() => {
-    render( <RatingBreakdown />);
+    render( <RatingsBreakdown />);
   });
 
   it('Ratings component is rendered', () => {
@@ -120,7 +120,6 @@ describe('RatingsBreakdown component', () => {
     expect( screen.queryByTestId(/starrating/) ).toBeTruthy();
   });
   
-  test.todo('Aggregate rating number is rendered');
   test.todo('"Percentage of reviews that recommend" is rendered');
   test.todo('"5-4-3-2-1" breakdown is rendered');
   test.todo('Average size rating is rendered');
