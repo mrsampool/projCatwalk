@@ -1,0 +1,42 @@
+import React, {useState} from 'react';
+
+export default function Review(props) {
+  let [reviewBody, setReviewBody] = useState('');
+  let fullBody;
+  let shortBody;
+  let showMoreBtn = null;
+
+
+  if (props.review.body.length > 1000) {
+    fullBody = props.review.body.slice(0, 1000);
+  } else {
+    fullBody = props.review.body;
+  }
+
+  if (fullBody.length > 250) {
+    // show button, only show first 250 chars
+    reviewBody = fullBody.slice(0, 250);
+    showMoreBtn = (
+      <button onClick={onShowMoreClick} data-testid='showMoreBtn'>Show More</button>
+    );
+  }
+
+  const onShowMoreClick = (event) => {
+    setReviewBody(fullBody);
+  };
+
+  return (
+    <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
+      <p data-testid='reviewrating'>Rating: {props.review.rating}</p>
+      <h3 data-testid='reviewsummary'>{props.review.summary}</h3>
+      <h5 data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
+      <h5 data-testid='reviewdate'>{props.review.date}</h5>
+      <p>{reviewBody}</p>
+      {showMoreBtn}
+      <p>Recommend: {props.review.recommend ? 'True' : 'False'}</p>
+      <p data-testid='reviewresponse'>{props.review.response}</p>
+      <p>Helpfulness: {props.review.helpfulness}</p>
+    </div>
+  );
+  
+}

@@ -4,7 +4,7 @@ import React from 'react';
 // Sub-Components
 import { Overview } from './components/Overview/Overview.jsx';
 import { QAndA } from './components/QAndA/QAndA.jsx';
-import { RatingsReviews } from './components/ratingsReviews/RatingsReviews.jsx';
+import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
 
 //Dummy Data
 import { listQuestions, answersList } from './dummyData/anwsersList';

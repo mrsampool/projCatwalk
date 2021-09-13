@@ -8,7 +8,7 @@ export const ReviewsList = function(props) {
       <p>ReviewList component</p>
       {props.reviewslist.results.map((reviewdata) => {
         return (
-          <Review review={reviewdata}/>
+          <Review review={reviewdata} key={reviewdata.review_id}/>
         );
       })}
     </div>
