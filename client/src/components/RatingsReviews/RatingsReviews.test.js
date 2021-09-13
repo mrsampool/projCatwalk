@@ -75,8 +75,8 @@ describe('Review component', () => {
   });
 
   it('should show the Show More button when review is over 250 characters', () => {
-    expect( screen.queryByTestId(/showMoreBtn/) ).toBeTruthy();
-    expect( screen.queryAllByTestId(/showMoreBtn/) ).toHaveLength(1);
+    expect( screen.queryByText(/Show More/) ).toBeTruthy();
+    expect( screen.queryAllByText(/Show More/) ).toHaveLength(1);
   });
 });
 

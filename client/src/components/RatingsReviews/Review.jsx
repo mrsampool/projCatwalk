@@ -17,7 +17,7 @@ export default function Review(props) {
     // show button, only show first 250 chars
     reviewBody = fullBody.slice(0, 250);
     showMoreBtn = (
-      <button onClick={onShowMoreClick} data-testid='showMoreBtn'></button>
+      <button onClick={onShowMoreClick} data-testid='showMoreBtn'>Show More</button>
     );
   }
 
