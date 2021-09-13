@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Stylesheet
-import './imgGallery.css'
+import './ImgGallery.css'
 
 export const ImgGallery = (props) =>{
   return <div id='ImgGallery'></div>
