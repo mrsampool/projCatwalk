@@ -6,8 +6,6 @@ import './qtySelector.css'
 
 export const QtySelector = (props) =>{
 
-  const [inStock, setInStock] = useState(true);
-
   const {size, skus} = props;
 
   function getMaxQty(size, skus){
@@ -25,32 +23,33 @@ export const QtySelector = (props) =>{
     }();
 
     let inStock = selectedSku ? selectedSku.quantity : 0;
-    if (!inStock) {setInStock(false)}
     return inStock < 15 ? inStock : 15;
   }
 
   let renderOptions = function() {
 
     let max = getMaxQty(size, skus);
+    let i = 1;
     let options = [];
 
-    while(max > 0){
+    while(i <= max){
       options.push(
-        <option value={max} key={`qtyOption-${max}`}>
-          {max}
+        <option value={i} key={`qtyOption-${i}`}>
+          {i}
         </option>
       );
-      max--;
+      i++;
     }
     return options;
   }
 
   return (
     <select
-      defaultValue={size && inStock ? '1' : '-'}
+      defaultValue={size ? '1' : '-'}
       disabled={!size ? true : false}
       data-testid='QtySelector'
     >
+
       {
         size && skus ?
         renderOptions()

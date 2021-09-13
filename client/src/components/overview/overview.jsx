@@ -31,7 +31,7 @@ export const Overview = (props) =>{
           />
           <div>
             <SizeSelector/>
-            <QtySelector size='X' skus={currentStyle ? currentStyle.skus : null} />
+            <QtySelector size='XS' skus={currentStyle ? currentStyle.skus : null} />
           </div>
           <button id='add-cart'>ADD TO BAG</button>
         </span>

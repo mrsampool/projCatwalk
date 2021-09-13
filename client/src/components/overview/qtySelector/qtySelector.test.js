@@ -8,6 +8,7 @@ import { QtySelector } from './qtySelector.jsx';
 // Dummy Data
 import { singleProductStyles } from '../../../dummyData/productsList';
 import './qtySelector.css';
+import { StyleOption } from '../StyleSelector/StyleSelector';
 let styles = singleProductStyles.results;
 
 describe("Quantity Selector", ()=>{
@@ -36,8 +37,6 @@ describe("Quantity Selector", ()=>{
     expect( qtySelector.value ).toBe( '1' );
   });
 
-  test.todo('max should be either the number of selected style and size in stock, limited to 15');
-
   it('options should be a sequence of ints ranging from 1 to the max', ()=>{
 
     let skus = [
@@ -47,18 +46,44 @@ describe("Quantity Selector", ()=>{
 
     render(
       <QtySelector
-        size='XS'
+        size='M'
         skus={skus}
       />
     );
 
     let qtySelector = screen.queryByTestId( 'QtySelector' );
     let options = Array.from( qtySelector.options );
+    let optionValues = options.map( option => option.value );
+
     options.forEach( option => {
-      console.log( Number(option.value) );
       expect( typeof Number(option.value) ).toBe('number');
       expect( Number(option.value) ).not.toBe(NaN);
     });
-    //expect( qtySelector.value ).toBe( '1' );
+
+    ['1','2','3','4','5','6','7','8'].forEach( number =>{
+      expect( optionValues.includes( number ) ).toBe(true);
+    })
   });
+
+  it('if more than 15 are in stock, max should be limited to 15', ()=>{
+
+    let skus = [
+      { quantity: 25, size: 'M' },
+      { quantity: 2, size: 'L' },
+    ];
+
+    render(
+      <QtySelector
+        size='M'
+        skus={skus}
+      />
+    );
+
+    let qtySelector = screen.queryByTestId( 'QtySelector' );
+    let options = Array.from( qtySelector.options );
+    let optionValues = options.map( option => Number(option.value) );
+
+    expect( Math.max(...optionValues) ).toBe(15);
+  });
+
 });
