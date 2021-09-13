@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { ImgGallery } from './imgGallery/imgGallery';
-import { QtySelector } from './qtySelector/qtySelector';
+import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './sizeSelector/sizeSelector';
-import { StarRating } from '../starRating/starRating';
+import { StarRating } from '../StarRating/StarRating.jsx';
 import { StyleSelector } from './styleSelector/StyleSelector.jsx';
 
 export const Overview = (props) =>{
@@ -31,7 +31,7 @@ export const Overview = (props) =>{
           />
           <div>
             <SizeSelector/>
-            <QtySelector/>
+            <QtySelector size='XS' skus={currentStyle ? currentStyle.skus : null} />
           </div>
           <button id='add-cart'>ADD TO BAG</button>
         </span>
