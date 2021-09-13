@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Sub-Components
-import { Overview } from './components/overview/overview.jsx';
+import { Overview } from './components/Overview/Overview.jsx';
 import { QAndA } from './components/qAndA/QAndA.jsx';
 import { RatingsReviews } from './components/ratingsReviews/RatingsReviews.jsx';
 import { RelatedProducts } from './components/relatedProducts/relatedProducts.jsx';
