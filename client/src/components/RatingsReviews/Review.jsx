@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 
 export default function Review(props) {
-  let [reviewBody, setReviewBody] = useState('');
+  var [reviewBody, setReviewBody] = useState('');
   let fullBody;
-  let shortBody;
   let showMoreBtn = null;
-
 
   if (props.review.body.length > 1000) {
     fullBody = props.review.body.slice(0, 1000);
@@ -13,17 +11,16 @@ export default function Review(props) {
     fullBody = props.review.body;
   }
 
-  if (fullBody.length > 250) {
-    // show button, only show first 250 chars
+  if (fullBody.length > 250 && reviewBody === '') {
     reviewBody = fullBody.slice(0, 250);
     showMoreBtn = (
-      <button onClick={onShowMoreClick} data-testid='showMoreBtn'>Show More</button>
+      <button onClick={() => setReviewBody(fullBody)} data-testid='showMoreBtn'>Show More</button>
     );
   }
 
-  const onShowMoreClick = (event) => {
-    setReviewBody(fullBody);
-  };
+  if (fullBody.length <= 250) {
+    reviewBody = fullBody;
+  }
 
   return (
     <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
