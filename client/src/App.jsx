@@ -11,14 +11,17 @@ import { listQuestions, answersList } from './dummyData/anwsersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
+import { AnalyticWrapper } from './components/AnalyticWrapper.jsx';
 
 export const App = () => {
 
   return (
     <div id='App'>
-      <Overview product={singleProduct} styles={singleProductStyles}/>
-      <QAndA />
-      <RatingsReviews />
+      <AnalyticWrapper>
+        <Overview product={singleProduct} styles={singleProductStyles}/>
+        <QAndA />
+        <RatingsReviews />
+      </AnalyticWrapper>
     </div>
   );
 };
