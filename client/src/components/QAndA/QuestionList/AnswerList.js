@@ -15,6 +15,15 @@ export const AnswerList = (props) =>{
         const ans = answers[eachkey];
         const [readMore, setReadMore] = useState(false);
         const abody = ans.body;
+        const [helpful, setHelpful] = useState(ans.helpfulness)
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+        var date = new Date(ans.date);
+        const month = date.getMonth();
+        const day = date.getDate();
+        const year = date.getFullYear();
+
         return (
           <div key= {ans.id}>
             <div className="A-statement" >
@@ -22,7 +31,8 @@ export const AnswerList = (props) =>{
                 {(abody.length > 20) ? (<button onClick={()=>setReadMore(!readMore)}>{readMore ? 'hide content': 'show more'}</button>) : null}
               </p>
             </div>
-            <div className="A-date" >date:{ans.date}</div>
+            <div className="A-date" >by {ans.answerer_name}, {monthNames[month]} {day}, {year} | helpful ? <button onClick={()=>setHelpful(helpful+1)}>Yes({helpful})</button> | report
+            </div>
           </div>
         )
       })}
