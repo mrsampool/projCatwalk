@@ -18,9 +18,11 @@ export const ProductContext = React.createContext(defaultState);
 
 export const ProductContextProvider = (props) => {
 
-  const setProductID = (product_id) => {
-    if (product_id) {
-      axios.get('/api/example/reviews/' + product_id)
+  const setProductID = (productID) => {
+    if (productID) {
+      setState({...state, productID});
+      
+      axios.get('/api/example/reviews/' + productID)
       .then( ({data}) => setState({...state, reviewsData: data}) )
       .then( () => axios.get('/api/example/questions'))
       .then( ({data}) => setState({...state, questionsData: data}) )
