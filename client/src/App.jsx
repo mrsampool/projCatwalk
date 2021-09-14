@@ -11,17 +11,20 @@ import { listQuestions, answersList } from './dummyData/anwsersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
+import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.jsx';
 
-import { ProductContextProvider } from './contexts/product-context.js';
+import { ProductContext, ProductContextProvider } from './contexts/product-context.js';
 
 export const App = () => {
   return (
-    <ProductContextProvider>
-      <div id='App'>
-        <Overview product={singleProduct} styles={singleProductStyles}/>
-        <QAndA />
-        <RatingsReviews />
-      </div>
-    </ProductContextProvider>
+    <div id='App'>
+      <ProductContextProvider>
+        <AnalyticWrapper>
+          <Overview product={singleProduct} styles={singleProductStyles}/>
+          <QAndA />
+          <RatingsReviews />
+        </AnalyticWrapper>
+      </ProductContextProvider>
+    </div>
   );
 };
