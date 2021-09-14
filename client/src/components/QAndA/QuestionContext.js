@@ -1,6 +1,6 @@
 import React, {useState, createContext} from 'react';
 
-import {listQuestions, answersList} from '../../dummyData/anwsersList'
+import {listQuestions, answersList} from '../../dummyData/answersList'
 
 export const QuestionContext = createContext();
 

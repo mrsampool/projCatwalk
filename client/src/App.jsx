@@ -7,7 +7,7 @@ import { QAndA } from './components/QAndA/QAndA.jsx';
 import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
 
 //Dummy Data
-import { listQuestions, answersList } from './dummyData/anwsersList';
+import { listQuestions, answersList } from './dummyData/answersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
