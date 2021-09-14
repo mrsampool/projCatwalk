@@ -11,7 +11,7 @@ import { listQuestions, answersList } from './dummyData/anwsersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
-import { AnalyticWrapper } from './components/AnalyticWrapper.jsx';
+import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.jsx';
 
 export const App = () => {
 
