@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
-import { reviewsList } from '../../dummyData/reviewsList';
+import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsBreakdown = () => {
-  let length = reviewsList.results.length;
+  const {reviewsData} = useContext(ProductContext);
+
+  let length = reviewsData.results.length;
   let total = 0;
 
-  reviewsList.results.forEach((review) => {
+  reviewsData.results.forEach((review) => {
     total += review.rating;
   });
 
@@ -15,6 +17,7 @@ export const RatingsBreakdown = () => {
 
   return (
     <div id='RatingBreakdown'>
+      <p>Ratings Breakdown component</p>
       <div><p>Score: {average}</p></div>
       <StarRating />
     </div>
