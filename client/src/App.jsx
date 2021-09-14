@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState } from 'react';
 
 // Sub-Components
 import { Overview } from './components/Overview/Overview.jsx';
@@ -13,15 +13,18 @@ import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
 import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.jsx';
 
-export const App = () => {
+import { ProductContext, ProductContextProvider } from './contexts/product-context.js';
 
+export const App = () => {
   return (
     <div id='App'>
-      <AnalyticWrapper>
-        <Overview product={singleProduct} styles={singleProductStyles}/>
-        <QAndA />
-        <RatingsReviews />
-      </AnalyticWrapper>
+      <ProductContextProvider>
+        <AnalyticWrapper>
+          <Overview product={singleProduct} styles={singleProductStyles}/>
+          <QAndA />
+          <RatingsReviews />
+        </AnalyticWrapper>
+      </ProductContextProvider>
     </div>
   );
 };
