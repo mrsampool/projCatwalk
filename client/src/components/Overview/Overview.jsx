@@ -14,6 +14,7 @@ export const Overview = (props) =>{
 
   const [currentStyle, setCurrentStyle] = useState(null);
   const [currentSize, setCurrentSize] = useState(null);
+  const [currentQty, setCurrentQty] = useState(null);
 
   return(
     <div id='Overview' data-testid='Overview'>
@@ -38,7 +39,11 @@ export const Overview = (props) =>{
               skus={currentStyle ? currentStyle.skus : null}
               setSize={setCurrentSize}
             />
-            <QtySelector size='XS' skus={currentStyle ? currentStyle.skus : null} />
+            <QtySelector
+              size={currentSize}
+              skus={currentStyle ? currentStyle.skus : null}
+              setQty={setCurrentQty}
+            />
           </div>
           <button id='add-cart'>ADD TO BAG</button>
         </span>

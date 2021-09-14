@@ -7,6 +7,10 @@ import './QtySelector.css'
 export const QtySelector = (props) =>{
   const {size, skus} = props;
 
+  function handleChange(e){
+    props.setQty( Number(e.target.value) );
+  }
+
   function getMaxQty(size, skus){
 
     let selectedSku = function(){
@@ -47,6 +51,7 @@ export const QtySelector = (props) =>{
       defaultValue={size ? '1' : '-'}
       disabled={!size ? true : false}
       data-testid='QtySelector'
+      onChange={handleChange}
     >
 
       {
