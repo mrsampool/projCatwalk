@@ -3,14 +3,18 @@ import React from 'react';
 import {QuestionList} from './QuestionList/QuestionList'
 import {SearchBar} from './SearchBar/SearchBar'
 import {TwoButtons} from './TwoButtons/TwoButtons'
+import QuestionContextProvider from './QuestionContext.js'
 
-
-export const QAndA = () =>{
+export const QAndA = (props) =>{
   return (
   <div id='QAndA' data-testid='QAndA'>
     <p>QUESTIONS & ANSWERS</p>
     <SearchBar/>
-    <QuestionList/>
+
+    <QuestionContextProvider>
+      <QuestionList/>
+    </QuestionContextProvider>
+    
     <TwoButtons/>
   </div>
   )
