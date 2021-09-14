@@ -19,11 +19,17 @@ export const App = () => {
   const [questionsData, setQuestionsData] = useState(listQuestions);
 
   const changeProduct = (product_id) => {
+    /* 
     axios.get('/api/example/reviews/' + product_id)
     .then(({data}) => setReviewsData(data))
     .then(() => axios.get('/api/example/questions'))
     .then(({data}) => setQuestionsData(data))
     .catch(err => console.log('Error from axios GET: ', err));
+     */
+    console.log('Pass me a product ID and maybe I can get all the data for it!');
+    console.log('Current data:');
+    console.log('reviewsData: ', reviewsData);
+    console.log('questionsData: ', questionsData);
   }
 
   return (
