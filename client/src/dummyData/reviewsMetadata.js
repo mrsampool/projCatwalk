@@ -8,7 +8,7 @@ export const reviewsMeta = {
     2: 1,
     3: 1,
     4: 2,
-    // ...
+    5: 1
   },
   "recommended": {
     0: 5
