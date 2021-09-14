@@ -36,14 +36,14 @@ describe("Size Selector", ()=>{
 
   it('should be a dropdown list', ()=>{
     render( <SizeSelector /> );
-    let sizeSelector = screen.queryByTestId( 'SizeSelector' );
+    let sizeSelector = screen.queryByTestId( 'select-size' );
     expect( sizeSelector.nodeName ).toBe('SELECT');
   });
 
   it('should list all of the available sizes for the current style', ()=>{
 
     render( <SizeSelector skus={skus} /> );
-    let sizeSelector = screen.queryByTestId( 'SizeSelector' );
+    let sizeSelector = screen.queryByTestId( 'select-size' );
     let optionValues = Array.from(sizeSelector.options).map( option => {
       return option.value;
     });
@@ -59,7 +59,7 @@ describe("Size Selector", ()=>{
   it('should only list sizes in stock', ()=>{
 
     render( <SizeSelector skus={skus} /> );
-    let sizeSelector = screen.queryByTestId( 'SizeSelector' );
+    let sizeSelector = screen.queryByTestId( 'select-size' );
     let optionValues = Array.from(sizeSelector.options).map( option => {
       return option.value;
     });
@@ -78,7 +78,7 @@ describe("Size Selector", ()=>{
     };
 
     render( <SizeSelector skus={noStockSkus} /> );
-    let sizeSelector = screen.queryByTestId( 'SizeSelector' );
+    let sizeSelector = screen.queryByTestId( 'select-size' );
     let optionValues = Array.from(sizeSelector.options).map( option => {
       return option.value;
     });
@@ -109,7 +109,7 @@ describe("Size Selector", ()=>{
 
     render( <SizeSelector skus={skus} setSize={sizeSetter} /> );
 
-    let sizeSelector = screen.queryByTestId( 'SizeSelector' );
+    let sizeSelector = screen.queryByTestId( 'select-size' );
     fireEvent.change( sizeSelector, {target: {value: 'XL'}} );
 
     expect(sizeState).toBe('XL');

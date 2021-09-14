@@ -9,7 +9,6 @@ export const SizeSelector = (props) =>{
   let { skus } = props;
 
   function handleChange(e){
-    console.log(e.target.value);
     props.setSize(e.target.value);
   }
 
@@ -36,7 +35,7 @@ export const SizeSelector = (props) =>{
   return(
     <select
       id='SizeSelector'
-      data-testid='SizeSelector'
+      data-testid='select-size'
       disabled={!sizes || !sizes.length}
       onChange={handleChange}
     >
