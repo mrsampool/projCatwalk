@@ -1,6 +1,6 @@
 // Libraries
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 
 // Components
 import { QtySelector } from './QtySelector.jsx';
@@ -83,6 +83,34 @@ describe("Quantity Selector", ()=>{
     let optionValues = options.map( option => Number(option.value) );
 
     expect( Math.max(...optionValues) ).toBe(15);
+  });
+
+  it('should call state setter function on change', ()=>{
+
+    let qtyState = null;
+
+    let qtySetter = (selectedQty) => {
+      qtyState = selectedQty;
+    }
+
+    let skus = [
+      { quantity: 25, size: 'M' },
+      { quantity: 2, size: 'L' },
+    ];
+
+    render(
+      <QtySelector
+        size='M'
+        skus={skus}
+        setQty={qtySetter}
+      />
+    );
+
+    let sizeSelector = screen.queryByTestId( 'QtySelector' );
+    fireEvent.change( sizeSelector, {target: {value: '12'}} );
+
+    expect(qtyState).toBe( 12 );
+
   });
 
 });
