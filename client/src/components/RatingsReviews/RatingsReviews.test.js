@@ -120,9 +120,25 @@ describe('RatingsBreakdown component', () => {
     expect( screen.queryByTestId(/starrating/) ).toBeTruthy();
   });
   
-  test.todo('"Percentage of reviews that recommend" is rendered');
-  test.todo('"5-4-3-2-1" breakdown is rendered');
-  test.todo('Average size rating is rendered');
-  test.todo('Average comfort rating is rendered');
+  it('"Percentage of reviews that recommend" is rendered', () => {
+    expect( screen.queryByText(/% of reviews recommended/) ).toBeTruthy();
+  });
+
+  it('"5-4-3-2-1" star breakdown is rendered', () => {
+    expect( screen.queryByText(/^5 stars$/) ).toBeTruthy();
+    expect( screen.queryByText(/^4 stars$/) ).toBeTruthy();
+    expect( screen.queryByText(/^3 stars$/) ).toBeTruthy();
+    expect( screen.queryByText(/^2 stars$/) ).toBeTruthy();
+    expect( screen.queryByText(/^1 stars$/) ).toBeTruthy();
+    expect( screen.queryAllByTestId(/starmeter/) ).toHaveLength(5);
+  });
+
+  it('Average size rating is rendered', () => {
+    expect( screen.queryByTestId(/sizemeter/) ).toBeTruthy();
+  });
+
+  it('Average comfort rating is rendered', () => {
+    expect( screen.queryByTestId(/comfortmeter/) ).toBeTruthy();
+  });
 
 });
