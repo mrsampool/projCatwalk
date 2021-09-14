@@ -4,23 +4,17 @@ import { StarRating } from '../StarRating/StarRating.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsBreakdown = () => {
-  const {reviewsData, reviewsMetadata} = useContext(ProductContext);
+  const { reviewsMetadata} = useContext(ProductContext);
 
-  let length = reviewsData.results.length;
-  let total = 0;
-
-  reviewsData.results.forEach((review) => {
-    total += review.rating;
-  });
-
-  let average = total / length;
-
+  let average = 0;
   let totalRatingsQty = 0;
   for (let rating in reviewsMetadata.ratings) {
     totalRatingsQty += reviewsMetadata.ratings[rating];
+    average += (parseInt(rating) * reviewsMetadata.ratings[rating]);
   }
-  console.log(totalRatingsQty);
 
+  average = average / totalRatingsQty;
+  
   return (
     <div id='RatingBreakdown'>
       <p>Ratings Breakdown component</p>

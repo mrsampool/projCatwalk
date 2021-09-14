@@ -112,8 +112,8 @@ describe('RatingsBreakdown component', () => {
     render( <RatingsBreakdown />);
   });
 
-  it('Ratings component is rendered', () => {
-    expect( screen.queryByText(/Score: 3.5/) ).toBeTruthy();
+  it('Overall average review score is rendered', () => {
+    expect( screen.queryByText(/Score: 3.6/) ).toBeTruthy();
   });
 
   it('StarRating component is rendered', () => {
