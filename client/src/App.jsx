@@ -12,7 +12,7 @@ import { productList, singleProduct, singleProductStyles } from './dummyData/pro
 import { reviewsList } from './dummyData/reviewsList';
 import { reviewsMeta } from './dummyData/reviewsMetadata';
 
-import { ProductContext } from './contexts/product-context.js';
+import { ProductContextProvider, ProductContext } from './contexts/product-context.js';
 
 export const App = () => {
   const [reviewsData, setReviewsData] = useState(reviewsList);
@@ -33,12 +33,12 @@ export const App = () => {
   }
 
   return (
-    <ProductContext.Provider value={{reviewsData, questionsData, changeProduct}}>
+    <ProductContextProvider>
       <div id='App'>
         <Overview product={singleProduct} styles={singleProductStyles}/>
         <QAndA />
         <RatingsReviews />
       </div>
-    </ProductContext.Provider>
+    </ProductContextProvider>
   );
 };
