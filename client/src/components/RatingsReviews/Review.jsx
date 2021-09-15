@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StarRating } from '../StarRating/StarRating';
+import { StarRating } from '../StarRating/StarRating.jsx';
 
 export default function Review(props) {
   var [reviewBody, setReviewBody] = useState('');

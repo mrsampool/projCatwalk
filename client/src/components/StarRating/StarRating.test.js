@@ -13,12 +13,11 @@ describe("Star Rating Defaults", ()=>{
     expect( screen.queryByTestId(/starrating/) ).toBeTruthy();
   });
 
-  it('when rating average using default reviewsMetadata from context should be 3.6', () => {
-    expect( screen.queryByText(/3.6 stars/) ).toBeTruthy();
+  it('default reviewsMetadata from context should be 3.6', () => {
+    let meterValue = screen.queryByTestId(/starmeter/).attributes.getNamedItem('value').value;
+    expect( meterValue ).toBe('3.6');
   });
-
-  test.todo('should always contain 5 stars');
-  test.todo('stars should fill to nearest 1/4 to represent rating');
+  
 });
 
 describe('Star Rating with props',() => {
@@ -27,6 +26,7 @@ describe('Star Rating with props',() => {
   });
 
   it('should render rating/score based on the "rating" props', () => {
-    expect( screen.queryByText(/^3 stars$/)).toBeTruthy();
+    let meterValue = screen.queryByTestId(/starmeter/).attributes.getNamedItem('value').value;
+    expect( meterValue ).toBe('3');
   });
 });
