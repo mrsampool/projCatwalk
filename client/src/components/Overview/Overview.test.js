@@ -33,6 +33,7 @@ describe("Overview", ()=>{
   [
     'select-style',
     'select-size',
+    'prod-price'
   ].forEach( element => {
 
     it(`Renders a ${element} component`, ()=>{
@@ -41,12 +42,6 @@ describe("Overview", ()=>{
       expect( rendered ).toBeTruthy();
     })
 
-  });
-
-  describe("Product Price", ()=>{
-    test.todo('should exist');
-    test.todo('should be dependent on the style currently selected');
-    test.todo('should appear in red with a struckthrough original price if SKU is currently discounted');
   });
 
   describe("Add To Cart", ()=>{

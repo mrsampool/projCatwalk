@@ -5,6 +5,7 @@ import { ImgGallery } from './ImgGallery/ImgGallery.jsx';
 import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
+import { Price } from './Price/Price.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
 //Style Sheet
@@ -32,6 +33,13 @@ export const Overview = (props) =>{
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
+          <Price style={{
+            "style_id": 266902,
+            "name": "Forest Green & Black",
+            "original_price": "140.00",
+            "sale_price": "100.00",
+            "default?": true,
+          }} />
           <StyleSelector
             styles={styles}
             currentStyle={currentStyle}
