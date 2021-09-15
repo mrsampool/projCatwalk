@@ -1,4 +1,5 @@
 node_modules
 bundle.js
+bundle.css
 config.js
 coverage

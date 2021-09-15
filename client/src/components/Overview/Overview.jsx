@@ -5,7 +5,11 @@ import { ImgGallery } from './ImgGallery/ImgGallery.jsx';
 import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
+import { Price } from './Price/Price.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
+
+//Style Sheet
+import './Overview.css';
 
 export const Overview = (props) =>{
 
@@ -19,16 +23,17 @@ export const Overview = (props) =>{
   return(
     <div id='Overview' data-testid='Overview'>
 
-      <div>
+      <div id='Overview-main'>
 
-        <span>
-          <ImgGallery/>
-        </span>
+        <ImgGallery
+          photos={currentStyle ? currentStyle.photos : null}
+        />
 
-        <span>
+        <div id='overview-controls'>
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
+          <Price style={currentStyle} />
           <StyleSelector
             styles={styles}
             currentStyle={currentStyle}
@@ -46,7 +51,7 @@ export const Overview = (props) =>{
             />
           </div>
           <button id='add-cart'>ADD TO BAG</button>
-        </span>
+        </div>
 
       </div>
 

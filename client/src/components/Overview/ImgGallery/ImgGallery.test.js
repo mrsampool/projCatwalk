@@ -1,10 +1,13 @@
 describe('Img Gallery', ()=>{
-  describe("General", ()=>{
+  describe("Overview Integration", ()=>{
     test.todo('user should see an image gallery for each style');
     test.todo('gallery will change depending on the current style');
+  });
+
+  describe('Navigation Arrows', ()=>{
     test.todo(`user can use left & right arrow buttons to cycle images through the primary frame`);
     test.todo(`arrows should disappear if there are no more images in that direction`);
-  });
+  })
 
   describe("Thumbnails", ()=>{
     test.todo('selected image will become primary image, shown in bigger size');
