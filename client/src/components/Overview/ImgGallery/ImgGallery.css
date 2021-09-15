@@ -1,0 +1,28 @@
+#ImgGallery{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+#featured-photo{
+  object-position: top center;
+  object-fit: contain;
+}
+
+#ImgCarousel{
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.carouselImg{
+  width: 5rem;
+}
+.carouselImg img{
+  width: 100%;
+  height: auto;
+}
