@@ -5,6 +5,7 @@ import { ImgGallery } from './ImgGallery/ImgGallery.jsx';
 import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
+import { Price } from './Price/Price.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
 //Style Sheet
@@ -32,6 +33,7 @@ export const Overview = (props) =>{
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
+          <Price style={currentStyle} />
           <StyleSelector
             styles={styles}
             currentStyle={currentStyle}
