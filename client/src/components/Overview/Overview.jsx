@@ -33,13 +33,7 @@ export const Overview = (props) =>{
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
-          <Price style={{
-            "style_id": 266902,
-            "name": "Forest Green & Black",
-            "original_price": "140.00",
-            "sale_price": "100.00",
-            "default?": true,
-          }} />
+          <Price style={currentStyle} />
           <StyleSelector
             styles={styles}
             currentStyle={currentStyle}
