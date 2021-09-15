@@ -7,7 +7,11 @@ import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsReviews = () =>{
   const { reviewsData } = useContext(ProductContext);
-  const [filter, setFilter] = useState();
+
+  let initFilter = {
+
+  };
+  const [filter, setFilter] = useState(initFilter);
 
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
