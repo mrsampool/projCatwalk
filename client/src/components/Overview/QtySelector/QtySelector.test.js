@@ -31,7 +31,7 @@ describe("Quantity Selector", ()=>{
       { quantity: 2, size: 'L' },
     ];
 
-    render( <QtySelector size='M' skus={skus} /> );
+    render( <QtySelector sku={skus[0]} /> );
     let qtySelector = screen.queryByTestId( 'QtySelector' );
     expect( qtySelector.value ).toBe( '1' );
   });
@@ -46,7 +46,7 @@ describe("Quantity Selector", ()=>{
     render(
       <QtySelector
         size='M'
-        skus={skus}
+        sku={skus[0]}
       />
     );
 
@@ -66,15 +66,14 @@ describe("Quantity Selector", ()=>{
 
   it('if more than 15 are in stock, max should be limited to 15', ()=>{
 
-    let skus = [
-      { quantity: 25, size: 'M' },
-      { quantity: 2, size: 'L' },
+    let sku = [
+      { quantity: 25, size: 'M' }
     ];
 
     render(
       <QtySelector
         size='M'
-        skus={skus}
+        sku={sku}
       />
     );
 
@@ -101,7 +100,7 @@ describe("Quantity Selector", ()=>{
     render(
       <QtySelector
         size='M'
-        skus={skus}
+        sku={skus[0]}
         setQty={qtySetter}
       />
     );

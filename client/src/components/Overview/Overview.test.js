@@ -33,7 +33,8 @@ describe("Overview", ()=>{
   [
     'select-style',
     'select-size',
-    'prod-price'
+    'prod-price',
+    'add-cart'
   ].forEach( element => {
 
     it(`Renders a ${element} component`, ()=>{
@@ -44,18 +45,6 @@ describe("Overview", ()=>{
 
   });
 
-  describe("Add To Cart", ()=>{
 
-    it('should exist', ()=>{
-      render( <Overview product={product} styles={styles} /> );
-      let addButton = screen.getByText('ADD TO BAG');
-      expect( addButton ).toBeTruthy();
-    })
-
-    test.todo('should be a button');
-    test.todo('if "Select Size" is selected: clicking should open size dropdown - also gives message "Please select a size"');
-    test.todo('if no stock, button should be hidden');
-    test.todo('if valid size and qty are selected, clicking will add to cart');
-  });
 
 });

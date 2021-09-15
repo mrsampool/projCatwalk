@@ -6,6 +6,7 @@ import { QtySelector } from './QtySelector/QtySelector.jsx';
 import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
 import { Price } from './Price/Price.jsx';
+import { AddToCart } from './AddToCart/AddToCart.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
 //Style Sheet
@@ -18,6 +19,7 @@ export const Overview = (props) =>{
 
   const [currentStyle, setCurrentStyle] = useState(null);
   const [currentSize, setCurrentSize] = useState(null);
+  const [currentSku, setCurrentSku] = useState(null);
   const [currentQty, setCurrentQty] = useState(null);
 
   return(
@@ -43,14 +45,17 @@ export const Overview = (props) =>{
             <SizeSelector
               skus={currentStyle ? currentStyle.skus : null}
               setSize={setCurrentSize}
+              setSku={setCurrentSku}
             />
             <QtySelector
-              size={currentSize}
-              skus={currentStyle ? currentStyle.skus : null}
+              sku={currentSku}
               setQty={setCurrentQty}
             />
           </div>
-          <button id='add-cart'>ADD TO BAG</button>
+          <AddToCart
+            sku={currentSku}
+            qty={currentQty}
+          />
         </div>
 
       </div>

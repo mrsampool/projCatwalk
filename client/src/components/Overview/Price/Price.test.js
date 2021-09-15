@@ -1,7 +1,6 @@
 // Libraries
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import {toHaveStyle} from '@testing-library/jest-dom/extend-expect'
 
 // Components
 import { Price } from './Price.jsx';
