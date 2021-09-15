@@ -7,7 +7,6 @@ import './QuestionList.css'
 
 export const AnswerList = (props) =>{
   const answers = props.question.answers;
-  
   const answerKeys = Object.keys(answers);
   return (
   <div id='Answer-List' style={{color: 'blue', background: 'white'}}>
@@ -37,15 +36,22 @@ export const AnswerList = (props) =>{
             setReported(true);
           }
         }
+        const sellname = ans.answerer_name;
 
         return (
           <div key= {ans.id}>
             <div className="A-statement" >
               <p>A: {(readMore || abody.length < 20)? abody :`${abody.substring(0,20)}...`}
-                {(abody.length > 20) ? (<button onClick={()=>setReadMore(!readMore)}>{readMore ? 'hide content': 'show more'}</button>) : null}
+                {(abody.length > 20) ?
+                (<button onClick={()=>setReadMore(!readMore)}>{readMore ? 'hide content': 'show more'}</button>)
+                : null}
               </p>
             </div>
-            <div className="A-date" >by {ans.answerer_name}, {monthNames[month]} {day}, {year} | helpful? <u onClick={addHelpful}>Yes</u> ({helpful}) | <u onClick={addReport}>{reported ? 'reported' : 'report'}</u>
+            <div className="A-date" >
+              by {sellname !== "Seller" ? sellname :<strong>Seller</strong>}, {monthNames[month]} {day}, {year} | helpful?
+              <u onClick={addHelpful}>Yes</u>
+              ({helpful}) |
+              <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
             </div>
           </div>
         )
