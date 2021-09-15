@@ -8,7 +8,7 @@ let { getCart, addToCart } = serverRequests;
 
 describe('getCart', ()=>{
 
-  xit('should return an array', ()=>{
+  it('should return an array', ()=>{
 
     return getCart().then( res =>{
       expect( Array.isArray(res) ).toBe( true );
@@ -21,7 +21,7 @@ describe('getCart', ()=>{
 
 describe('addToCart', ()=>{
 
-  xit('should add an item into the user\'s cart', ()=>{
+  it('should add an item into the user\'s cart', ()=>{
 
     let testSku = '1549637';
     let count = 1;
@@ -34,23 +34,17 @@ describe('addToCart', ()=>{
       if (matchingItem) { preCartItem = Number(matchingItem.count); }
 
       return addToCart(testSku, count)
-      .then( () =>{
-
-        return getCart()
-        .then( secondCart => {
-
-          let matchingItem = secondCart[ secondCart.findIndex( item => item['sku_id'] == testSku )];
-          let newCount = Number(matchingItem.count);
-
-          expect( matchingItem ).toBeTruthy();
-          expect( Number(matchingItem.count) > preCartItem ).toBeTruthy();
-        });
-
-      })
     })
+    .then( () => getCart() )
+    .then( secondCart => {
 
+      let matchingItem = secondCart[ secondCart.findIndex( item => item['sku_id'] == testSku )];
+      let newCount = Number(matchingItem.count);
 
+      expect( matchingItem ).toBeTruthy();
+      expect( Number(matchingItem.count) > preCartItem ).toBeTruthy();
+    })
     .catch( err => console.log(err) );
   });
 
-})
+});
