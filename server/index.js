@@ -33,7 +33,8 @@ server.use('/', (req, res, next) =>{
     console.log('\nAPI response body:');
     console.log( apiRes.data );
     res.status( apiRes.status ).send(apiRes.data);
-  });
+  })
+  .catch( err => res.status(500).send(err) );
 
 });
 
