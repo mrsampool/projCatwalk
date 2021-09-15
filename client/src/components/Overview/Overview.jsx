@@ -7,6 +7,9 @@ import { SizeSelector } from './SizeSelector/SizeSelector.jsx';
 import { StyleSelector } from './StyleSelector/StyleSelector.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
+//Style Sheet
+import './Overview.css';
+
 export const Overview = (props) =>{
 
   const {category, name, slogan, description} = props.product;
@@ -19,13 +22,13 @@ export const Overview = (props) =>{
   return(
     <div id='Overview' data-testid='Overview'>
 
-      <div>
+      <div id='Overview-main'>
 
-        <span>
-          <ImgGallery/>
-        </span>
+        <ImgGallery
+          photos={currentStyle ? currentStyle.photos : null}
+        />
 
-        <span>
+        <div id='overview-controls'>
           <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
@@ -46,7 +49,7 @@ export const Overview = (props) =>{
             />
           </div>
           <button id='add-cart'>ADD TO BAG</button>
-        </span>
+        </div>
 
       </div>
 

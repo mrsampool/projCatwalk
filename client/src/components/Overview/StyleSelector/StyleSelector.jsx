@@ -26,7 +26,7 @@ export const StyleSelector = (props) =>{
     >
       <span>STYLE > </span>
       <span>{currentStyle ? currentStyle.name : ''}</span>
-      <div data-testid='styles-list'>
+      <div id='styles-list' data-testid='styles-list'>
         {
           styles.map( style =>{
             return(
@@ -57,7 +57,8 @@ export const StyleOption = props => {
   }
 
   return(
-    <span
+    <div
+      id='style-option'
       data-testid={`style-option-${style_id}`}
       onClick={handleClick}
     >
@@ -75,6 +76,6 @@ export const StyleOption = props => {
         src={thumbnail}
         data-testid={thumbnail}
       />
-    </span>
+    </div>
   )
 }
