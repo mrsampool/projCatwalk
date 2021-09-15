@@ -1,5 +1,5 @@
 import { serverRequests } from './serverRequests';
-let { getCart, addToCart } = serverRequests;
+let { getCart, addToCart, getProductReviews, getProductReviewsMeta } = serverRequests;
 
 // IMPORTANT NOTE:
 // The methods below (getCart & addToCart) have been tested and are passing as of 9.15.21 2:40pm
@@ -54,3 +54,11 @@ describe('addToCart', ()=>{
   });
 
 })
+
+describe('Reviews API calls', () => {
+  it('should receive data from the /reviews endpoint (product_id 44391)', () => {
+    getProductReviewsMeta(44391)
+    .then( data => expect(data).toBeTruthy() )
+    .catch( err => expect(err).toBeFalsy() );
+  })
+});
