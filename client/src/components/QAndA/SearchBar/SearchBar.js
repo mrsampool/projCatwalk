@@ -8,7 +8,6 @@ export const SearchBar = (props) =>{
   const [keyword, setKeyword] = useState('');
   const SubmitHandler = (event) =>{
     event.preventDefault();
-    console.log('tests for search submit button');
   }
   return (
   <div id='SearchBar' className = "search container">
