@@ -7,7 +7,7 @@ import './QuestionList.css'
 
 export const AnswerList = (props) =>{
   const answers = props.question.answers;
-  console.log(answers);
+  
   const answerKeys = Object.keys(answers);
   return (
   <div id='Answer-List' style={{color: 'blue', background: 'white'}}>
