@@ -10,12 +10,14 @@ export const AnswerList = (props) =>{
   console.log(answers);
   const answerKeys = Object.keys(answers);
   return (
-  <div id='Answer-List' style={{color: 'blue', background: 'red'}}>
+  <div id='Answer-List' style={{color: 'blue', background: 'white'}}>
       {answerKeys.map(eachkey=>{
         const ans = answers[eachkey];
         const [readMore, setReadMore] = useState(false);
         const abody = ans.body;
         const [helpful, setHelpful] = useState(ans.helpfulness)
+        const [Helpfuladded, setHelpfuladded] = useState(false)
+        const [reported, setReported] = useState(false)
 
         const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
@@ -24,6 +26,18 @@ export const AnswerList = (props) =>{
         const day = date.getDate();
         const year = date.getFullYear();
 
+        const addHelpful = () => {
+          if (!Helpfuladded){
+            setHelpful(helpful+1);
+            setHelpfuladded(true);
+          }
+        }
+        const addReport = () => {
+          if (!reported){
+            setReported(true);
+          }
+        }
+
         return (
           <div key= {ans.id}>
             <div className="A-statement" >
@@ -31,7 +45,7 @@ export const AnswerList = (props) =>{
                 {(abody.length > 20) ? (<button onClick={()=>setReadMore(!readMore)}>{readMore ? 'hide content': 'show more'}</button>) : null}
               </p>
             </div>
-            <div className="A-date" >by {ans.answerer_name}, {monthNames[month]} {day}, {year} | helpful ? <button onClick={()=>setHelpful(helpful+1)}>Yes({helpful})</button> | report
+            <div className="A-date" >by {ans.answerer_name}, {monthNames[month]} {day}, {year} | helpful? <u onClick={addHelpful}>Yes</u> ({helpful}) | <u onClick={addReport}>{reported ? 'reported' : 'report'}</u>
             </div>
           </div>
         )
