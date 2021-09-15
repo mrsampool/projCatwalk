@@ -6,10 +6,17 @@ import './SizeSelector.css'
 
 export const SizeSelector = (props) =>{
 
-  let { skus } = props;
+  let { skus, setSize, setSku } = props;
 
   function handleChange(e){
-    props.setSize(e.target.value);
+
+    let sku = Object.keys(skus).find( sku =>{
+      let currentSku = skus[sku];
+      return currentSku.size === e.target.value;
+    })
+
+    setSize(e.target.value);
+    setSku( [ sku, skus[sku] ]);
   }
 
   let sizes = function getSizes(skus){

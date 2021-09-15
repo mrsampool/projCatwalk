@@ -99,7 +99,7 @@ describe("Size Selector", ()=>{
   });
 
 
-  it('should call state setter function on change', ()=>{
+  it('should call size state setter function on change', ()=>{
 
     let sizeState = null;
 
@@ -107,12 +107,35 @@ describe("Size Selector", ()=>{
       sizeState = selectedSize;
     }
 
-    render( <SizeSelector skus={skus} setSize={sizeSetter} /> );
+    render( <SizeSelector skus={skus} setSize={sizeSetter} setSku={()=>{}} /> );
 
     let sizeSelector = screen.queryByTestId( 'select-size' );
     fireEvent.change( sizeSelector, {target: {value: 'XL'}} );
 
     expect(sizeState).toBe('XL');
+
+  });
+
+  it('should call sku state setter function on change', ()=>{
+
+    let skuState = null;
+
+    let skuSetter = (selectedSku) => {
+      skuState = selectedSku;
+    }
+
+    render(
+      <SizeSelector
+        skus={skus}
+        setSku={skuSetter}
+        setSize={()=>{}}
+      />
+    );
+
+    let sizeSelector = screen.queryByTestId( 'select-size' );
+    fireEvent.change( sizeSelector, {target: {value: 'XS'}} );
+
+    expect(skuState[0]).toBe("1549611");
 
   });
 
