@@ -39,8 +39,8 @@ describe('Review component', () => {
     render( <ReviewsList reviewslist={reviewsList} filter={{}} setFilter={() => {}}/> )
   });
 
-  it('Test for rating', () => {
-    expect( screen.queryByText(/Rating: 3/)).toBeTruthy();
+  it('Test for star rating', () => {
+    expect( screen.queryAllByTestId(/starmeter/)).toHaveLength(2);
   });
 
   it('Test for summary', () => {
@@ -118,6 +118,7 @@ describe('RatingsBreakdown component', () => {
 
   it('StarRating component is rendered', () => {
     expect( screen.queryByTestId(/starrating/) ).toBeTruthy();
+    expect( screen.queryByTestId(/starmeter/) ).toBeTruthy();
   });
   
   it('"Percentage of reviews that recommend" is rendered', () => {
@@ -130,7 +131,7 @@ describe('RatingsBreakdown component', () => {
     expect( screen.queryByText(/^3 stars$/) ).toBeTruthy();
     expect( screen.queryByText(/^2 stars$/) ).toBeTruthy();
     expect( screen.queryByText(/^1 stars$/) ).toBeTruthy();
-    expect( screen.queryAllByTestId(/starmeter/) ).toHaveLength(5);
+    expect( screen.queryAllByTestId(/starcountmeter/) ).toHaveLength(5);
   });
 
   it('Average size rating is rendered', () => {

@@ -28,8 +28,7 @@ export const StarRating = (props) => {
 
   return (
     <div className='StarRating' data-testid='starrating'>
-      <div data-testid='avgrating'>{rating} stars</div>
-      <meter min='0' max='5' value={rating}></meter>
+      <meter min='0' max='5' value={rating} data-testid='starmeter'></meter>
     </div>
   )
 };
