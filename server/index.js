@@ -21,13 +21,16 @@ server.use('/', (req, res, next) =>{
 
   console.log(`\nReceived ${req.method} request at endpoint: ${req.path}\nRequest body:`);
   console.log(req.body);
+  console.log('req.query', req.query);
   let url = baseUrl + req.path;
   console.log(`\nSending API ${req.method} request: \n${url}`);
+  
 
   axios({
     method: req.method,
     url: url,
-    data: req.body
+    data: req.body,
+    params: req.query,
   })
   .then( apiRes => {
     console.log('\nAPI response body:');

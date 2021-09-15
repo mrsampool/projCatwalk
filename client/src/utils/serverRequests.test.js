@@ -1,5 +1,5 @@
 import { serverRequests } from './serverRequests';
-let { getCart, addToCart } = serverRequests;
+let { getCart, addToCart, getProductReviews, getProductReviewsMeta, getProducts } = serverRequests;
 
 // IMPORTANT NOTE:
 // The methods below (getCart & addToCart) have been tested and are passing as of 9.15.21 2:40pm
@@ -47,4 +47,37 @@ describe('addToCart', ()=>{
     .catch( err => console.log(err) );
   });
 
+})
+
+describe('Products API endpoint', () => {
+  it('should return an array containing basic product information', (done) => {
+    getProducts()
+    .then( products => {
+      expect( Array.isArray(products) ).toBe(true);
+      expect( products[0] ).toHaveProperty('id');
+      expect( products[0] ).toHaveProperty('description');
+      done();
+    })
+    .catch( done );
+  });
+});
+
+describe('Reviews API endpoint', () => {
+  it('should receive data from the /reviews/meta endpoint (product_id 44391)', (done) => {
+    getProductReviewsMeta(44391)
+    .then( data => {
+      expect(data).toHaveProperty('product_id', '44391');
+      done();
+    })
+    .catch( done );
+  })
+
+  it('should receive data from the /reviews endpoint (product_id 44391)', (done) => {
+    getProductReviews(44391)
+    .then( data => {
+      expect(data).toHaveProperty('product', '44391');
+      done();
+    })
+    .catch( done );
+  })
 });
