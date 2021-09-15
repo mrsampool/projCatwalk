@@ -141,3 +141,13 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 
 ---
 
+## Misc Components
+
+- AnalyticWrapper
+  - This component wraps all of the app's child components (widgets) and captures data for every user click in the app. For each click, the following data is captured:
+    - Time of click
+    - Click target - Widget (Either ProductOverview, QAndA, or RatingsReviews)
+    - Click target - Specific HTML Element
+  - Currently this data is captured and recorded in memory, but not on disk. A more persistant implementation would be simple given the appropriate backend funcionality.
+- StarRating
+  - A component to be reused throughout the application - displays a scalar rating as a series of stars of a 5-star grading scale
