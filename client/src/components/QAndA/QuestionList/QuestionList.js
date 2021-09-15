@@ -11,7 +11,7 @@ export const QuestionList = () =>{
   const qLen = questions.length;
   const loadMore = () => {
     setLastIndex(lastIndex+2);
-  }
+  };
   return (
   <div id='QuestionList' style={{color: 'yellow', background: 'green'}}>
       {questions.slice(0, lastIndex).map(q=>{

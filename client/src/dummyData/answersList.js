@@ -92,6 +92,14 @@ export const listQuestions = {
             "helpfulness": 6,
             "photos": [],
           },
+          71: {
+            "id": 71,
+            "body": "this is a newly added answer",
+            "date": "2019-11-06T00:00:00.000Z",
+            "answerer_name": "sillygal",
+            "helpfulness": 9,
+            "photos": [],
+          },
           78: {
             "id": 78,
             "body": "9 lives",
@@ -112,7 +120,7 @@ export const listQuestions = {
       },
       {
         "question_id": 39,
-        "question_body": "What do you buy this?",
+        "question_body": "Why do I buy this?",
         "question_date": "2020-06-28T00:00:00.000Z",
         "asker_name": "funnyboy",
         "question_helpfulness": 5,
@@ -126,10 +134,18 @@ export const listQuestions = {
             "helpfulness": 6,
             "photos": [],
           },
+          67: {
+            "id": 67,
+            "body": "because your wife told you to",
+            "date": "2020-01-18T00:00:00.000Z",
+            "answerer_name": "aguy",
+            "helpfulness": 6,
+            "photos": [],
+          },
           79: {
             "id": 79,
-            "body": "you should ask yourself",
-            "date": "2020-08-12T00:00:00.000Z",
+            "body": "because you need to",
+            "date": "2020-07-12T00:00:00.000Z",
             "answerer_name": "agirl",
             "helpfulness": 20,
             "photos": [{
@@ -188,7 +204,7 @@ export const listQuestions = {
         "answers": {
           12: {
             "id": 12,
-            "body": "because it is not a product!",
+            "body": "because it is not a good product!",
             "date": "2020-03-28T00:00:00.000Z",
             "answerer_name": "a person",
             "helpfulness": 1,
@@ -209,7 +225,15 @@ export const listQuestions = {
               "url": "urlplaceholder/answer_5_photo_number_2.jpg"
             }
           ],
-          }
+          },
+          13: {
+            "id": 13,
+            "body": "because it is so cheap, what do you expect!",
+            "date": "2020-03-02T00:00:00.000Z",
+            "answerer_name": "Seller",
+            "helpfulness": 1,
+            "photos": [],
+          },
         }
       },
       // ...
