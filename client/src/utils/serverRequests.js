@@ -23,26 +23,26 @@ export const serverRequests = {
 
   getProducts: () => {
     return new Promise( (resolve, reject) => {
-      axios.get('/products')
+      axios.get(baseUrl + '/products')
       .then( ({data}) => resolve(data) )
-      .catch( err => reject(err) );
+      .catch( reject );
     });
   },
   
   getProductReviews: (product_id, sort = 'newest') => {
     // get a single product's reviews
     return new Promise( (resolve, reject) => {
-      axios.get('/reviews?product_id=', product_id, '&sort=', sort )
+      axios.get( baseUrl + '/reviews?product_id=' + product_id + '&sort=' + sort )
       .then( ({data}) => resolve(data) )
-      .catch( err => reject(err) );
+      .catch( reject );
     });
   },
 
   getProductReviewsMeta: (product_id) => {
     return new Promise( (resolve, reject) => {
-      axios.get('/reviews/meta?product_id=', product_id)
+      axios.get(baseUrl + '/reviews/meta?product_id=' + product_id)
       .then( ({data}) => resolve(data) )
-      .catch( err => reject(err) );
+      .catch( reject );
     });
   },
 
