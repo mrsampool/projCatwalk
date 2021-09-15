@@ -39,8 +39,8 @@ describe('Review component', () => {
     render( <ReviewsList reviewslist={reviewsList} filter={{}} setFilter={() => {}}/> )
   });
 
-  it('Test for rating', () => {
-    expect( screen.queryByText(/Rating: 3/)).toBeTruthy();
+  it('Test for star rating', () => {
+    expect( screen.queryAllByTestId(/avgrating/)).toHaveLength(2);
   });
 
   it('Test for summary', () => {
