@@ -19,6 +19,31 @@ export const serverRequests = {
       .then( res => resolve( res.data ) )
       .catch( err => reject( err ) );
     });
-  }
+  },
+
+  getProducts: () => {
+    return new Promise( (resolve, reject) => {
+      axios.get(baseUrl + '/products')
+      .then( ({data}) => resolve(data) )
+      .catch( reject );
+    });
+  },
+  
+  getProductReviews: (product_id, sort = 'newest') => {
+    // get a single product's reviews
+    return new Promise( (resolve, reject) => {
+      axios.get( baseUrl + '/reviews?product_id=' + product_id + '&sort=' + sort )
+      .then( ({data}) => resolve(data) )
+      .catch( reject );
+    });
+  },
+
+  getProductReviewsMeta: (product_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.get(baseUrl + '/reviews/meta?product_id=' + product_id)
+      .then( ({data}) => resolve(data) )
+      .catch( reject );
+    });
+  },
 
 };
