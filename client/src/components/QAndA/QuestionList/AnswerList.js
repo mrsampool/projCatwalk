@@ -20,7 +20,7 @@ export const AnswerList = (props) =>{
         return <EachAnswer key = {ans.id} ans = {ans}/>
       })
       }
-      {(lastIdx < aLen) ? <button onClick = {loadMoreA}>show more answers</button> : null}
+      {(lastIdx < aLen) ? <u onClick = {loadMoreA}>show more answers</u> : null}
   </div>
 
   )

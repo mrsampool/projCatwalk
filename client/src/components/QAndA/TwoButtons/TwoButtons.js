@@ -1,9 +1,14 @@
 //React
-import React from 'react';
-
+import React, {useContext} from 'react';
 //Stylesheet
-import './TwoButtons.css'
+import './TwoButtons.css';
+
 
 export const TwoButtons = (props) =>{
-  return <div id='TwoButtons'></div>
+
+    return(
+      <div id='TwoButtons'>
+      </div>
+    )
+
 };
