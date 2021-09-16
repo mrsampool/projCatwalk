@@ -20,14 +20,16 @@
 }
 .carouselImg img{
   border: 0.5rem solid white;
+  background-color: white;
   object-fit: contain;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   max-height: 100%;
   transition: src 1s;
 }
 .carouselImg.active img{
   border-color: var(--light);
+  background-color: var(--light);
 }
 .no-photo{
   height: var(--carousel-img-height);
