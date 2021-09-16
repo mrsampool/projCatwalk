@@ -1,6 +1,7 @@
 .img-arrow{
   /* position */
   position: absolute;
+  z-index: 3;
   /* display */
   display: flex;
   justify-content: center;
@@ -22,4 +23,26 @@
 }
 #prev-img{
   left: 7rem;
+}
+#prev-img.up{
+  position: relative;
+  transform: rotate(90deg);
+  top: 0;
+  right: auto;
+  left: auto;
+  font-size: 1.5rem;
+  /* sizing */
+  width: 2rem;
+  height: 2rem;
+}
+#next-img.down{
+  position: relative;
+  transform: rotate(90deg);
+  bottom: 0;
+  right: auto;
+  left: auto;
+  font-size: 1.5rem;
+  /* sizing */
+  width: 2rem;
+  height: 2rem;
 }

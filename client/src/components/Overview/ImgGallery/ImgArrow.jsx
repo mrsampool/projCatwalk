@@ -5,18 +5,20 @@ import './ImgArrow.css';
 
 export const ImgArrow = props => {
 
-  const {type, index, change, length} = props;
+  const {type, index, change, length, className, offSet} = props;
+
+  let offSetValue = offSet || 0;
 
   if (
-    ( type === 'prev' && index > 0 )
+    ( type === 'prev' && index + offSetValue > 0 )
     ||
-    ( type === 'next' && index < length - 1 )
+    ( type === 'next' && index + offSetValue < length - 1 )
     ) {
       return(
         <button
           id={`${type}-img`}
-          className='img-arrow'
           onClick={change}
+          className={`img-arrow ${className || ''} `}
         >
           {type === 'next' ? '>' : '<'}
         </button>

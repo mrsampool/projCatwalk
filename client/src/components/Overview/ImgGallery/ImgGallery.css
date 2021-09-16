@@ -1,7 +1,7 @@
 
 #ImgGallery{
   --gallery-height: 80vh;
-  --carousel-img-height: calc( var(--gallery-height) / 6 );
+  --carousel-img-height: calc( var(--gallery-height) / 8 );
   --controls-width: 40rem;
   position: absolute;
   z-index: 3;

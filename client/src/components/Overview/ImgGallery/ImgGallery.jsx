@@ -13,7 +13,7 @@ export const ImgGallery = (props) =>{
   const {photos} = props;
 
   const [curPhotoIndex, setCurPhotoIndex] = useState(0);
-  const [ zoom, setZoom ] = useState(true);
+  const [ zoom, setZoom ] = useState(false);
 
   function prevPhoto(){
     setCurPhotoIndex( curPhotoIndex - 1 );
@@ -72,11 +72,19 @@ export const ImgGallery = (props) =>{
       }
 
     } else {
-      gallery.removeEventListener('mousemove', zoomMouseMoveHandler);
-      img.style.height = '';
-      img.style.top = '';
+      if (gallery){
+        gallery.removeEventListener('mousemove', zoomMouseMoveHandler);
+      }
+      if (img){
+        img.style.height = '';
+        img.style.top = '';
+      }
     }
   }
+
+  useEffect( ()=>{
+    setZoom(false);
+  }, [photos, curPhotoIndex]);
 
   useEffect( ()=>{
     checkZoom();

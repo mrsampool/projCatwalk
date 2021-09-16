@@ -1,20 +1,26 @@
 import React from 'react';
 
 export const CarouselImg = props => {
-  let {photos, index} = props;
+  let {photos, index, offSet, setPhotoIndex} = props;
 
-  if ( index >= 0 && index < photos.length ){
+  let imgData = photos[index + offSet];
 
-    let imgData = photos[index];
+  function handleClick(){
+    setPhotoIndex(index + offSet);
+  }
+
+  if ( imgData ){
+
+    let active = !offSet;
 
     return (
       <span
         id={`thumb_${index}`}
-        className={`carouselImg ${props.middle ? 'middle' : ''}`}
+        className={`carouselImg ${active ? 'active' : ''}`}
       >
         <img
           src={imgData.thumbnail_url}
-
+          onClick={handleClick}
         />
       </span>
     )
