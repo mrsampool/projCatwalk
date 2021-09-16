@@ -3,6 +3,7 @@
   position: relative;
   display: flex;
   width: 100%;
+  height: fit-content;
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -1,5 +1,9 @@
 //React
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+
+// Sub-Components
+import { ImgCarousel } from './ImgCarousel.jsx';
+import { ImgArrow } from './ImgArrow.jsx';
 
 //Stylesheet
 import './ImgGallery.css'
@@ -7,7 +11,9 @@ import './ImgGallery.css'
 export const ImgGallery = (props) =>{
 
   const {photos} = props;
+
   const [curPhotoIndex, setCurPhotoIndex] = useState(0);
+  const [ zoom, setZoom ] = useState(true);
 
   function prevPhoto(){
     setCurPhotoIndex( curPhotoIndex - 1 );
@@ -17,9 +23,73 @@ export const ImgGallery = (props) =>{
     setCurPhotoIndex( curPhotoIndex + 1 );
   }
 
+  function zoomMouseMoveHandler(e){
+    let img = document.querySelector('#featured-photo img');
+    let gallery = document.getElementById('ImgGallery');
+    let rect = gallery.getBoundingClientRect();
+    let mouse = {x: e.clientX, y: e.clientY}
+
+    function getTopOffset(){
+
+      let percentPerPixel = 100 / rect.height;
+      let percentDown = ( mouse.y - rect.top ) * percentPerPixel;
+
+      let imgPixelsPerPercent = img.offsetHeight / 100;
+
+      return ( 0 - (percentDown * 10) ) + 'px';
+    }
+
+    function getLeftOffset(){
+
+      console.log(img.offsetWidth);
+
+      let percentPerPixel = 100 / rect.width;
+      let percentRight = ( mouse.x - rect.left ) * percentPerPixel;
+
+      let difference = img.offsetWidth - rect.width;
+      let diffPercent = difference / 100;
+
+      let number = diffPercent * percentRight;
+
+      return 0 - (number) + 'px';
+    }
+
+    img.style.top = getTopOffset();
+    img.style.left = getLeftOffset();
+
+  }
+
+  function checkZoom(){
+
+    let img = document.querySelector('#featured-photo img');
+    let gallery = document.getElementById('ImgGallery');
+
+    if (zoom){
+
+      if (img && gallery){
+        img.style.height = ( gallery.getBoundingClientRect().height * 2.5 ) + 'px';
+        gallery.addEventListener('mousemove', zoomMouseMoveHandler);
+      }
+
+    } else {
+      gallery.removeEventListener('mousemove', zoomMouseMoveHandler);
+      img.style.height = '';
+      img.style.top = '';
+    }
+  }
+
+  useEffect( ()=>{
+    checkZoom();
+  }, [zoom, photos]);
+
   if (photos){
     return(
-      <div id='ImgGallery'>
+      <div id='ImgGallery' className={`${props.fullScreen ? 'full' : ''}`}>
+
+        <button
+          id='fullscreen'
+          onClick={props.toggleFull}
+        >[ ]</button>
 
         <ImgCarousel
           photos={photos}
@@ -27,15 +97,22 @@ export const ImgGallery = (props) =>{
           setPhotoIndex={setCurPhotoIndex}
         />
 
-        <PhotoArrow
+        <ImgArrow
           index={curPhotoIndex}
           change={prevPhoto}
           type={'prev'}
         />
 
-        <img id='featured-photo' src={photos[curPhotoIndex].url}/>
+        <div id='featured-photo'>
+          <img
+            src={photos[curPhotoIndex].url}
+            className={zoom ? 'zoom' : 'nozoom'}
+            onLoad={checkZoom}
+            onClick={ ()=>{ setZoom(!zoom)} }
+          />
+        </div>
 
-        <PhotoArrow
+        <ImgArrow
           index={curPhotoIndex}
           change={nextPhoto}
           type={'next'}
@@ -50,52 +127,3 @@ export const ImgGallery = (props) =>{
 
 };
 
-const PhotoArrow = props => {
-
-  const {type, index, change, length} = props;
-
-  if (
-    ( type === 'prev' && index > 0 )
-    ||
-    ( type === 'next' && index < length - 1 )
-    ) {
-      return <button onClick={change}>{type}</button>
-    }
-  return null;
-}
-
-const ImgCarousel = props => {
-  const {photos, index, setPhotoIndex} = props;
-
-  function handleImgChange(e) {
-    let photoIndex = Number( e.target.id.split('_')[1] );
-    setPhotoIndex(photoIndex);
-  }
-
-  return (
-    <span id='ImgCarousel'>
-      <CarouselImg index={index - 2} photos={photos} />
-      <CarouselImg index={index - 1} photos={photos} />
-      <CarouselImg index={index} photos={photos} />
-      <CarouselImg index={index + 1} photos={photos} />
-      <CarouselImg index={index + 2} photos={photos} />
-    </span>
-  )
-}
-
-const CarouselImg = props => {
-  let {photos, index} = props;
-
-  if ( index >= 0 && index < photos.length ){
-
-    let imgData = photos[index];
-
-    return (
-      <span id={`thumb_${index}`} className='carouselImg'>
-        <img
-          src={imgData.thumbnail_url}
-        />
-      </span>
-    )
-  } else { return null }
-}

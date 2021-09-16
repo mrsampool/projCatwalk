@@ -1,0 +1,33 @@
+#ImgCarousel{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.carouselImg{
+  display: flex;
+  justify-content: center;
+  width: var(--carousel-img-height);
+  height: var(--carousel-img-height);
+  margin-bottom: 1rem;
+}
+.carouselImg img{
+  border: 0.5rem solid white;
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  transition: src 1s;
+}
+.carouselImg.middle img{
+  border-color: var(--light);
+}
+.no-photo{
+  height: var(--carousel-img-height);
+  margin-bottom: 1rem;
+}
