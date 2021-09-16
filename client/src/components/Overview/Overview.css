@@ -3,5 +3,32 @@
 }
 
 #overview-controls{
-  width: 50rem;
+  padding: 2rem;
+  width: 55rem;
+}
+
+#prod-category{
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+#prod-title{
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1em;
+}
+
+#prod-copy{
+  padding: 3rem 5rem;
+}
+#prod-slogan{
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 992px){
+  #Overview-main{ flex-direction: column-reverse; }
 }
