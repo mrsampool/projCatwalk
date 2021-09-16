@@ -24,8 +24,8 @@ export const StyleSelector = (props) =>{
       id='StyleSelector'
       data-testid='select-style'
     >
-      <span>STYLE > </span>
-      <span>{currentStyle ? currentStyle.name : ''}</span>
+      <span id='style-pointer'>STYLE > </span>
+      <span id='current-style'>{currentStyle ? currentStyle.name : ''}</span>
       <div id='styles-list' data-testid='styles-list'>
         {
           styles.map( style =>{
@@ -58,7 +58,7 @@ export const StyleOption = props => {
 
   return(
     <div
-      id='style-option'
+      className='style-option'
       data-testid={`style-option-${style_id}`}
       onClick={handleClick}
     >
@@ -67,15 +67,18 @@ export const StyleOption = props => {
           <span id='active-check'
             data-testid='active-check'
           >
-            checkmark
+            V
           </span>
           :
           ''
       }
-      <img
-        src={thumbnail}
-        data-testid={thumbnail}
-      />
+      <div className='style-thumb-frame'>
+        <img
+          src={thumbnail}
+          data-testid={thumbnail}
+        />
+      </div>
+
     </div>
   )
 }
