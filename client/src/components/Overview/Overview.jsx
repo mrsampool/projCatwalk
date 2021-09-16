@@ -21,6 +21,11 @@ export const Overview = (props) =>{
   const [currentSize, setCurrentSize] = useState(null);
   const [currentSku, setCurrentSku] = useState(null);
   const [currentQty, setCurrentQty] = useState(null);
+  const [fullScreenImg, setFullScreenImg] = useState(false);
+
+  function toggleFullScreenImg(){
+    setFullScreenImg( !fullScreenImg );
+  }
 
   return(
     <div id='Overview' data-testid='Overview'>
@@ -29,6 +34,8 @@ export const Overview = (props) =>{
 
         <ImgGallery
           photos={currentStyle ? currentStyle.photos : null}
+          toggleFull={toggleFullScreenImg}
+          fullScreen={fullScreenImg}
         />
 
         <div id='overview-controls'>
