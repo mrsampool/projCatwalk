@@ -14,7 +14,6 @@ export const QAndA = (props) =>{
 
     <QuestionContextProvider>
       <QuestionList/>
-      <QuestionForm/>
     </QuestionContextProvider>
 
 

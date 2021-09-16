@@ -1,8 +1,10 @@
 import React, {useContext, useState} from 'react';
 import {QuestionContext} from '../QuestionContext'
 
-export const QuestionForm = () =>{
-  const {questions, addQuestion} = useContext(QuestionContext);
+export const QuestionForm = (props) =>{
+  const questions = props.questions;
+  const addQuestion = props.addQuestion;
+  //const {questions, addQuestion} = useContext(props.QuestionContext);
   const ProductName = 'product' //todo
   const [question_body, setContent] = useState('');
   const [asker_name, setUsername] = useState('');
