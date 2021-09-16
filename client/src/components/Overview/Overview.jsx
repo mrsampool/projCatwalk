@@ -60,9 +60,9 @@ export const Overview = (props) =>{
 
       </div>
 
-      <div id='prod-description'>
+      <div id='prod-copy'>
         <p id='prod-slogan'>{slogan}</p>
-        <p id='prod-slogan'>{description}</p>
+        <p id='prod-description'>{description}</p>
       </div>
 
     </div>
