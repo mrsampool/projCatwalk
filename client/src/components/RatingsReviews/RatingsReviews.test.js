@@ -13,7 +13,7 @@ import { TestWatcher } from '@jest/core';
 describe('Ratings and Reviews rendering', () => {
 
   beforeEach(() => {
-    render( <RatingsReviews /> )
+    render( <RatingsReviews testing={true} /> )
   });
   
 
@@ -146,7 +146,7 @@ describe('RatingsBreakdown component', () => {
 
 describe('Filtering reviews', () => {
   beforeEach(() => {
-    render( <RatingsReviews /> );
+    render( <RatingsReviews testing={true} /> );
   });
 
   it('should only show 4 star reviews when the 4 star label is clicked', () => {
