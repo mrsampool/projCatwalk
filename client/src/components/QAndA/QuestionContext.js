@@ -6,8 +6,14 @@ export const QuestionContext = createContext();
 
 const QuestionContextProvider = (props) =>{
   const [questions, setQuestions] = useState(listQuestions.results) //
+
+  const addQuestion = (question_id, question_body, question_date, asker_name, question_helpfulness, reported, answers) => {
+    setQuestions([...questions, {
+      question_id, question_body, question_date, asker_name,question_helpfulness, reported, answers
+    }])
+  }
   return (
-  <QuestionContext.Provider value={{questions}}>
+  <QuestionContext.Provider value={{questions, addQuestion}}>
     {props.children}
   </QuestionContext.Provider>
   );
