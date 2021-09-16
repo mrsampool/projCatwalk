@@ -1,17 +1,24 @@
-import React, { useContext, useState } from 'react';
-
+import React, { useContext, useState, useEffect } from 'react';
 import { ReviewsList } from './ReviewsList.jsx';
 import { RatingsBreakdown } from './RatingsBreakdown.jsx';
-
 import { ProductContext } from '../../contexts/product-context.js';
+import { serverRequests } from '../../utils/serverRequests.js';
+let { getProductReviews } = serverRequests;
+import { reviewsList } from '../../dummyData/reviewsList.js';
 
-export const RatingsReviews = () =>{
-  const { reviewsData } = useContext(ProductContext);
+export const RatingsReviews = (props) =>{
+  const { productID } = useContext(ProductContext);
+  const [filter, setFilter] = useState({});
+  const [reviewsData, setReviewsData] = useState(reviewsList);
 
-  let initFilter = {
-
-  };
-  const [filter, setFilter] = useState(initFilter);
+  useEffect(() => {
+    if(props.testing) return;
+    getProductReviews(productID)
+    .then(data => {
+      setReviewsData(data); 
+    })
+    .catch(err => console.log('Error in RatingsReviews getProductReviews(): ', err) );
+  }, [productID]);
 
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
