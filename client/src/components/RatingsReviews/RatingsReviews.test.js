@@ -1,14 +1,11 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { RatingsReviews } from './RatingsReviews';
 import { ReviewsList } from './ReviewsList';
 import { RatingsBreakdown } from './RatingsBreakdown';
-
-import {reviewsList} from '../../dummyData/reviewsList.js';
-
 import {render, screen, fireEvent} from '@testing-library/react';
-import { TestWatcher } from '@jest/core';
-
-
+import { reviewsList, reviewsListNewest, reviewsListHelpful } from '../../dummyData/reviewsList.js';
+import serverRequests from '../../utils/serverRequests.js';
 
 describe('Ratings and Reviews rendering', () => {
 
@@ -254,44 +251,63 @@ The API itself has a 'sort' parameter that delivers the data in
 the desired way, so testing using the dummy data - which remains in the same order -
 is tricky.
 
-Should I mock the getProductReviews()?
-How do I make the component use the mock without modifying the component directly?
-
-Or perhaps just copy/paste the dummy data in different orders manually,
-and expand on the RatingsReviews component's behavior when props.testing=true?
-It seems like a poor idea to implement a lot of test-specific functionality in the component.
-
-Or is there a way to test that changing the sort option fires getProductReviews() - 
-after all, getProductReviews() is already tested separately in the serverRequests.test.js
-
-Manual testing shows correct behavior as of September 16, 11:30 a.m.
+Need to somehow create a mock of the getProductReviews() function the component uses,
+so I can respond with data in the order I expect the the actual API
+server to.
 */
 xdescribe('Sorting of Reviews: Correct as of 2021.09.16, 11:30 a.m.', () => {
-  beforeEach( () => {
-    render(<RatingsReviews testing={true} />);
+  /* 
+  jest.mock('../../utils/serverRequests.js', () => {
+    const originalModule = jest.requireActual('../../utils/serverRequests.js');
+    return {
+      __esModule: true,
+      ...originalModule,
+      serverRequests: {
+        getProductReviews: () => new Promise((res, rej) => res(mockreviewsListNewest)),
+      },
+    };
   });
-
+ */
   it('should default to sorting reviews by "relevant"', () => {
-    // default order is 'relevant'; so no need to change/click anything
+    
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
     let element = screen.queryAllByTestId('reviewsummary');
     expect( element[0].innerHTML ).toMatch(/I'm enjoying wearing these shades/);
     expect( element[1].innerHTML ).toMatch(/I am liking these glasses/);
   });
 
   it('when "helpful" is selected, reviews are sorted from most to least helpful', () => {
+    
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
     fireEvent.click( screen.queryByTestId('select') );
     let options = screen.queryAllByRole('option');
-    fireEvent.click( options[2] ); // 'Helpful'
+    act(() => {
+      fireEvent.click( options[2] ); // 'Helpful'
+    });
 
     let element = screen.queryAllByTestId('reviewsummary');
-    expect( element[0].innerHTML ).toMatch(/I'm enjoying wearing these shades/);
+    expect( element[0].innerHTML ).toMatch(/This review is the most helpful, somehow./);
     expect( element[1].innerHTML ).toMatch(/I am liking these glasses/);
   });
 
   it('when "newest" is selected, most recent review appears first', () => {
+    
+
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
     fireEvent.click( screen.queryByTestId('select') );
     let options = screen.queryAllByRole('option');
-    fireEvent.click( options[1] ); // 'Newest'
+    act(() => {
+      fireEvent.click( options[1] ); // 'Newest'
+    });
 
     let element = screen.queryAllByTestId('reviewsummary');
     expect( element[0].innerHTML ).toMatch(/I am liking these glasses/);
