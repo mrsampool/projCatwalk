@@ -2,11 +2,11 @@ import { serverRequests } from './serverRequests';
 let { getCart, addToCart, getProductReviews, getProductReviewsMeta, getProducts } = serverRequests;
 
 // IMPORTANT NOTE:
-// The methods below (getCart & addToCart) have been tested and are passing as of 9.15.21 2:40pm
+// The methods below have been tested and are passing as of 9.15.21
 // They are now x'd out so as not to run API calls every time the test suites are ran
-// In order to test that these methods are still functioning properly, change the "xit"s to "it"s
+// In order to test that these methods are still functioning properly, change the "xdescribe"s to "describe"s
 
-describe('getCart', ()=>{
+xdescribe('getCart', ()=>{
 
   it('should return an array', ()=>{
 
@@ -19,7 +19,7 @@ describe('getCart', ()=>{
 
 })
 
-describe('addToCart', ()=>{
+xdescribe('addToCart', ()=>{
 
   it('should add an item into the user\'s cart', ()=>{
 
@@ -49,7 +49,7 @@ describe('addToCart', ()=>{
 
 })
 
-describe('Products API endpoint', () => {
+xdescribe('Products API endpoint', () => {
   it('should return an array containing basic product information', (done) => {
     getProducts()
     .then( products => {
@@ -62,7 +62,7 @@ describe('Products API endpoint', () => {
   });
 });
 
-describe('Reviews API endpoint', () => {
+xdescribe('Reviews API endpoint', () => {
   it('should receive data from the /reviews/meta endpoint (product_id 44391)', (done) => {
     getProductReviewsMeta(44391)
     .then( data => {
