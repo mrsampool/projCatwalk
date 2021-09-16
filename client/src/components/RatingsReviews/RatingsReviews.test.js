@@ -1,14 +1,11 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { RatingsReviews } from './RatingsReviews';
 import { ReviewsList } from './ReviewsList';
 import { RatingsBreakdown } from './RatingsBreakdown';
-
-import {reviewsList} from '../../dummyData/reviewsList.js';
-
 import {render, screen, fireEvent} from '@testing-library/react';
-import { TestWatcher } from '@jest/core';
-
-
+import { reviewsList, reviewsListNewest, reviewsListHelpful } from '../../dummyData/reviewsList.js';
+import serverRequests from '../../utils/serverRequests.js';
 
 describe('Ratings and Reviews rendering', () => {
 
@@ -72,7 +69,7 @@ describe('Review component', () => {
   });
 
   it('Test for helpfulness', () => {
-    expect( screen.queryAllByText(/Helpfulness: 5/) ).toHaveLength(2);
+    expect( screen.queryAllByText(/Helpfulness: \d/) ).toHaveLength(2);
   });
 
   it('should not show beyond 250 characters in the body, initially', () => {
@@ -245,5 +242,75 @@ describe('Filtering reviews', () => {
     );
 
     expect( screen.queryByText(/Clear filters/) ).toBeFalsy();
+  });
+});
+
+
+/*  
+The API itself has a 'sort' parameter that delivers the data in 
+the desired way, so testing using the dummy data - which remains in the same order -
+is tricky.
+
+Need to somehow create a mock of the getProductReviews() function the component uses,
+so I can respond with data in the order I expect the the actual API
+server to.
+*/
+xdescribe('Sorting of Reviews: Correct as of 2021.09.16, 11:30 a.m.', () => {
+  /* 
+  jest.mock('../../utils/serverRequests.js', () => {
+    const originalModule = jest.requireActual('../../utils/serverRequests.js');
+    return {
+      __esModule: true,
+      ...originalModule,
+      serverRequests: {
+        getProductReviews: () => new Promise((res, rej) => res(mockreviewsListNewest)),
+      },
+    };
+  });
+ */
+  it('should default to sorting reviews by "relevant"', () => {
+    
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
+    let element = screen.queryAllByTestId('reviewsummary');
+    expect( element[0].innerHTML ).toMatch(/I'm enjoying wearing these shades/);
+    expect( element[1].innerHTML ).toMatch(/I am liking these glasses/);
+  });
+
+  it('when "helpful" is selected, reviews are sorted from most to least helpful', () => {
+    
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
+    fireEvent.click( screen.queryByTestId('select') );
+    let options = screen.queryAllByRole('option');
+    act(() => {
+      fireEvent.click( options[2] ); // 'Helpful'
+    });
+
+    let element = screen.queryAllByTestId('reviewsummary');
+    expect( element[0].innerHTML ).toMatch(/This review is the most helpful, somehow./);
+    expect( element[1].innerHTML ).toMatch(/I am liking these glasses/);
+  });
+
+  it('when "newest" is selected, most recent review appears first', () => {
+    
+
+    act(() => {
+      render(<RatingsReviews />);
+    });
+
+    fireEvent.click( screen.queryByTestId('select') );
+    let options = screen.queryAllByRole('option');
+    act(() => {
+      fireEvent.click( options[1] ); // 'Newest'
+    });
+
+    let element = screen.queryAllByTestId('reviewsummary');
+    expect( element[0].innerHTML ).toMatch(/I am liking these glasses/);
+    expect( element[1].innerHTML ).toMatch(/I'm enjoying wearing these shades/);
   });
 });

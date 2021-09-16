@@ -10,21 +10,22 @@ export const RatingsReviews = (props) =>{
   const { productID } = useContext(ProductContext);
   const [filter, setFilter] = useState({});
   const [reviewsData, setReviewsData] = useState(reviewsList);
+  const [sort, setSort] = useState('relevant');
 
   useEffect(() => {
     if(props.testing) return;
-    getProductReviews(productID)
+    getProductReviews(productID, sort)
     .then(data => {
       setReviewsData(data); 
     })
     .catch(err => console.log('Error in RatingsReviews getProductReviews(): ', err) );
-  }, [productID]);
+  }, [productID, sort]);
 
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
     <h3>Ratings and Reviews</h3>
     <RatingsBreakdown filter={filter} setFilter={setFilter} />
-    <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} />
+    <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
   </div>
   );
 }
