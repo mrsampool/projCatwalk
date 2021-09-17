@@ -16,6 +16,7 @@ export const RatingsReviews = (props) =>{
 
   useEffect(() => {
     if(props.testing) return;
+    console.log('Calling getProductReviews...')
     getProductReviews(productID, sort)
     .then(data => {
       setReviewsData(data); 

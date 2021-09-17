@@ -13,9 +13,9 @@ export const ReviewsList = function(props) {
     <div id='ReviewsList' data-testid='ReviewsList'>
       <h3>{props.reviewslist.results.length} reviews, sorted by 
         <select name='reviewsort' id='reviewsort' value={props.sort} onChange={(e) => {props.setSort(e.target.value)}} data-testid='select' >
-          <option value={option.RELEVANT} >Relevant</option>
-          <option value={option.NEWEST} >Newest</option>
-          <option value={option.HELPFUL} >Helpful</option>
+          <option value={option.RELEVANT} key='relevant'>Relevant</option>
+          <option value={option.NEWEST} key='newest'>Newest</option>
+          <option value={option.HELPFUL} key='helpful'>Helpful</option>
         </select>
       </h3>
       {props.reviewslist.results.map((reviewdata) => {
