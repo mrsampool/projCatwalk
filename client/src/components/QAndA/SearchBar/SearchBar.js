@@ -5,9 +5,11 @@ import React, {useState} from 'react';
 import './SearchBar.css'
 
 export const SearchBar = (props) =>{
+  const {changeSearchTerm} = props;
   const [keyword, setKeyword] = useState('');
   const SubmitHandler = (event) =>{
     event.preventDefault();
+    changeSearchTerm(keyword);
   }
   return (
   <div id='SearchBar' className = "search container">

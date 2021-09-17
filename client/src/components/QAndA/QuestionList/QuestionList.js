@@ -3,31 +3,38 @@ import React, {useContext,useState} from 'react';
 import {QuestionContext} from '../QuestionContext';
 import {AnswerList} from './AnswerList';
 import {Helpful} from './Helpful';
-import { ModalContext } from '../../../contexts/modal-context';
+import { Modal } from '../../Modal/Modal.jsx';
 import {QuestionForm} from './QuestionForm';
 
 //Stylesheet
 import './QuestionList.css'
 
-export const QuestionList = () =>{
-  const {setModalComponent} = useContext(ModalContext);
+export const QuestionList = (props) =>{
+  const {searchTerm} = props;
+  const [modalState, setModalState] = useState(null);
   const {questions, addQuestion} = useContext(QuestionContext);
   const [lastIndex, setLastIndex] = useState(2);
-  const qLen = questions.length;
+  var qLen = questions.length;
+  var questionsfiltered = questions;
+  if (searchTerm.length >= 3) {
+    questionsfiltered = questions.filter((each)=>{
+      if (each.question_body.toLowerCase().includes(searchTerm.toLowerCase())){
+        return each;
+      }
+    })
+    qLen = questionsfiltered.length
+  }
   const loadMore = () => {
     setLastIndex(lastIndex+2);
   };
 
-  function handleClick(){
-    let form = (
-      <QuestionForm questions={questions} addQuestion={addQuestion}/>
-    );
-    setModalComponent( form );
+  function handleModal(){
+    setModalState(<QuestionForm questions = {questions} addQuestion={addQuestion}/>)
   }
 
   return (
   <div id='QuestionList' style={{color: 'yellow', background: 'green'}}>
-      {questions.slice(0, lastIndex).map(q=>{
+      {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
           <div key={q.question_id}>
             <div className="Q-statement" >Q: {q.question_body}</div>
@@ -39,7 +46,8 @@ export const QuestionList = () =>{
       })
       }
       {lastIndex < qLen ? <a onClick = {loadMore}>load more</a>:null}
-      <button onClick={ handleClick } >Ask a question</button>
+      <Modal component = {modalState} setComponent={setModalState}/>
+      <button onClick={ handleModal } >Ask a question</button>
   </div>
   )
 };
