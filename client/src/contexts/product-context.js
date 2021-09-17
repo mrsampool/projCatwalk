@@ -6,7 +6,7 @@ import { answersList, listQuestions } from '../dummyData/answersList';
 import { reviewsMeta } from '../dummyData/reviewsMetadata';
 
 const defaultState = {
-  productID: 0,
+  productID: 44391,
   reviewsData: reviewsList,
   reviewsMetadata: reviewsMeta,
   questionsData: listQuestions,
