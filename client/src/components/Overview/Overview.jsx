@@ -9,6 +9,9 @@ import { Price } from './Price/Price.jsx';
 import { AddToCart } from './AddToCart/AddToCart.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
+// Import the Modal into your own component file
+import { Modal } from '../Modal/Modal.jsx';
+
 //Style Sheet
 import './Overview.css';
 
@@ -23,12 +26,29 @@ export const Overview = (props) =>{
   const [currentQty, setCurrentQty] = useState(null);
   const [fullScreenImg, setFullScreenImg] = useState(false);
 
+
+  // Set modal state within your own component:
+  const [modalState, setModalState] = useState(null);
+
   function toggleFullScreenImg(){
     setFullScreenImg( !fullScreenImg );
   }
 
+  function handleModal(){
+    let modalComponent = (
+      <div><p>modal modal</p></div>
+    )
+    setModalState( modalComponent );
+  }
+
   return(
     <div id='Overview' data-testid='Overview'>
+
+      {/* Render the modal in your own component with your own modal state: */}
+      <Modal
+        component={modalState}
+        setComponent={setModalState}
+      />
 
       <div id='Overview-main'>
 
@@ -69,7 +89,7 @@ export const Overview = (props) =>{
 
       <div id='prod-copy'>
         <p id='prod-slogan'>{slogan}</p>
-        <p id='prod-description'>{description}</p>
+        <p id='prod-description' onClick={handleModal}>{description}</p>
       </div>
 
     </div>

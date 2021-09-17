@@ -4,13 +4,14 @@ import React, {useState, useEffect, useContext} from 'react';
 // Sub-Components
 import { ImgCarousel } from './ImgCarousel.jsx';
 import { ImgArrow } from './ImgArrow.jsx';
+import { Icon } from '../../Icon/Icon.jsx';
 
 //Stylesheet
 import './ImgGallery.css'
 
 export const ImgGallery = (props) =>{
 
-  const {photos} = props;
+  const {photos, fullScreen} = props;
 
   const [curPhotoIndex, setCurPhotoIndex] = useState(0);
   const [ zoom, setZoom ] = useState(false);
@@ -40,8 +41,6 @@ export const ImgGallery = (props) =>{
     }
 
     function getLeftOffset(){
-
-      console.log(img.offsetWidth);
 
       let percentPerPixel = 100 / rect.width;
       let percentRight = ( mouse.x - rect.left ) * percentPerPixel;
@@ -90,6 +89,10 @@ export const ImgGallery = (props) =>{
     checkZoom();
   }, [zoom, photos]);
 
+  useEffect( ()=>{
+    document.body.style.cursor = <Icon type='zoomIn'/>
+  })
+
   if (photos){
     return(
       <div id='ImgGallery' className={`${props.fullScreen ? 'full' : ''}`}>
@@ -97,7 +100,9 @@ export const ImgGallery = (props) =>{
         <button
           id='fullscreen'
           onClick={props.toggleFull}
-        >[ ]</button>
+        >
+          <Icon type={!fullScreen ? 'fullscreen' : 'fullscreenExit'}/>
+        </button>
 
         <ImgCarousel
           photos={photos}

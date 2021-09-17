@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Sub-Components
+import { Icon } from '../../Icon/Icon.jsx';
+
 // Style Sheet
 import './ImgArrow.css';
 
@@ -20,7 +23,20 @@ export const ImgArrow = props => {
           onClick={change}
           className={`img-arrow ${className || ''} `}
         >
-          {type === 'next' ? '>' : '<'}
+          <Icon
+            type={
+              type === 'next'
+              ? 'arrowRightCircle'
+              : 'arrowLeftCircle'
+            }
+            size={
+              className === 'up'
+              || className === 'down'
+              ? '2rem'
+              : '4rem'
+            }
+            className='arrow-icon'
+          />
         </button>
       )
     }

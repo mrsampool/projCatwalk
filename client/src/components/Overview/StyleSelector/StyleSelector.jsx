@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 
 //Stylesheet
 import './StyleSelector.css'
+import { Icon } from '../../Icon/Icon.jsx';
 
 export const StyleSelector = (props) =>{
 
@@ -64,19 +65,19 @@ export const StyleOption = props => {
     >
       {
         props.active ?
-          <span id='active-check'
-            data-testid='active-check'
-          >
-            V
-          </span>
-          :
-          ''
+        <span id='active-check'
+          data-testid='active-check'
+        >
+          <Icon type='check'/>
+        </span>
+        :
+        ''
       }
       <div className='style-thumb-frame'>
         <img
           src={thumbnail}
           data-testid={thumbnail}
-        />
+          />
       </div>
 
     </div>

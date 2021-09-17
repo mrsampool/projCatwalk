@@ -6,17 +6,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* sizing */
-  width: 4rem;
-  height: 4rem;
   /* background & border */
-  background-color: var(--dark);
+  background-color: transparent;
   border-radius: 100%;
   border: 0;
   /* foreground */
   font-weight: 800;
   font-size: 3rem;
   color: var(--light);
+}
+.arrow-icon{
+  fill: var(--dark);
 }
 #next-img{
   right: 0.5rem;
@@ -30,10 +30,7 @@
   top: 0;
   right: auto;
   left: auto;
-  font-size: 1.5rem;
-  /* sizing */
-  width: 2rem;
-  height: 2rem;
+
 }
 #next-img.down{
   position: relative;
@@ -41,8 +38,4 @@
   bottom: 0;
   right: auto;
   left: auto;
-  font-size: 1.5rem;
-  /* sizing */
-  width: 2rem;
-  height: 2rem;
 }
