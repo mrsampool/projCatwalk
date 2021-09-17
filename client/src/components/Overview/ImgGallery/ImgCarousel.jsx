@@ -42,6 +42,7 @@ export const ImgCarousel = props => {
         offSet={offSet - 2}
         photos={photos}
         setPhotoIndex={setPhotoIndex}
+        testId='1'
       />
 
       <CarouselImg
@@ -49,6 +50,7 @@ export const ImgCarousel = props => {
         offSet={offSet - 1}
         photos={photos}
         setPhotoIndex={setPhotoIndex}
+        testId='2'
       />
 
       <CarouselImg
@@ -56,6 +58,7 @@ export const ImgCarousel = props => {
         offSet={offSet}
         photos={photos} middle={true}
         setPhotoIndex={setPhotoIndex}
+        testId='3'
       />
 
       <CarouselImg
@@ -63,6 +66,7 @@ export const ImgCarousel = props => {
         offSet={offSet + 1}
         photos={photos}
         setPhotoIndex={setPhotoIndex}
+        testId='4'
       />
 
       <CarouselImg
@@ -70,6 +74,7 @@ export const ImgCarousel = props => {
         offSet={offSet + 2}
         photos={photos}
         setPhotoIndex={setPhotoIndex}
+        testId='5'
       />
 
       <ImgArrow

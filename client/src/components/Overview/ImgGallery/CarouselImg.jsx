@@ -21,6 +21,7 @@ export const CarouselImg = props => {
         <img
           src={imgData.thumbnail_url}
           onClick={handleClick}
+          data-testid={`carouselImg${props.testId}`}
         />
       </span>
     )
