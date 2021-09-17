@@ -139,6 +139,18 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 ### Ratings & Reviews
 - Developer: Fanno Chea
 
+The Ratings & Reviews section is the last/bottom-most section on the page. It displays the reviews of the product that other people have submitted, some brief statistics on their reviews/ratings and product characteristics, and where you'll find the ability to submit your own review.
+
+The structure of the Ratings & Reviews section is as follows:
+
+- 'RatingsReviews' parent component
+  - 'RatingsBreakdown' 
+    - 'ReviewForm' 
+  - 'ReviewsList' child component
+    - 'Review' component
+
+The components' code reside in the /client/src/components/RatingsReviews/ subfolder
+
 ---
 
 ## Misc Components
@@ -153,6 +165,7 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 ---
 - StarRating
   - A component to be reused throughout the application - displays a scalar rating as a series of stars of a 5-star grading scale
+  - It parses a value between 0 and 5, and fills the stars to the nearest .25/quarter value.
 ---
 - Modal
   - Allows modal-type display of any component or HTML element passed in as a ```component``` prop.
