@@ -6,13 +6,13 @@ import {QAndA} from './QAndA';
 
 describe('Questions and Answers', () => {
 
-  beforeEach(() => {
+  /* beforeEach(() => {
     render( <QAndA/> )
   });
 
   it('renders the outmost Questions and Answers component', () => {
     let element = document.querySelector('#QAndA');
     expect(element).toBeTruthy();
-  });
+  }); */
 
 });

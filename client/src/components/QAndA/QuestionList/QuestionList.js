@@ -10,6 +10,10 @@ import {QuestionForm} from './QuestionForm';
 import './QuestionList.css'
 
 export const QuestionList = () =>{
+  /* let modalContextObj = useContext(ModalContext);
+  if (modalContextObj){
+    const {setModalComponent} = modalContextObj;
+  } */
   const {setModalComponent} = useContext(ModalContext);
   const {questions, addQuestion} = useContext(QuestionContext);
   const [lastIndex, setLastIndex] = useState(2);
