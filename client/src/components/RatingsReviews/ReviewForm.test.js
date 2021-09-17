@@ -1,9 +1,9 @@
 import React from 'react';
 import {render, screen, fireEvent} from '@testing-library/react';
 
-import { ReviewForm } from './ReviewForm';
+import { ReviewForm } from './ReviewForm.jsx';
 
-describe('"Write a review" form', () => {
+describe('"Write Your Review" form', () => {
   beforeEach(() => {
     render( <ReviewForm /> );
   });
