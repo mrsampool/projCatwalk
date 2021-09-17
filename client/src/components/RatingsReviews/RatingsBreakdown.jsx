@@ -1,10 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
+import { ModalContext } from '../../contexts/modal-context.js';
+import { ReviewForm } from './ReviewForm.jsx';
 
 import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsBreakdown = (props) => {
   const { reviewsMetadata } = useContext(ProductContext);
+  const { setModalComponent } = useContext(ModalContext)
+  
   let clearFilterBtn = null;
   let average = 0;
   let totalRatingsQty = 0;
@@ -61,6 +65,10 @@ export const RatingsBreakdown = (props) => {
       <button onClick={clearFilters} >Clear filters</button>
     );
   }
+
+  const openReviewModal = () => {
+    setModalComponent(<ReviewForm />);
+  };
   
   return (
     <div id='RatingBreakdown' onClick={addFilter} >
@@ -76,7 +84,7 @@ export const RatingsBreakdown = (props) => {
       <h5 id='1stars'>1 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
       <h5>Size:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Size.value} data-testid='sizemeter'></meter>
       <h5>Comfort:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Comfort.value} data-testid='comfortmeter'></meter>
-
+      <button onClick={openReviewModal}>Add Your Review</button>
     </div>
   );
 };
