@@ -6,6 +6,8 @@ import { serverRequests } from '../../utils/serverRequests.js';
 let { getProductReviews } = serverRequests;
 import { reviewsList } from '../../dummyData/reviewsList.js';
 
+import './RatingsReviews.css';
+
 export const RatingsReviews = (props) =>{
   const { productID } = useContext(ProductContext);
   const [filter, setFilter] = useState({});
@@ -24,8 +26,10 @@ export const RatingsReviews = (props) =>{
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
     <h3>Ratings and Reviews</h3>
-    <RatingsBreakdown filter={filter} setFilter={setFilter} />
-    <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+    <div className='container-2-col'>
+      <RatingsBreakdown filter={filter} setFilter={setFilter} />
+      <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+    </div>
   </div>
   );
 }
