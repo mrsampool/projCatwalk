@@ -35,7 +35,4 @@ describe('ProductContextProvider and ProductContext', () => {
     expect( screen.queryByText(/Something pretty durable but I can't be sure/) ).toBeTruthy();
   });
 
-  // After we get the server API and setProductID function implemented:
-  test.todo('should be able to change the data in the context using setProductID');
-
 });
