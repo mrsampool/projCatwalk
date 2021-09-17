@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { Overview } from './components/Overview/Overview.jsx';
 import { QAndA } from './components/QAndA/QAndA.jsx';
 import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
-import { Modal } from './components/Modal/Modal.jsx';
 import { Banner } from './components/Banner/Banner.jsx';
 
 // Dummy Data
@@ -17,25 +16,18 @@ import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.js
 
 // Contexts
 import { ProductContext, ProductContextProvider } from './contexts/product-context.js';
-import { ModalContext } from './contexts/modal-context';
 
 export const App = () => {
-
-  // States
-  let [modalComponent, setModalComponent] = useState(null);
 
   return (
     <div id='App'>
       <ProductContextProvider>
-        <ModalContext.Provider value={{ modalComponent, setModalComponent }}>
-          <Modal />
-          <AnalyticWrapper>
-            <Banner/>
-            <Overview product={singleProduct} styles={singleProductStyles}/>
-            <QAndA />
-            <RatingsReviews />
-          </AnalyticWrapper>
-        </ModalContext.Provider>
+        <AnalyticWrapper>
+          <Banner/>
+          <Overview product={singleProduct} styles={singleProductStyles}/>
+          <QAndA />
+          <RatingsReviews />
+        </AnalyticWrapper>
       </ProductContextProvider>
     </div>
   );
