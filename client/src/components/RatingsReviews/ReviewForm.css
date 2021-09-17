@@ -1,0 +1,39 @@
+#ReviewForm {
+  height: 95%;
+  width: 70%;
+  background: var(--dark);
+  border-width: 2px;
+  padding: 15px 30px;
+}
+
+#characteristics {
+  width: 85%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 0 auto;
+}
+
+#recommendradio {
+  width: 25%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.form-input-text-sm {
+  height: 1.1rem;
+  width: 200px;
+}
+
+.form-input-text-med {
+  height: 1.3rem;
+  width: 275px;
+}
+
+.form-input-text-lg {
+  height: 2rem;
+  width: 400px;
+}
+
+.form-rating-range {
+  width: 35%
+}

@@ -1,26 +1,23 @@
 //React
 import React, {useContext} from 'react';
 
-// Context
-import { ModalContext } from '../../contexts/modal-context';
-
 //Stylesheet
 import './Modal.css'
 
 export const Modal = (props) =>{
 
-  const { modalComponent, setModalComponent } = useContext( ModalContext);
+  const { component, setComponent } = props;
 
   function clickHandler(e){
     if (e.target.id === 'ModalWrap') {
-      setModalComponent(null);
+      setComponent(null);
     }
   }
 
-  if ( modalComponent ) {
+  if ( component ) {
     return(
       <div id='ModalWrap' onClick={clickHandler}>
-        { modalComponent }
+        { component }
       </div>
     )
   } else {
