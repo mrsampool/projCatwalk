@@ -9,22 +9,41 @@ export class ReviewForm extends React.Component {
 
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
     this.radioGroup = this.radioGroup.bind(this);
+    this.formChangeHandler = this.formChangeHandler.bind(this);
 
     this.state = {
-
+      overallrating: '3',
+      recommend: null,
+      size: '2',
+      width: '2',
+      comfort: '2',
+      quality: '2',
+      length: '2',
+      fit: '2',
+      summary: '',
+      body: '',
+      photoupload: null,
+      nickname: '',
+      email: '',
     }
   }
 
   formSubmitHandler(e) {
-
+    console.log('I would POST: ')
+    console.log(this.state)
   }
+  
+  formChangeHandler(e) {
+    this.setState( {[e.target.name]: e.target.value} )
+  }
+
 
 
   radioGroup(label, name) {
     let group = [];
-    group.push( (<label for={name} key={name} >{label}</label>) );
+    group.push( (<label htmlFor={name} key={name} >{label}</label>) );
     for (let i = 0; i < 5; i++) {
-      group.push( (<input type='radio' name={name} value={i} key={name + i}></input>) );
+      group.push( (<input type='radio' name={name} value={i.toString()} key={name + i} checked={this.state[name] === i.toString()} onChange={this.formChangeHandler}></input>) );
     }
     return group;
   };
@@ -36,12 +55,12 @@ export class ReviewForm extends React.Component {
         <h3>About the -Product Name-</h3>
 
         <label>Overall rating (mandatory)</label><br></br>
-        <input type='range' min='0' max='5' className='form-rating-range'></input><br></br>
+        <input name='overallrating' type='range' min='0' max='5' className='form-rating-range' value={this.state.overallrating} onChange={this.formChangeHandler} ></input><br></br>
 
         <label>Do you recommend this product? (mandatory)</label>
         <div id='recommendradio'>
-          <label for='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true}></input>
-          <label for='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false}></input>
+          <label htmlFor='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true} onChange={this.formChangeHandler}></input>
+          <label htmlFor='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false} onChange={this.formChangeHandler}></input>
         </div>
 
         <label>Characteristics (mandatory)</label>
@@ -61,20 +80,20 @@ export class ReviewForm extends React.Component {
         </div>
 
         <label>Review Summary</label><br></br>
-        <input type='text' placeholder='Best purchase ever!' maxLength='60' className='form-input-text-med'></input><br></br>
+        <input name='summary' type='text' placeholder='Best purchase ever!' maxLength='60' className='form-input-text-med' onChange={this.formChangeHandler} ></input><br></br>
 
         <label>Review Body (mandatory)</label><br></br>
-        <textarea placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' className='form-input-text-lg'></textarea><br></br>
+        <textarea name='body' placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' className='form-input-text-lg' onChange={this.formChangeHandler} ></textarea><br></br>
 
         <label>Upload your photos:</label><br></br>
-        <input type='file' id='photoupload' name='photoupload' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}}></input><br></br>
+        <input name='photoupload' type='file' id='photoupload' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}} onChange={this.formChangeHandler} ></input><br></br>
 
         <label>What is your nickname? (mandatory)</label><br></br>
-        <input type='text' id='nickname' name='nickname' placeholder='jackson11!' maxLength='60' className='form-input-text-sm'></input><br></br>
+        <input name='nickname' type='text' id='nickname'  placeholder='jackson11!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
         <p>For privacy reasons, do not use your full name or email address</p>
 
         <label>Your email (mandatory)</label><br></br>
-        <input type='text' id='nickname' name='nickname' placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm'></input><br></br>
+        <input name='email' type='text' id='email' placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
         <p>For authentication reasons, you will not be emailed</p>
 
         <button onClick={this.formSubmitHandler} >Submit</button>
