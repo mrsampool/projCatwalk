@@ -30,6 +30,29 @@ export class ReviewForm extends React.Component {
   }
 
   formSubmitHandler(e) {
+    
+    /* 
+    API Body parameters
+    product_id: integer
+    rating: int
+    summary: text
+    body: text
+    recommend: bool
+    name: text
+    email: text
+    photos: [text] array of text urls that link to images to be shown
+    characteristics: {
+      Size id: int (value of rating)
+      Width id: int
+      Comfort id: int
+      Quality id: int
+      Length id: int
+      Fit id: int
+    }
+
+     */
+    e.preventDefault();
+    
     /* 
     check form state for mandatory fields:
     overall rating (not empty), recommend (not empty), 
@@ -37,8 +60,9 @@ export class ReviewForm extends React.Component {
     nickname (non empty)
     email must be in correct format,
     images must be valid and able to be uploaded
-     */
-    e.preventDefault();
+    */
+
+    //if (form doesnt have all )
     postReview(this.state);
   }
   

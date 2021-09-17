@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen, fireEvent} from '@testing-library/react';
+import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import { ReviewForm } from './ReviewForm.jsx';
 import { serverRequests } from '../../utils/serverRequests.js';
 
@@ -55,9 +55,7 @@ describe('Form submission', () => {
     }
 
     fireEvent.click( screen.queryByText(/Submit/) );
-
-    expect( serverRequests.postReview.mock.calls[0][1] ).toHaveProperty('size', '');
-
+    expect( serverRequests.postReview.mock.calls[0][0] ).toMatchObject( initialFormData );
   });
 
 });
