@@ -143,11 +143,60 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 
 ## Misc Components
 
+---
 - AnalyticWrapper
   - This component wraps all of the app's child components (widgets) and captures data for every user click in the app. For each click, the following data is captured:
     - Time of click
     - Click target - Widget (Either ProductOverview, QAndA, or RatingsReviews)
     - Click target - Specific HTML Element
   - Currently this data is captured and recorded in memory, but not on disk. A more persistant implementation would be simple given the appropriate backend funcionality.
+---
 - StarRating
   - A component to be reused throughout the application - displays a scalar rating as a series of stars of a 5-star grading scale
+---
+- Modal
+  - Allows modal-type display of any component or HTML element passed in as a ```component``` prop.
+  - **NOTE:** Modal relies on an external React state and its associated state setter method. The ```component``` prop should be derived from a state in the rendering component, and the ```setComponent``` prop should be a setter method which can set that state (this allows the modal to remove itself from the DOM when a click occurs outside of the rendered child).
+
+_**Example Usage:**_
+```javascript
+//import Modal into the component which should render the Modal
+import { Modal } from '../Modal/Modal.jsx';
+
+function myComponent(props){
+
+  // Create a modal state within your own component:
+  const [modalState, setModalState] = useState(null);
+
+  // Create a function responsible for inserting your desired React Component or HTML element into your modal state
+  function handleModal(){
+
+    setModalState(
+      <MyModalChildComponent
+        prop1={prop1value}
+      />
+    );
+
+  }
+
+  // Render your parent component as your normally would:
+  return (
+    <div>
+
+      {// Pass in the state & setter as props to Modal}
+      <Modal
+        component={modalState}
+        setComponent={setModalState}
+      >
+
+      {// In this example we use a click event to fire the Modal handler}
+      <button onClick={handleModal}>
+        Open My Modal
+      </button>
+
+    </div>
+  )
+}
+// ^ When the button is clicked, the handleModal function will set the modalState to the specified Component, which will automatically trigger MyChildComponent to be rendered inside of the modal in the DOM
+// If the user clicks anywhere outside of MyChildComponent while the modal is open, the Modal will automatically set modalState to null, which removes the modal from the DOM
+```
