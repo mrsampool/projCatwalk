@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
-import { ModalContext } from '../../contexts/modal-context.js';
 import { ReviewForm } from './ReviewForm.jsx';
+import { Modal } from '../Modal/Modal.jsx';
 
 import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsBreakdown = (props) => {
   const { reviewsMetadata } = useContext(ProductContext);
-  const { setModalComponent } = useContext(ModalContext)
+  const [modalComponent, setModalComponent] = useState();
   
   let clearFilterBtn = null;
   let average = 0;
@@ -85,6 +85,7 @@ export const RatingsBreakdown = (props) => {
       <h5>Size:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Size.value} data-testid='sizemeter'></meter>
       <h5>Comfort:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Comfort.value} data-testid='comfortmeter'></meter>
       <button onClick={openReviewModal}>Add Your Review</button>
+      <Modal component={modalComponent} setComponent={setModalComponent} />
     </div>
   );
 };
