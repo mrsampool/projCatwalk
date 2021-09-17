@@ -22,6 +22,7 @@ export const ImgArrow = props => {
           id={`${type}-img`}
           onClick={change}
           className={`img-arrow ${className || ''} `}
+          data-testid={props.testId}
         >
           <Icon
             type={

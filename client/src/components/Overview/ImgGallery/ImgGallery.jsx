@@ -95,11 +95,16 @@ export const ImgGallery = (props) =>{
 
   if (photos){
     return(
-      <div id='ImgGallery' className={`${props.fullScreen ? 'full' : ''}`}>
+      <div
+        id='ImgGallery'
+        className={`${props.fullScreen ? 'full' : ''}`}
+        data-testid='img-gallery'
+      >
 
         <button
           id='fullscreen'
           onClick={props.toggleFull}
+          data-testid='fullscreen'
         >
           <Icon type={!fullScreen ? 'fullscreen' : 'fullscreenExit'}/>
         </button>
@@ -114,10 +119,12 @@ export const ImgGallery = (props) =>{
           index={curPhotoIndex}
           change={prevPhoto}
           type={'prev'}
+          testId={'prev-photo'}
         />
 
         <div id='featured-photo'>
           <img
+            data-testid='featured-photo'
             src={photos[curPhotoIndex].url}
             className={zoom ? 'zoom' : 'nozoom'}
             onLoad={checkZoom}
@@ -130,6 +137,7 @@ export const ImgGallery = (props) =>{
           change={nextPhoto}
           type={'next'}
           length={photos.length}
+          testId={'next-photo'}
         />
 
       </div>
