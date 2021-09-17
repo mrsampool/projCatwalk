@@ -46,7 +46,7 @@ describe("Product Price", ()=>{
     };
 
     render( <Price style={style} /> );
-    expect( screen.getByText( style.original_price ) ).toBeTruthy();
+    expect( screen.getByText( `$${style.original_price}` ) ).toBeTruthy();
 
   });
 
@@ -88,10 +88,10 @@ describe("Product Price", ()=>{
 
     render( <Price style={discountStyle} /> );
 
-    let fullPrice = screen.getByText( discountStyle.original_price );
+    let fullPrice = screen.getByText( `$${discountStyle.original_price}` );
     expect( fullPrice ).toBeTruthy();
 
-    let salePrice = screen.getByText( discountStyle.sale_price );
+    let salePrice = screen.getByText( `$${discountStyle.sale_price}` );
     expect( salePrice ).toBeTruthy();
   });
 });

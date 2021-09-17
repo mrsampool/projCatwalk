@@ -1,10 +1,17 @@
 #Overview-main{
+  --controls-width: 40rem;
+  position: relative;
   display: flex;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #overview-controls{
   padding: 2rem;
-  width: 55rem;
+  width: var(--controls-width);
 }
 
 #prod-category{
@@ -30,5 +37,13 @@
 }
 
 @media screen and (max-width: 992px){
-  #Overview-main{ flex-direction: column-reverse; }
+  #ImgGallery{
+    position: relative;
+    width: 100%;
+  }
+  #Overview-main{
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  #fullscreen{ display: none; }
 }

@@ -34,15 +34,12 @@ export const EachAnswer = (props) => {
     <div className="A-statement" >
       <p>A: {(readMore || abody.length < 20)? abody :`${abody.substring(0,20)}...`}
         {(abody.length > 20) ?
-        (<button onClick={()=>setReadMore(!readMore)}>{readMore ? 'hide content': 'show more'}</button>)
+        (<u onClick={()=>setReadMore(!readMore)}>{readMore ? '<< hide': 'read more'}</u>)
         : null}
       </p>
     </div>
     <div className="A-date" >
-      by {sellname !== "Seller" ? sellname :<strong>Seller</strong>}, {monthNames[month]} {day}, {year} | helpful?
-      <u onClick={addHelpful}>Yes</u>
-      ({helpful}) |
-      <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
+      by {sellname !== "Seller" ? sellname :<strong>Seller</strong>}, {monthNames[month]} {day}, {year} | helpful? <u onClick={addHelpful}>Yes</u> ({helpful}) | <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
     </div>
   </div>
   )

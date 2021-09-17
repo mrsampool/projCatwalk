@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {QuestionList} from './QuestionList/QuestionList'
+import {QuestionForm} from './QuestionList/QuestionForm'
 import {SearchBar} from './SearchBar/SearchBar'
 import {TwoButtons} from './TwoButtons/TwoButtons'
 import QuestionContextProvider from './QuestionContext.js'
@@ -14,8 +15,8 @@ export const QAndA = (props) =>{
     <QuestionContextProvider>
       <QuestionList/>
     </QuestionContextProvider>
-    
-    <TwoButtons/>
+
+
   </div>
   )
 }
