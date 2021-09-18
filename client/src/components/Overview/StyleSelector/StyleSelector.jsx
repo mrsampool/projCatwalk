@@ -20,6 +20,10 @@ export const StyleSelector = (props) =>{
     if (!currentStyle && styles && styles.length){ setDefaultStyle(); }
   },[]);
 
+  useEffect( ()=>{
+    if (styles && styles.length){ setDefaultStyle(); }
+  },[styles]);
+
   return(
     <div
       id='StyleSelector'

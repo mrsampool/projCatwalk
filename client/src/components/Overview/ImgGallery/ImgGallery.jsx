@@ -63,6 +63,8 @@ export const ImgGallery = (props) =>{
     let img = document.querySelector('#featured-photo img');
     let gallery = document.getElementById('ImgGallery');
 
+    if(img){ img.style.opacity = '1'; }
+
     if (zoom){
 
       if (img && gallery){
@@ -82,6 +84,10 @@ export const ImgGallery = (props) =>{
   }
 
   useEffect( ()=>{
+    let img = document.querySelector('#featured-photo img');
+    if (img){
+      img.style.opacity = '0.5';
+    }
     setZoom(false);
   }, [photos, curPhotoIndex]);
 
