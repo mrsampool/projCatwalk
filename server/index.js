@@ -19,8 +19,6 @@ var port = 3000;
 // API Forwarding
 server.use('/api/', (req, res, next) =>{
 
-  console.log(req.path.slice(3) );
-
   console.log(`\nReceived ${req.method} request at endpoint: ${req.path}\nRequest body:`);
   console.log(req.body);
   console.log('req.query', req.query);
