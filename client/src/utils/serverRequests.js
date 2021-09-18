@@ -69,6 +69,23 @@ export const serverRequests = {
       .then( ({data}) => resolve(data) )
       .catch( reject );
     });
+  },
+
+  getRelatedProducts: (product_id) => {
+    // get a single product's related products
+    return new Promise( (resolve, reject) => {
+      axios.get( `${baseUrl}/products/${product_id}/related`)
+      .then( ({data}) => data )
+      .then( productIds =>{
+        let idPromises = [];
+        productIds.forEach( id =>{
+          idPromises.push(serverRequests.getProductById(id))
+        });
+        return Promise.all(idPromises)
+      })
+      .then( values => resolve(values))
+      .catch( reject );
+    });
   }
 
 };
