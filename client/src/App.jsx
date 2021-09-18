@@ -24,15 +24,8 @@ import { parseQueries } from './utils/parseQueries';
 
 export const App = (props) => {
 
-  let productId = 44388;
-  let queries;
-
-  if (useParams()){
-    productId = useParams().productId;
-  }
-  if ( useLocation() ){
-    queries = parseQueries( queries = useLocation().search );
-  }
+  let productId = useParams().productId || 44388;
+  let queries = parseQueries( useLocation().search );
 
   let [currentProduct, setCurrentProduct] = useState(null);
   let [reviewsMetadata, setReviewsMetadata] = useState(null);
@@ -52,7 +45,6 @@ export const App = (props) => {
 
   useEffect( ()=>{
     if (queryParams.noDummy){
-      console.log('no dummy');
       fetchProductData();
       fetchReviewsMeta();
     } else {
