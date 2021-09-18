@@ -63,6 +63,17 @@ export const RatingsBreakdown = (props) => {
     );
   }
 
+  const characteristicsBreakdown = () => {
+    let group = [];
+    for (let name in reviewsMetadata.characteristics) {
+      let row = (
+        <div key={name + 'breakdown'}><h5>{name}:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics[name].value} data-testid={name + 'meter'}></meter></div>
+      );
+      group.push(row);
+    }
+    return group;
+  }
+
   return (
     <div id='RatingBreakdown' onClick={addFilter} >
       <h3>Ratings Breakdown</h3>
@@ -75,8 +86,7 @@ export const RatingsBreakdown = (props) => {
       <h5 id='3stars'>3 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['3'] ? reviewsMetadata.ratings['3'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
       <h5 id='2stars'>2 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
       <h5 id='1stars'>1 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-      <h5>Size:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Size.value} data-testid='sizemeter'></meter>
-      <h5>Comfort:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Comfort.value} data-testid='comfortmeter'></meter><br></br>
+      {characteristicsBreakdown()}
     </div>
   );
 };
