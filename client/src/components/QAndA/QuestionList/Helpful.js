@@ -20,8 +20,13 @@ export const Helpful = (props) => {
 
 
   function handleModal(){
-    setModalState(<AnswerForm Qid={Qid} Qbody= {Qbody} questions = {questions} addQuestion={addQuestion}/>)
+    setModalState(<AnswerForm finished = {ModalFinished} Qid={Qid} Qbody= {Qbody} questions = {questions} addQuestion={addQuestion}/>)
   };
+
+  function ModalFinished(){
+    setModalState(null)
+  }
+
 
   return(
   <div className="helpful" >helpful? <a onClick={addHelpful}>Yes</a> ({helpful}) <Modal component = {modalState} setComponent={setModalState}/> <u onClick={ handleModal } >Add an answer </u></div>
