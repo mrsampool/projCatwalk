@@ -4,11 +4,15 @@ import React, { useContext, useState, useEffect } from 'react';
 //Context
 import { ProductContext, QueryContext } from '../../contexts/product-context';
 
-// Dummy Data
-import { relatedProducts } from '../../dummyData/relatedProducts';
+// Sub-Components
+import { ProductCard } from '../ProductCard/ProductCard.jsx';
 
 // Utilities
 import { serverRequests } from '../../utils/serverRequests';
+
+// Dummy Data
+import { relatedProducts } from '../../dummyData/relatedProducts';
+
 //Stylesheet
 import './RelatedProducts.css'
 
@@ -46,7 +50,7 @@ export const RelatedProducts = (props) =>{
         {
           products.map( product =>{
             return(
-              <Product
+              <ProductCard
                 product={product}
                 key={`relatedProduct${product.id}`}
               />
@@ -57,7 +61,7 @@ export const RelatedProducts = (props) =>{
           !params.noDummy ?
             products.map( product =>{
             return(
-                <Product
+                <ProductCard
                   product={product}
                   key={`relatedProduct${product.id}`}
                 />
@@ -69,53 +73,3 @@ export const RelatedProducts = (props) =>{
     </div>
   );
 };
-
-export const Product = props => {
-
-  const {id, category, name, default_price} = props.product;
-
-  const [style, setStyle] = useState(null);
-
-  let params = useContext(QueryContext);
-
-  let rating, photo;
-
-  function fetchStyles(){
-    serverRequests.getProductStyles(id)
-    .then( stylesData => {
-      let defaultStyle = stylesData.results.find( style =>{
-        return style['default?'];
-      })
-      setStyle( defaultStyle );
-    })
-    .catch( err => console.log(err) );
-  }
-
-  useEffect( ()=>{
-    if (id){
-      fetchStyles();
-    }
-  }, [props.product])
-
-  return (
-    <a
-      className='product'
-      target='_blank'
-      href={`/products/${id}${params.noDummy ? '?noDummy' : ''}`}
-    >
-      <img
-        className='productImg'
-        src={ style ? style.photos[0].thumbnail_url : ''}
-      />
-      <div className='product-text'>
-        <p className='product-card-category'>{category}</p>
-        <p className='product-card-name'>{name}</p>
-        <p className='product-card-price'>${default_price}</p>
-        {
-          rating ?
-          'rating' : null
-        }
-      </div>
-    </a>
-  )
-}

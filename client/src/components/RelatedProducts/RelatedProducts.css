@@ -15,37 +15,3 @@
   display: flex;
   width: fit-content;
 }
-
-.product{
-  /* Display */
-  display: flex;
-  flex-direction: column;
-  /* Sizing */
-  width: 17rem;
-  /* Spacing */
-  margin: 0 1rem;
-  /* Background & Border */
-  background-color: white;
-}
-
-.productImg{
-  object-fit: cover;
-  height: 20rem;
-  min-width: 100%;
-  background-color: var(--light);
-  border: 0;
-}
-
-.product-text{
-  padding: 1rem;
-  text-decoration: none;
-  color: black;
-}
-
-.product-card-category{
-  text-transform: uppercase;
-}
-.product-card-name{
-  font-weight: 800;
-  font-size: 1.2rem;
-}
