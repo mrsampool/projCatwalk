@@ -1,0 +1,12 @@
+#related-product-list{
+  display: flex;
+  padding: 1rem 5rem;
+}
+
+.product{
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 25rem;
+  border: 0.1rem solid var(--med);
+}

@@ -8,6 +8,7 @@ import { QAndA } from './components/QAndA/QAndA.jsx';
 import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
 import { Banner } from './components/Banner/Banner.jsx';
 import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.jsx';
+import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.jsx';
 
 // Dummy Data
 import { listQuestions, answersList } from './dummyData/answersList';
@@ -22,17 +23,13 @@ import { ProductContext, QueryContext } from './contexts/product-context';
 import { serverRequests } from './utils/serverRequests';
 import { parseQueries } from './utils/parseQueries';
 
+// Style Sheet
+import './App.css';
+
 export const App = (props) => {
 
-  let productId = 44388;
-  let queries;
-
-  if (useParams()){
-    productId = useParams().productId;
-  }
-  if ( useLocation() ){
-    queries = parseQueries( queries = useLocation().search );
-  }
+  let productId = useParams().productId || 44388;
+  let queries = parseQueries( useLocation().search );
 
   let [currentProduct, setCurrentProduct] = useState(null);
   let [reviewsMetadata, setReviewsMetadata] = useState(null);
@@ -52,7 +49,6 @@ export const App = (props) => {
 
   useEffect( ()=>{
     if (queryParams.noDummy){
-      console.log('no dummy');
       fetchProductData();
       fetchReviewsMeta();
     } else {
@@ -69,8 +65,11 @@ export const App = (props) => {
 
             <Banner/>
             <Overview/>
-            <QAndA />
-            {/* <RatingsReviews /> */}
+            <div id='product-etc'>
+              <RelatedProducts/>
+              <QAndA />
+              {/* <RatingsReviews /> */}
+            </div>
 
           </AnalyticWrapper>
         </QueryContext.Provider>

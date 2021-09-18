@@ -16,33 +16,14 @@ server.use(express.json());
 server.use(express.urlencoded());
 var port = 3000;
 
-server.use( (req,res,next) =>{
-  console.log(req.path);
-  next();
-});
-
-server.use('*/bundle.js', (req, res)=>{
-  res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.js') );
-});
-server.use('*/bundle.css', (req, res)=>{
-  res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.css') );
-});
-server.use('*/reset.css', (req, res)=>{
-  res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'reset.css') );
-});
-
-server.use('/products', express.static( path.resolve(__dirname, '..', 'client', 'dist')) );
-
+// API Forwarding
 server.use('/api/', (req, res, next) =>{
-
-  console.log(req.path.slice(3) );
 
   console.log(`\nReceived ${req.method} request at endpoint: ${req.path}\nRequest body:`);
   console.log(req.body);
   console.log('req.query', req.query);
   let url = baseUrl + req.path;
   console.log(`\nSending API ${req.method} request: \n${url}`);
-
 
   axios({
     method: req.method,
@@ -59,13 +40,19 @@ server.use('/api/', (req, res, next) =>{
 
 });
 
-server.use('/', express.static( path.resolve(__dirname, '..', 'client', 'dist')) );
-
+// React App Static Files
+server.get('*/bundle.js', (req, res)=>{
+    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.js') );
+});
+server.get('*/bundle.css', (req, res)=>{
+    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.css') );
+});
+server.get('*/reset.css', (req, res)=>{
+    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'reset.css') );
+});
 server.get('*', (req, res, next) => {
-  console.log(req.path);
   res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'index.html') );
 });
-
 
 server.listen(port, () => {
   console.log('Server running on ', port);

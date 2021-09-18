@@ -24,6 +24,7 @@ export const Overview = (props) =>{
   if ( productContext ){
     currentProduct = productContext.currentProduct;
   }
+  //const {currentProduct} = useContext(ProductContext);
   const params = useContext(QueryContext);
 
   const {id, category, name, slogan, description} = currentProduct || '';
@@ -50,7 +51,7 @@ export const Overview = (props) =>{
     } else {
       setStyles(props.styles || singleProductStyles.results)
     }
-  })
+  }, [currentProduct])
 
   return(
     <div id='Overview' data-testid='Overview'>

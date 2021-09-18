@@ -28,6 +28,9 @@
   height: 100%;
   width: 100%;
 }
+#featured-photo img{
+  transition: opacity 0.25s;
+}
 
 #featured-photo img.nozoom{
   object-fit: contain;

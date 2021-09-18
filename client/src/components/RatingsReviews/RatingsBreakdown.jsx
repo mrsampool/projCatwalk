@@ -7,8 +7,8 @@ import { ProductContext } from '../../contexts/product-context.js';
 
 export const RatingsBreakdown = (props) => {
   const { reviewsMetadata } = useContext(ProductContext);
-  const [modalComponent, setModalComponent] = useState();
-
+  
+  
   let clearFilterBtn = null;
   let average = 0;
   let totalRatingsQty = 0;
@@ -66,10 +66,6 @@ export const RatingsBreakdown = (props) => {
     );
   }
 
-  const openReviewModal = () => {
-    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
-  };
-
   return (
     <div id='RatingBreakdown' onClick={addFilter} >
       <h3>Ratings Breakdown</h3>
@@ -83,9 +79,7 @@ export const RatingsBreakdown = (props) => {
       <h5 id='2stars'>2 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
       <h5 id='1stars'>1 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
       <h5>Size:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Size.value} data-testid='sizemeter'></meter>
-      <h5>Comfort:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Comfort.value} data-testid='comfortmeter'></meter>
-      <button onClick={openReviewModal}>Add Your Review</button>
-      <Modal component={modalComponent} setComponent={setModalComponent} />
+      <h5>Comfort:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics.Comfort.value} data-testid='comfortmeter'></meter><br></br>
     </div>
   );
 };
