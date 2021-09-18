@@ -1,5 +1,22 @@
 .container-2-col {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(300px, 400px) 1fr;
   justify-content: center;
   margin: 0 auto;
+  padding: 0px 20px 20px 20px;
+}
+
+#add-review-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+
+}
+
+@media screen and (max-width: 992px){
+  .container-2-col {
+    grid-template-columns: 1fr;
+  }
 }
