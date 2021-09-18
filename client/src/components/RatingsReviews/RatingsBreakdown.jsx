@@ -8,7 +8,7 @@ import { ProductContext } from '../../contexts/product-context.js';
 export const RatingsBreakdown = (props) => {
   const { reviewsMetadata } = useContext(ProductContext);
   const [modalComponent, setModalComponent] = useState();
-  
+
   let clearFilterBtn = null;
   let average = 0;
   let totalRatingsQty = 0;
@@ -24,7 +24,7 @@ export const RatingsBreakdown = (props) => {
 
     let key;
     switch (id) {
-      case '5stars': 
+      case '5stars':
       key = '5';
       break;
       case '4stars':
@@ -44,15 +44,15 @@ export const RatingsBreakdown = (props) => {
         return;
       }
 
-      // if the key already exists, delete it; 
+      // if the key already exists, delete it;
       // to get toggle functionality
       if (props.filter[key]) {
         let newFilter = {...props.filter};
         delete newFilter[key];
         props.setFilter(newFilter);
         return;
-      } 
-      
+      }
+
       props.setFilter({...props.filter, [key]: true});
   };
 
@@ -67,9 +67,9 @@ export const RatingsBreakdown = (props) => {
   }
 
   const openReviewModal = () => {
-    setModalComponent(<ReviewForm />);
+    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
   };
-  
+
   return (
     <div id='RatingBreakdown' onClick={addFilter} >
       <h3>Ratings Breakdown</h3>
