@@ -8,10 +8,14 @@ const QuestionContextProvider = (props) =>{
   const [questions, setQuestions] = useState(listQuestions.results) //
 
   const [AnsId, setAnsId] = useState(300)
+  const [newQId, setnewQId] = useState(500)
 
   const storeAnsID = (currentAnsId) =>{
     setAnsId(currentAnsId)
-    console.log(currentAnsId)
+  }
+  const storeNewQID = (currentQId) => {
+    setnewQId(currentQId);
+    console.log(currentQId);
   }
 
   const addQuestion = (question_id, question_body, question_date, asker_name, question_helpfulness, reported, answers) => {
@@ -31,7 +35,7 @@ const QuestionContextProvider = (props) =>{
     setQuestions([...questions])
   }
   return (
-  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, storeAnsID}}>
+  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID}}>
     {props.children}
   </QuestionContext.Provider>
   );

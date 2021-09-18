@@ -29,7 +29,11 @@ export const QuestionList = (props) =>{
   };
 
   function handleModal(){
-    setModalState(<QuestionForm questions = {questions} addQuestion={addQuestion}/>)
+    setModalState(<QuestionForm finished={ModalFinished} questions = {questions} addQuestion={addQuestion}/>)
+  }
+
+  function ModalFinished(){
+    setModalState(null)
   }
 
   return (
