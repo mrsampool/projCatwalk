@@ -37,32 +37,55 @@ describe('Form submission', () => {
   beforeEach(() => {
     render( <ReviewForm characteristics={reviewsMeta.characteristics} />);
   });
+
+  it('should not submit when submit button is clicked without form being filled out', () => {
+    expect( screen.queryByText(/\[Checkmark\] Select an option/) ).toBeFalsy();
+    expect( screen.queryByText(/\[X\] Select an option/) ).toBeTruthy();
+
+    fireEvent.click( screen.queryByText(/Submit/) );
+    expect( serverRequests.postReview.mock.calls.length ).toBe(0);
+  });
   
-  it('should make an axios POST submission when submit button is clicked', () => {
+  it('should be able to submit when form is filled and button is clicked', () => {
+    expect( screen.queryByText(/\[Checkmark\] Select an option/) ).toBeFalsy();
+
+    fireEvent.click( screen.queryByTestId(/recommendyes/) );
+    fireEvent.click( screen.queryByTestId(/Size2/) );
+    fireEvent.click( screen.queryByTestId(/Width4/) );
+    fireEvent.click( screen.queryByTestId(/Comfort1/) );
+
+    expect( screen.queryByText(/\[Checkmark\] Select an option/) ).toBeTruthy();
+
+    let sampleText = 'lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor'
+    fireEvent.change( screen.queryByTestId(/fieldbody/), {target: {value: sampleText}} )
+
+    expect( screen.queryByText(/\[Checkmark\] Review body must/) ).toBeTruthy();
+    expect( screen.queryByText(/\[X\] Enter a nickname/) ).toBeTruthy();
+
+    fireEvent.change( screen.queryByTestId(/fieldnickname/), {target: {value: 'mrloremipsum'}} )
+    fireEvent.change( screen.queryByTestId(/fieldemail/), {target: {value: 'mrloremipsum@lorem.com'}} )
+
+    expect( screen.queryByText(/\[Checkmark\] Enter a nickname/) ).toBeTruthy();
 
     fireEvent.click( screen.queryByText(/Submit/) );
     expect( serverRequests.postReview.mock.calls.length ).toBe(1);
-  })
 
-  it('POST body should contain the form data', () => {
-
-    let initialFormData = {
+    let formData = {
       rating: '3',
-      recommend: null,
+      recommend: "true",
       characteristics: {
-        14: '',
-        15: '',
-        16: '',
+        14: '2',
+        15: '4',
+        16: '1',
       },
       summary: '',
-      body: '',
+      body: sampleText,
       photos: [],
-      name: '',
-      email: '',
+      name: 'mrloremipsum',
+      email: 'mrloremipsum@lorem.com',
     }
 
-    fireEvent.click( screen.queryByText(/Submit/) );
-    expect( serverRequests.postReview.mock.calls[0][0] ).toMatchObject( initialFormData );
-  });
+    expect( serverRequests.postReview.mock.calls[0][0] ).toMatchObject( formData );
+  })
 
 });

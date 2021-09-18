@@ -133,7 +133,7 @@ export class ReviewForm extends React.Component {
       row.push( this._characteristicHeaders[name] );
       row.push( (<label htmlFor={name} key={name} >{name}</label>) );
       for (let i = 0; i < 5; i++) {
-        row.push( (<input required type='radio' name={name} value={i.toString()} key={name + i} checked={this.state[name] === i.toString()} onChange={this.formChangeHandler}></input>) );
+        row.push( (<input required type='radio' name={name} value={i.toString()} key={name + i} checked={this.state[name] === i.toString()} onChange={this.formChangeHandler} data-testid={name + i} ></input>) );
       }
     }
     return row;
@@ -151,8 +151,8 @@ export class ReviewForm extends React.Component {
 
           <label>Do you recommend this product? (mandatory)</label>
           <div id='recommendradio'>
-            <label htmlFor='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true} onChange={this.formChangeHandler}></input>
-            <label htmlFor='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false} onChange={this.formChangeHandler}></input>
+            <label htmlFor='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true} onChange={this.formChangeHandler} data-testid='recommendyes' ></input>
+            <label htmlFor='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false} onChange={this.formChangeHandler} data-testid='recommendno' ></input>
           </div>
 
           <label>Please choose a rating for each of this product's characteristics (mandatory):</label>
@@ -161,20 +161,20 @@ export class ReviewForm extends React.Component {
           </div>
 
           <label>Review Summary</label><br></br>
-          <input name='summary' type='text' placeholder='Best purchase ever!' maxLength='60' className='form-input-text-med' onChange={this.formChangeHandler} ></input><br></br>
+          <input name='summary' type='text' value={this.state.summary} placeholder='Best purchase ever!' maxLength='60' className='form-input-text-med' onChange={this.formChangeHandler} ></input><br></br>
 
           <label>Review Body (mandatory)</label><br></br>
-          <textarea required name='body' placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' className='form-input-text-lg' onChange={this.formChangeHandler} ></textarea><br></br>
+          <textarea required name='body' value={this.state.body} placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' className='form-input-text-lg' onChange={this.formChangeHandler} data-testid='fieldbody'></textarea><br></br>
 
           <label>Upload your photos:</label><br></br>
           <input name='photos' type='file' id='photos' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}} onChange={this.formChangeHandler} ></input><br></br>
 
           <label>What is your nickname? (mandatory)</label><br></br>
-          <input required name='nickname' type='text' id='nickname'  placeholder='jackson11!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
+          <input required name='nickname' type='text' value={this.state.nickname} id='nickname'  placeholder='jackson11!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldnickname'></input><br></br>
           <p>For privacy reasons, do not use your full name or email address</p>
 
           <label>Your email (mandatory)</label><br></br>
-          <input required name='email' type='text' id='email' placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
+          <input required name='email' type='text' value={this.state.email} id='email' placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldemail'></input><br></br>
           <p>For authentication reasons, you will not be emailed</p>
 
           <button type='submit' >Submit</button>
