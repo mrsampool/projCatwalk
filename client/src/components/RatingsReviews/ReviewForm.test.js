@@ -2,14 +2,13 @@ import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import { ReviewForm } from './ReviewForm.jsx';
 import { serverRequests } from '../../utils/serverRequests.js';
-import { reviewsMeta } from '../../dummyData/reviewsMetadata'
+import { dummyReviewsMetadata } from '../../dummyData/dummyReviewsMetadata'
 
 jest.mock('../../utils/serverRequests.js');
 
-
 describe('"Write Your Review" form fields', () => {
   beforeEach(() => {
-    render( <ReviewForm characteristics={reviewsMeta.characteristics} /> );
+    render( <ReviewForm characteristics={dummyReviewsMetadata.characteristics} /> );
   });
 
   it('should display the 4 text input fields', () => {
@@ -26,10 +25,8 @@ describe('"Write Your Review" form fields', () => {
 });
 
 describe('Form submission', () => {
-  test.todo('mock postReview to inspect form submission')
-
   beforeEach(() => {
-    render( <ReviewForm characteristics={reviewsMeta.characteristics} />);
+    render( <ReviewForm characteristics={dummyReviewsMetadata.characteristics} />);
   });
 
   it('should not submit when submit button is clicked without form being filled out', () => {

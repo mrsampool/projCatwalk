@@ -1,8 +1,8 @@
-import { reviewsList } from '../../dummyData/reviewsList'
+import { dummyReviewsDataResolved } from '../../dummyData/dummyReviewsData'
 
 export const serverRequests = {
   getProductReviews: jest.fn()
-    .mockResolvedValue( reviewsList ),
+    .mockResolvedValue( dummyReviewsDataResolved ),
   postReview: jest.fn()
     .mockResolvedValue( 'Status: 201 CREATED' ),
 }

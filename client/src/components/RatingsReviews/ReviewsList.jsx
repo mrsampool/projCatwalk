@@ -18,22 +18,22 @@ export const ReviewsList = function(props) {
     setMaxVisible(maxVisible + 2);
   }
 
-  if (maxVisible < props.reviewslist.results.length) {
+  if (maxVisible < props.reviewsdata.results.length) {
     showMoreBtn = (
       <button onClick={showMoreHandler} >More Reviews</button>
     );
     displayAmount = maxVisible;
   } else {
-    displayAmount = props.reviewslist.results.length;
+    displayAmount = props.reviewsdata.results.length;
   }
   
   for (let i = 0; i < displayAmount ; i++) {
-    displayedReviews.push(props.reviewslist.results[i]);
+    displayedReviews.push(props.reviewsdata.results[i]);
   }
   
   return (
     <div id='ReviewsList' data-testid='ReviewsList' >
-      <h3>{props.reviewslist.results.length} reviews, sorted by 
+      <h3>{props.reviewsdata.results.length} reviews, sorted by 
         <select name='reviewsort' id='reviewsort' value={props.sort} onChange={(e) => {props.setSort(e.target.value)}} data-testid='select' >
           <option value={option.RELEVANT} key='relevant'>Relevant</option>
           <option value={option.NEWEST} key='newest'>Newest</option>
@@ -41,7 +41,7 @@ export const ReviewsList = function(props) {
         </select>
       </h3>
       <div id='ReviewScroll'>
-        {props.reviewslist.results.length !== 0 ? displayedReviews.map((reviewdata) => {
+        {props.reviewsdata.results.length !== 0 ? displayedReviews.map((reviewdata) => {
           if(Object.keys(props.filter).length > 0) {
             // there is a filter in place, so only let those reviews through
             if(props.filter[reviewdata.rating]){

@@ -2,6 +2,15 @@ import React from 'react';
 import { RatingsBreakdown } from './RatingsBreakdown';
 import {render, screen} from '@testing-library/react';
 
+jest.mock('react', () => {
+  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/dummyReviewsMetadata');
+  
+  return {
+    ...jest.requireActual('react'),
+    useContext: jest.fn().mockReturnValue({reviewsMetadata: dummyReviewsMetadata}),
+  };
+});
+
 describe('RatingsBreakdown component', () => {
   beforeEach(() => {
     render( <RatingsBreakdown filter={{}} />);

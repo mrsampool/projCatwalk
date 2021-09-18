@@ -1,8 +1,8 @@
 // This is the data that should theoretically get returned from:
 //https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/meta?product_id=2
-// See reviewsList.js for more explanation
+// See dummyReviewsData.js for more explanation
 
-export const reviewsMeta = {
+export const dummyReviewsMetadata = {
   "product_id": "2",
   "ratings": {
     2: 1,

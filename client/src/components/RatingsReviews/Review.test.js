@@ -1,11 +1,11 @@
 import React from 'react';
 import { ReviewsList } from './ReviewsList';
 import {render, screen, fireEvent} from '@testing-library/react';
-import { reviewsList } from '../../dummyData/reviewsList.js';
+import { dummyReviewsData } from '../../dummyData/dummyReviewsData';
 
 describe('Review component', () => {
   beforeEach(() => {
-    render( <ReviewsList reviewslist={reviewsList} filter={{}} setFilter={() => {}}/> )
+    render( <ReviewsList reviewsdata={dummyReviewsData} filter={{}} setFilter={() => {}}/> )
   });
 
   it('Test for star rating', () => {
