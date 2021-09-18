@@ -12,7 +12,7 @@ import './QuestionList.css'
 export const QuestionList = (props) =>{
   const {searchTerm} = props;
   const [modalState, setModalState] = useState(null);
-  const {questions, addQuestion} = useContext(QuestionContext);
+  const {questions, addQuestion, AnsId} = useContext(QuestionContext);
   const [lastIndex, setLastIndex] = useState(2);
   var qLen = questions.length;
   var questionsfiltered = questions;
@@ -38,9 +38,9 @@ export const QuestionList = (props) =>{
         return (
           <div key={q.question_id}>
             <div className="Q-statement" >Q: {q.question_body}</div>
-            <Helpful question_helpfulness = {q.question_helpfulness}/>
+            <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
 
-            <AnswerList question = {q}/>
+            <AnswerList key={AnsId} question = {q}/>
           </div>
         )
       })
