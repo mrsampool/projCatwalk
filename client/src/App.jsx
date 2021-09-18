@@ -8,6 +8,7 @@ import { QAndA } from './components/QAndA/QAndA.jsx';
 import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
 import { Banner } from './components/Banner/Banner.jsx';
 import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.jsx';
+import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.jsx';
 
 // Dummy Data
 import { listQuestions, answersList } from './dummyData/answersList';
@@ -21,6 +22,9 @@ import { ProductContext, QueryContext } from './contexts/product-context';
 // Utilities
 import { serverRequests } from './utils/serverRequests';
 import { parseQueries } from './utils/parseQueries';
+
+// Style Sheet
+import './App.css';
 
 export const App = (props) => {
 
@@ -61,8 +65,11 @@ export const App = (props) => {
 
             <Banner/>
             <Overview/>
-            <QAndA />
-            {/* <RatingsReviews /> */}
+            <div id='product-etc'>
+              <RelatedProducts/>
+              <QAndA />
+              {/* <RatingsReviews /> */}
+            </div>
 
           </AnalyticWrapper>
         </QueryContext.Provider>
