@@ -18,7 +18,9 @@ jest.mock('react', () => {
 describe('Ratings and Reviews rendering', () => {
 
   beforeEach(() => {
-    render( <RatingsReviews testing={true} /> )
+    act(() => {
+      render(<RatingsReviews />);
+    });
   });
   
   it('renders the RatingsReviews parent component', () => {
@@ -38,11 +40,13 @@ describe('Ratings and Reviews rendering', () => {
 });
 
 describe('Sorting of Reviews (API calls include "sort" parameter and correct value', () => {
-  
-  it('should default to sorting reviews by "relevant"', (done) => {
+  beforeEach(() => {
     act(() => {
       render(<RatingsReviews />);
     });
+  });
+  
+  it('should default to sorting reviews by "relevant"', (done) => {
 
     // order of the dropdown options
     let dropdown = screen.queryByTestId('select');
@@ -55,23 +59,19 @@ describe('Sorting of Reviews (API calls include "sort" parameter and correct val
     expect( dropdown.children[1].selected ).toBeFalsy()
     expect( dropdown.children[2].selected ).toBeFalsy();
     
-    // there is always at least one geProductReviews call due to initial render
+    // there is always at least one getProductReviews call due to initial render
     waitFor(() => {
       let element = screen.queryAllByTestId('reviewsummary');
-      expect( element[0].innerHTML ).toMatch(/I'm enjoying wearing these shades/);
-      expect( element[1].innerHTML ).toMatch(/I am liking these glasses/);
+      expect( element[0].innerHTML ).toMatch(/I am resolved data/);
       expect( serverRequests.getProductReviews.mock.calls[0][1] ).toBe('relevant');
       expect( serverRequests.getProductReviews.mock.calls.length ).toBe(1);
-    }, {timeout: 5000, interval: 250})
+    })
     .then(() => {
       done();
     })
   });
   
   it('when "helpful" is selected, reviews are sorted from most to least helpful', (done) => {
-    act(() => {
-      render(<RatingsReviews />);
-    })
     
     let dropdown = screen.queryByTestId('select');
     act(() => {
@@ -82,19 +82,20 @@ describe('Sorting of Reviews (API calls include "sort" parameter and correct val
     expect( dropdown.children[0].selected ).toBeFalsy();
     expect( dropdown.children[2].selected ).toBeTruthy();
 
+    // the *second* call of getProductReviews (after the call during initial render) should
+    // be the one that has the parameter we expect
     waitFor(() => {
+      let element = screen.queryAllByTestId('reviewsummary');
+      expect( element[0].innerHTML ).toMatch(/I am resolved data/);
       expect( serverRequests.getProductReviews.mock.calls[1][1] ).toBe('helpful');
       expect( serverRequests.getProductReviews.mock.calls.length ).toBe(2);
-    }, {timeout: 3000, interval: 250})
+    })
     .then(() => {
       done();
     })
   });
 
   it('when "newest" is selected, most recent review appears first', (done) => {
-    act(() => {
-      render(<RatingsReviews />);
-    })
 
     let dropdown = screen.queryByTestId('select');
     act(() => {
@@ -106,9 +107,11 @@ describe('Sorting of Reviews (API calls include "sort" parameter and correct val
     expect( dropdown.children[1].selected ).toBeTruthy();
 
     waitFor(() => {
+      let element = screen.queryAllByTestId('reviewsummary');
+      expect( element[0].innerHTML ).toMatch(/I am resolved data/);
       expect( serverRequests.getProductReviews.mock.calls[1][1] ).toBe('newest');
       expect( serverRequests.getProductReviews.mock.calls.length ).toBe(2);
-    }, {timeout: 5000, interval: 250})
+    })
     .then(() => {
       done();
     });

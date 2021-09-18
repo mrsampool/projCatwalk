@@ -19,8 +19,6 @@ export const RatingsReviews = (props) =>{
   const [sort, setSort] = useState('relevant');
 
   useEffect(() => {
-    if(props.testing) return;
-    console.log('Calling getProductReviews...')
     getProductReviews(reviewsMetadata.product_id, sort)
     .then(data => {
       setReviewsData(data); 
