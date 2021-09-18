@@ -1,5 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import {App} from './App.jsx';
 import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
@@ -13,7 +14,11 @@ jest.mock('./components/RatingsReviews/RatingsReviews.jsx', () => {
 
 describe("App", ()=>{
 
-  const {container} = render( <App/> );
+  const {container} = render(
+    <Router>
+      <App/>
+    </Router>
+  );
 
   it("Renders without crashing", ()=>{
 
@@ -23,7 +28,11 @@ describe("App", ()=>{
   });
 
   it(`Renders each major widget`, ()=>{
-    render( <App/> );
+    render(
+      <Router>
+        <App/>
+      </Router>
+    );
 
     [
       'Overview',
