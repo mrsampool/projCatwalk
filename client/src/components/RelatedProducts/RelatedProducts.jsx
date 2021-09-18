@@ -41,7 +41,7 @@ export const RelatedProducts = (props) =>{
 
   return (
     <div id='related-products'>
-      <p>Related Products</p>
+      <p id='related-products-title'>Related Products</p>
       <div id='related-product-list'>
         {
           products.map( product =>{
@@ -53,6 +53,18 @@ export const RelatedProducts = (props) =>{
             )
           })
         }
+        {
+          !params.noDummy ?
+            products.map( product =>{
+            return(
+                <Product
+                  product={product}
+                  key={`relatedProduct${product.id}`}
+                />
+              )
+            })
+            : null
+        }
       </div>
     </div>
   );
@@ -60,19 +72,50 @@ export const RelatedProducts = (props) =>{
 
 export const Product = props => {
 
-  const {category, name, default_price} = props.product;
+  const {id, category, name, default_price} = props.product;
+
+  const [style, setStyle] = useState(null);
+
+  let params = useContext(QueryContext);
+
   let rating, photo;
 
+  function fetchStyles(){
+    serverRequests.getProductStyles(id)
+    .then( stylesData => {
+      let defaultStyle = stylesData.results.find( style =>{
+        return style['default?'];
+      })
+      setStyle( defaultStyle );
+    })
+    .catch( err => console.log(err) );
+  }
+
+  useEffect( ()=>{
+    if (id){
+      fetchStyles();
+    }
+  }, [props.product])
+
   return (
-    <div className='product'>
-      <img className='productImg'/>
-      <span>{category}</span>
-      <span>{name}</span>
-      <span>{default_price}</span>
-      {
-        rating ?
-        'rating' : null
-      }
-    </div>
+    <a
+      className='product'
+      target='_blank'
+      href={`/products/${id}${params.noDummy ? '?noDummy' : ''}`}
+    >
+      <img
+        className='productImg'
+        src={ style ? style.photos[0].thumbnail_url : ''}
+      />
+      <div className='product-text'>
+        <p className='product-card-category'>{category}</p>
+        <p className='product-card-name'>{name}</p>
+        <p className='product-card-price'>${default_price}</p>
+        {
+          rating ?
+          'rating' : null
+        }
+      </div>
+    </a>
   )
 }
