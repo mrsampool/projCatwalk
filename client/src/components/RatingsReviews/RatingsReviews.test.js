@@ -7,7 +7,7 @@ import {serverRequests} from '../../utils/serverRequests.js';
 jest.mock('../../utils/serverRequests.js');
 
 jest.mock('react', () => {
-  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/reviewsMetadata');
+  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/dummyReviewsMetadata');
   
   return {
     ...jest.requireActual('react'),

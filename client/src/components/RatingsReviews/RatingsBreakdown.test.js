@@ -3,7 +3,7 @@ import { RatingsBreakdown } from './RatingsBreakdown';
 import {render, screen} from '@testing-library/react';
 
 jest.mock('react', () => {
-  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/reviewsMetadata');
+  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/dummyReviewsMetadata');
   
   return {
     ...jest.requireActual('react'),

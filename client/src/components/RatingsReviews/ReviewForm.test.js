@@ -2,7 +2,7 @@ import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import { ReviewForm } from './ReviewForm.jsx';
 import { serverRequests } from '../../utils/serverRequests.js';
-import { dummyReviewsMetadata } from '../../dummyData/reviewsMetadata'
+import { dummyReviewsMetadata } from '../../dummyData/dummyReviewsMetadata'
 
 jest.mock('../../utils/serverRequests.js');
 

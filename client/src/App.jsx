@@ -11,9 +11,8 @@ import { AnalyticWrapper } from './components/AnalyticWrapper/AnalyticWrapper.js
 import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.jsx';
 
 // Dummy Data
-import { listQuestions, answersList } from './dummyData/answersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
-import { dummyReviewsMetadata } from './dummyData/reviewsMetadata';
+import { dummyReviewsMetadata } from './dummyData/dummyReviewsMetadata';
 
 // Contexts
 import { ProductContext, QueryContext } from './contexts/product-context';

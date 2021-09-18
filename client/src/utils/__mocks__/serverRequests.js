@@ -1,4 +1,4 @@
-import { dummyReviewsDataResolved } from '../../dummyData/reviewsList'
+import { dummyReviewsDataResolved } from '../../dummyData/dummyReviewsData'
 
 export const serverRequests = {
   getProductReviews: jest.fn()

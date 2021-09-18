@@ -4,7 +4,7 @@ import { RatingsBreakdown } from './RatingsBreakdown.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 import { serverRequests } from '../../utils/serverRequests.js';
 const { getProductReviews } = serverRequests;
-import { dummyReviewsData } from '../../dummyData/reviewsList.js';
+import { dummyReviewsData } from '../../dummyData/dummyReviewsData';
 import { ReviewForm } from './ReviewForm.jsx';
 import { Modal } from '../Modal/Modal.jsx';
 
