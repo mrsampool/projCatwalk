@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+/*
 import axios from 'axios';
 
 import { reviewsList } from '../dummyData/reviewsList.js';
@@ -13,9 +14,14 @@ const defaultState = {
   answersData: answersList,
   setProductID: () => {}
 }
+*/
 
-export const ProductContext = React.createContext(defaultState);
+export const ProductContext = React.createContext(null);
 
+export const ReviewsMetaContext = React.createContext(null);
+
+export const QueryContext = React.createContext(null);
+/*
 export const ProductContextProvider = (props) => {
 
   const setProductID = (productID) => {
@@ -43,3 +49,4 @@ export const ProductContextProvider = (props) => {
     </ProductContext.Provider>
   );
 }
+*/

@@ -1,6 +1,7 @@
 // Libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Components
 import {App} from './App.jsx';
@@ -11,6 +12,10 @@ import './globalStyles/colors.css';
 import './globalStyles/elements.css';
 
 ReactDOM.render(
-  <App />
+  <Router>
+    <Route path={['/products/:productId', '/']}>
+      <App />
+    </Route>
+  </Router>
   , document.getElementById('root')
 )

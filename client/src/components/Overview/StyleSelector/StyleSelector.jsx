@@ -17,7 +17,7 @@ export const StyleSelector = (props) =>{
   }
 
   useEffect( ()=>{
-    if (!currentStyle){ setDefaultStyle(); }
+    if (!currentStyle && styles && styles.length){ setDefaultStyle(); }
   },[]);
 
   return(
@@ -29,19 +29,21 @@ export const StyleSelector = (props) =>{
       <span id='current-style'>{currentStyle ? currentStyle.name : ''}</span>
       <div id='styles-list' data-testid='styles-list'>
         {
-          styles.map( style =>{
-            return(
-              <StyleOption
-                style={style}
-                changeStyle={setCurrentStyle}
-                key={style.style_id}
-                active={
-                  currentStyle &&
-                  currentStyle.style_id === style.style_id
-                }
-              />
-            )
-          })
+          styles && styles.length ?
+            styles.map( style =>{
+              return(
+                <StyleOption
+                  style={style}
+                  changeStyle={setCurrentStyle}
+                  key={style.style_id}
+                  active={
+                    currentStyle &&
+                    currentStyle.style_id === style.style_id
+                  }
+                />
+              )
+            })
+          :null
         }
       </div>
     </div>

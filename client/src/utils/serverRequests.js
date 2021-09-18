@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const baseUrl = 'http://127.0.0.1:3000';
+const baseUrl = 'http://127.0.0.1:3000/api';
 
 export const serverRequests = {
 
@@ -28,7 +28,15 @@ export const serverRequests = {
       .catch( reject );
     });
   },
-  
+
+  getProductById: (id) => {
+    return new Promise( (resolve, reject) => {
+      axios.get(baseUrl + `/products/${id}`)
+      .then( ({data}) => resolve(data) )
+      .catch( reject );
+    });
+  },
+
   getProductReviews: (product_id, sort = 'newest') => {
     // get a single product's reviews
     return new Promise( (resolve, reject) => {
@@ -41,6 +49,15 @@ export const serverRequests = {
   getProductReviewsMeta: (product_id) => {
     return new Promise( (resolve, reject) => {
       axios.get(baseUrl + '/reviews/meta?product_id=' + product_id)
+      .then( ({data}) => resolve(data) )
+      .catch( reject );
+    });
+  },
+
+  getProductStyles: (product_id) => {
+    // get a single product's styles
+    return new Promise( (resolve, reject) => {
+      axios.get( `${baseUrl}/products/${product_id}/styles`)
       .then( ({data}) => resolve(data) )
       .catch( reject );
     });
