@@ -36,7 +36,7 @@ export const RatingsReviews = (props) =>{
     {reviewsData.results.length === 0 ? null : (
       <div className='container-2-col'>
         <RatingsBreakdown filter={filter} setFilter={setFilter} />
-        <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+        <ReviewsList reviewsdata={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
       </div>
     )}
     <div id='add-review-container'>

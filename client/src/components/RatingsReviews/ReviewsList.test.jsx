@@ -3,7 +3,7 @@ import React from 'react';
 import { RatingsReviews } from './RatingsReviews';
 import { ReviewsList } from './ReviewsList';
 import {render, screen, fireEvent} from '@testing-library/react';
-import { reviewsList } from '../../dummyData/reviewsList.js';
+import { dummyReviewsData } from '../../dummyData/reviewsList.js';
 
 // Need to mock react's useContext (JUST useContext) to supply dummyReviewsMetadata
 
@@ -18,7 +18,7 @@ jest.mock('react', () => {
 
 describe('ReviewsList component', () => {
   beforeEach(() => {
-    render( <ReviewsList reviewslist={reviewsList} filter={{}} setFilter={() => {}} /> )
+    render( <ReviewsList reviewsdata={dummyReviewsData} filter={{}} setFilter={() => {}} /> )
   });
 
   it('should always render max two Review components to start', () => {

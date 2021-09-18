@@ -13,7 +13,7 @@ import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.js
 // Dummy Data
 import { listQuestions, answersList } from './dummyData/answersList';
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
-import { reviewsMetaDummy } from './dummyData/reviewsMetadata';
+import { dummyReviewsMetadata } from './dummyData/reviewsMetadata';
 
 // Contexts
 import { ProductContext, QueryContext } from './contexts/product-context';
@@ -31,7 +31,7 @@ export const App = (props) => {
   let queries = parseQueries( useLocation().search );
 
   let [currentProduct, setCurrentProduct] = useState(null);
-  let [reviewsMetadata, setReviewsMetadata] = useState(reviewsMetaDummy);
+  let [reviewsMetadata, setReviewsMetadata] = useState(dummyReviewsMetadata);
   let [queryParams, setQueryParams] = useState(queries || {});
 
   function fetchProductData(){
@@ -52,7 +52,7 @@ export const App = (props) => {
       fetchReviewsMeta();
     } else {
       setCurrentProduct( singleProduct );
-      setReviewsMetadata( reviewsMetaDummy );
+      setReviewsMetadata( dummyReviewsMetadata );
     }
   }, []);
 
