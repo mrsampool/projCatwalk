@@ -6,13 +6,7 @@ import { reviewsMeta } from '../../dummyData/reviewsMetadata'
 
 jest.mock('../../utils/serverRequests.js');
 
-/* 
-Manual testing reveals that the browser does prevent me from submitting
-the form; but these tests are able to bypass those restrictions
-in the elements...
-I'll need to do more manual checking before submission is allowed.
 
- */
 describe('"Write Your Review" form fields', () => {
   beforeEach(() => {
     render( <ReviewForm characteristics={reviewsMeta.characteristics} /> );
