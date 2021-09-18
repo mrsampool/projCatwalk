@@ -1,14 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
-import { ReviewForm } from './ReviewForm.jsx';
-import { Modal } from '../Modal/Modal.jsx';
-
 import { ProductContext } from '../../contexts/product-context.js';
 
+
 export const RatingsBreakdown = (props) => {
-  const { reviewsMetadata } = useContext(ProductContext);
-  
-  
+  let { reviewsMetadata } = useContext(ProductContext);
+
   let clearFilterBtn = null;
   let average = 0;
   let totalRatingsQty = 0;

@@ -3,29 +3,30 @@ import { ReviewsList } from './ReviewsList.jsx';
 import { RatingsBreakdown } from './RatingsBreakdown.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 import { serverRequests } from '../../utils/serverRequests.js';
-let { getProductReviews } = serverRequests;
-import { reviewsList, reviewsEmptyList } from '../../dummyData/reviewsList.js';
+const { getProductReviews } = serverRequests;
+import { dummyReviewsData } from '../../dummyData/reviewsList.js';
 import { ReviewForm } from './ReviewForm.jsx';
 import { Modal } from '../Modal/Modal.jsx';
 
 import './RatingsReviews.css';
 
 export const RatingsReviews = (props) =>{
-  const { productID, reviewsMetadata } = useContext(ProductContext);
+  let { reviewsMetadata } = useContext(ProductContext);
+  
   const [filter, setFilter] = useState({});
-  const [reviewsData, setReviewsData] = useState(reviewsList);
+  const [reviewsData, setReviewsData] = useState(dummyReviewsData);
   const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
 
   useEffect(() => {
     if(props.testing) return;
     console.log('Calling getProductReviews...')
-    getProductReviews(productID, sort)
+    getProductReviews(reviewsMetadata.product_id, sort)
     .then(data => {
       setReviewsData(data); 
     })
     .catch(err => console.log('Error in RatingsReviews getProductReviews(): ', err) );
-  }, [productID, sort]);
+  }, [reviewsMetadata, sort]);
 
   const openReviewModal = () => {
     setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
