@@ -4,11 +4,15 @@ import React, { useContext, useState, useEffect } from 'react';
 //Context
 import { ProductContext, QueryContext } from '../../contexts/product-context';
 
-// Dummy Data
-import { relatedProducts } from '../../dummyData/relatedProducts';
+// Sub-Components
+import { ProductCard } from '../ProductCard/ProductCard.jsx';
 
 // Utilities
 import { serverRequests } from '../../utils/serverRequests';
+
+// Dummy Data
+import { relatedProducts } from '../../dummyData/relatedProducts';
+
 //Stylesheet
 import './RelatedProducts.css'
 
@@ -41,38 +45,31 @@ export const RelatedProducts = (props) =>{
 
   return (
     <div id='related-products'>
-      <p>Related Products</p>
+      <p id='related-products-title'>Related Products</p>
       <div id='related-product-list'>
         {
           products.map( product =>{
             return(
-              <Product
+              <ProductCard
                 product={product}
                 key={`relatedProduct${product.id}`}
               />
             )
           })
         }
+        {
+          !params.noDummy ?
+            products.map( product =>{
+            return(
+                <ProductCard
+                  product={product}
+                  key={`relatedProduct${product.id}`}
+                />
+              )
+            })
+            : null
+        }
       </div>
     </div>
   );
 };
-
-export const Product = props => {
-
-  const {category, name, default_price} = props.product;
-  let rating, photo;
-
-  return (
-    <div className='product'>
-      <img className='productImg'/>
-      <span>{category}</span>
-      <span>{name}</span>
-      <span>{default_price}</span>
-      {
-        rating ?
-        'rating' : null
-      }
-    </div>
-  )
-}
