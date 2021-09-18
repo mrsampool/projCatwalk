@@ -1,8 +1,20 @@
+
 import React from 'react';
 import { RatingsReviews } from './RatingsReviews';
 import { ReviewsList } from './ReviewsList';
 import {render, screen, fireEvent} from '@testing-library/react';
 import { reviewsList } from '../../dummyData/reviewsList.js';
+
+// Need to mock react's useContext (JUST useContext) to supply dummyReviewsMetadata
+
+jest.mock('react', () => {
+  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/reviewsMetadata');
+  
+  return {
+    ...jest.requireActual('react'),
+    useContext: jest.fn().mockReturnValue({reviewsMetadata: dummyReviewsMetadata}),
+  };
+});
 
 describe('ReviewsList component', () => {
   beforeEach(() => {
