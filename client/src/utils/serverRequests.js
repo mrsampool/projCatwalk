@@ -54,6 +54,14 @@ export const serverRequests = {
     });
   },
 
+  postReview: (formData) => {
+    return new Promise( (resolve, reject) => {
+      axios.post(baseUrl + '/reviews', formData)
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+
   getProductStyles: (product_id) => {
     // get a single product's styles
     return new Promise( (resolve, reject) => {
@@ -61,6 +69,6 @@ export const serverRequests = {
       .then( ({data}) => resolve(data) )
       .catch( reject );
     });
-  },
+  }
 
 };

@@ -67,7 +67,7 @@ export const RatingsBreakdown = (props) => {
   }
 
   const openReviewModal = () => {
-    setModalComponent(<ReviewForm />);
+    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
   };
 
   return (
