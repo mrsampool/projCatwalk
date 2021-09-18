@@ -144,8 +144,8 @@ The Ratings & Reviews section is the last/bottom-most section on the page. It di
 The structure of the Ratings & Reviews section is as follows:
 
 - 'RatingsReviews' parent component
-  - 'RatingsBreakdown' 
-    - 'ReviewForm' 
+  - 'RatingsBreakdown'
+    - 'ReviewForm'
   - 'ReviewsList' child component
     - 'Review' component
 
@@ -213,3 +213,86 @@ function myComponent(props){
 // ^ When the button is clicked, the handleModal function will set the modalState to the specified Component, which will automatically trigger MyChildComponent to be rendered inside of the modal in the DOM
 // If the user clicks anywhere outside of MyChildComponent while the modal is open, the Modal will automatically set modalState to null, which removes the modal from the DOM
 ```
+---
+## Contexts
+
+### ProductContext
+
+ProductContext is the combined data of two API calls, each of which is represented by a key on the context value:
+- ```currentProduct```
+  - result of calling ```serverRequests.getProductById(productId)```
+  - includes keys:
+    - ```campus``` (String)
+    - ```category``` (String)
+    - ```created_at``` (String)
+    - ```default_price``` (String)
+    - ```description``` (String)
+    - ```features``` (Array)
+    - ```id``` (Number)
+    - ```name``` (String)
+    - ```slogan``` (String)
+    - ```updated_at``` (String)
+
+- ```reviewsMetadata```
+  - result of calling ```serverRequests.getProductReviewsMeta(productId)```
+  - includes keys:
+    - ```characteristics``` (Array)
+    - ```product_id``` (String)
+    - ```ratings``` (Object)
+    - ```recommended``` (Object)
+
+**Example Usage:**
+
+``` javascript
+import { ProductContext } from '../../contexts/product-context';
+
+function myComponent(){
+
+  // In this example, we destructure both properties off the context object:
+  const { currentProduct, reviewsMetadata } = useContext(ProductContext);
+
+  // We can then access individual values off the destructured keys:
+  let productName = currentProduct.name;
+  // ...
+}
+```
+---
+### QueryContext
+
+The QueryContext allows all components to have access to parsed query parameters in the URL.
+
+Query parameters are seperated from the URL path endpoint by a "```?```" and are seperated from each other by a "```&```". Within each query parameter, a key and value is parsed by a seperating "```=```". If there no ```=```, the parameter will be treated as a key with a value of ```'true'```.
+
+To illustrate this, consider this example:
+
+**Example URL:** ```example.com/endpoint?query1=true&query2=aString&query3```
+
+**Resulting QueryContext**:
+``` javascript
+{
+  query1: 'true',
+  query2: 'aString',
+  query3: 'true',
+}
+```
+The QueryContext is provided at the top level of the app, meaning any component can access it by importing it from ```client/src/contexts/product-context.js```.
+
+**Example Usage:**
+
+``` javascript
+import { QueryContext } from '../../contexts/product-context';
+
+function myComponent(){
+
+  // In this example, params is a variable containing all current QueryContext data
+  const params = useContext(QueryContext);
+
+  // Here we are checking for a 'example' query param with a true value - if one exists, we will call the doSomething() function
+  if (params.exampleQuery){
+    doSomething();
+  }
+  // ...
+}
+```
+**NOTE:** In the above example - a URL to run ```doSomething()``` could look something like this:
+```example.com/example-endpoint?exampleQuery ```
