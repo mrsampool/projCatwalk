@@ -136,14 +136,18 @@ describe('Img Gallery', ()=>{
   describe("Expanded View", ()=>{
     test(`clicking a full screen button will expand the image to span the full screen - there are still left and right arrows.`, ()=>{
 
+      let styles = singleProductStyles.results;
+
       render(
         <Overview
           product={singleProduct}
-          styles={singleProductStyles}
+          styles={styles}
         />
       );
 
-      fireEvent.click( screen.queryByTestId('fullscreen') );
+      let fullscreen = screen.getByTestId('fullscreen')
+
+      fireEvent.click( fullscreen );
 
       const gallery = screen.queryByTestId('img-gallery');
 

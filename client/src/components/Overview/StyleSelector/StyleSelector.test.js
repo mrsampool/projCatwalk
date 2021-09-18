@@ -8,8 +8,11 @@ import { Overview } from '../Overview.jsx';
 
 //Dummy Data
 import { singleProductStyles } from '../../../dummyData/productsList';
-import { singleProduct } from '../../../dummyData/productsList';
+import { singleProduct as currentProduct } from '../../../dummyData/productsList';
+import { ProductContext } from '../../../contexts/product-context';
 let styles = singleProductStyles.results;
+
+
 
 describe("Style Selector", ()=>{
 
@@ -128,10 +131,9 @@ describe("Style Selector", ()=>{
     let styleId3 = styles[3].style_id;
 
     render(
-      <Overview
-        product={singleProduct}
-        styles={singleProductStyles}
-      />
+      <ProductContext.Provider value={{currentProduct}}>
+        <Overview />
+      </ProductContext.Provider>
     );
 
     expect( screen.getByTestId('active-check') ).toBeTruthy();
