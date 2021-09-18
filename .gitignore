@@ -3,3 +3,4 @@ bundle.js
 bundle.css
 config.js
 coverage
+.DS_Store
