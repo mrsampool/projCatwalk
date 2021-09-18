@@ -24,7 +24,7 @@ export const RatingsBreakdown = (props) => {
 
     let key;
     switch (id) {
-      case '5stars': 
+      case '5stars':
       key = '5';
       break;
       case '4stars':
@@ -44,15 +44,15 @@ export const RatingsBreakdown = (props) => {
         return;
       }
 
-      // if the key already exists, delete it; 
+      // if the key already exists, delete it;
       // to get toggle functionality
       if (props.filter[key]) {
         let newFilter = {...props.filter};
         delete newFilter[key];
         props.setFilter(newFilter);
         return;
-      } 
-      
+      }
+
       props.setFilter({...props.filter, [key]: true});
   };
 

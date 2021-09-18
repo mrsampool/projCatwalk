@@ -6,11 +6,16 @@ import {render, screen} from '@testing-library/react';
 import {Overview} from './Overview.jsx';
 
 // Mock Data
-import { singleProduct as product, singleProductStyles as styles } from '../../dummyData/productsList';
+import { singleProduct as currentProduct, singleProductStyles as styles } from '../../dummyData/productsList';
+import { ProductContext } from '../../contexts/product-context';
 
 describe("Overview", ()=>{
 
-  const {container} = render( <Overview product={product} styles={styles} /> );
+  const {container} = render(
+    <ProductContext.Provider value={{currentProduct}}>
+      <Overview />
+    </ProductContext.Provider>
+  );
   let component = container.querySelector('#Overview');
 
   it("Renders without crashing", ()=>{
@@ -24,8 +29,12 @@ describe("Overview", ()=>{
     'slogan',
   ].forEach( text => {
     it(`Should display product ${ text }`, ()=>{
-      render( <Overview product={product} styles={styles} /> );
-      expect( screen.getByText(product[text]) ).toBeTruthy();
+      render(
+        <ProductContext.Provider value={{currentProduct}}>
+          <Overview />
+        </ProductContext.Provider>
+      );
+      expect( screen.getByText(currentProduct[text]) ).toBeTruthy();
     });
 
   });
@@ -38,13 +47,14 @@ describe("Overview", ()=>{
   ].forEach( element => {
 
     it(`Renders a ${element} component`, ()=>{
-      render( <Overview product={product} styles={styles} /> );
+      render(
+        <ProductContext.Provider value={{currentProduct}}>
+          <Overview />
+        </ProductContext.Provider>
+      );
       let rendered = screen.queryByTestId(element);
       expect( rendered ).toBeTruthy();
-    })
+    });
 
   });
-
-
-
 });

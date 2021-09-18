@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 
 //Sub-Components
 import { ImgGallery } from './ImgGallery/ImgGallery.jsx';
@@ -9,46 +9,51 @@ import { Price } from './Price/Price.jsx';
 import { AddToCart } from './AddToCart/AddToCart.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
-// Import the Modal into your own component file
-import { Modal } from '../Modal/Modal.jsx';
+// Contexts
+import { ProductContext, QueryContext } from '../../contexts/product-context';
 
 //Style Sheet
 import './Overview.css';
+import { serverRequests } from '../../utils/serverRequests';
+import { singleProductStyles } from '../../dummyData/productsList';
 
 export const Overview = (props) =>{
 
-  const {category, name, slogan, description} = props.product;
-  const styles = props.styles.results;
+  let currentProduct;
+  let productContext = useContext(ProductContext);
+  if ( productContext ){
+    currentProduct = productContext.currentProduct;
+  }
+  const params = useContext(QueryContext);
 
+  const {id, category, name, slogan, description} = currentProduct || '';
+
+  const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
   const [currentSize, setCurrentSize] = useState(null);
   const [currentSku, setCurrentSku] = useState(null);
   const [currentQty, setCurrentQty] = useState(null);
   const [fullScreenImg, setFullScreenImg] = useState(false);
 
-
-  // Set modal state within your own component:
-  const [modalState, setModalState] = useState(null);
-
   function toggleFullScreenImg(){
     setFullScreenImg( !fullScreenImg );
   }
 
-  function handleModal(){
-    let modalComponent = (
-      <div><p>modal modal</p></div>
-    )
-    setModalState( modalComponent );
+  function fetchStyles(){
+    serverRequests.getProductStyles(id)
+    .then( styles => setStyles(styles.results) );
   }
+
+  useEffect( ()=>{
+    if (params && params.noDummy && id){
+      fetchStyles();
+    } else {
+      setStyles(props.styles || singleProductStyles.results)
+    }
+  })
 
   return(
     <div id='Overview' data-testid='Overview'>
-
-      {/* Render the modal in your own component with your own modal state: */}
-      <Modal
-        component={modalState}
-        setComponent={setModalState}
-      />
 
       <div id='Overview-main'>
 
@@ -59,15 +64,19 @@ export const Overview = (props) =>{
         />
 
         <div id='overview-controls'>
-          <StarRating/>
+          {/* <StarRating/> */}
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
           <Price style={currentStyle} />
-          <StyleSelector
-            styles={styles}
-            currentStyle={currentStyle}
-            setCurrentStyle={setCurrentStyle}
-          />
+          {
+            styles ?
+            <StyleSelector
+              styles={styles}
+              currentStyle={currentStyle}
+              setCurrentStyle={setCurrentStyle}
+            />
+            : null
+          }
           <div>
             <SizeSelector
               skus={currentStyle ? currentStyle.skus : null}
@@ -89,7 +98,7 @@ export const Overview = (props) =>{
 
       <div id='prod-copy'>
         <p id='prod-slogan'>{slogan}</p>
-        <p id='prod-description' onClick={handleModal}>{description}</p>
+        <p id='prod-description'>{description}</p>
       </div>
 
     </div>
