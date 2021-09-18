@@ -161,10 +161,10 @@ export class ReviewForm extends React.Component {
           </div>
 
           <label>Review Summary</label><br></br>
-          <input name='summary' type='text' value={this.state.summary} placeholder='Best purchase ever!' maxLength='60' className='form-input-text-med' onChange={this.formChangeHandler} ></input><br></br>
+          <input name='summary' type='text' value={this.state.summary} placeholder='Best purchase ever!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
 
           <label>Review Body (mandatory)</label><br></br>
-          <textarea required name='body' value={this.state.body} placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' className='form-input-text-lg' onChange={this.formChangeHandler} data-testid='fieldbody'></textarea><br></br>
+          <textarea required name='body' value={this.state.body} placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' rows='5' cols='50' onChange={this.formChangeHandler} data-testid='fieldbody'></textarea><br></br>
 
           <label>Upload your photos:</label><br></br>
           <input name='photos' type='file' id='photos' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}} onChange={this.formChangeHandler} ></input><br></br>

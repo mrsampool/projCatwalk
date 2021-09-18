@@ -20,18 +20,19 @@
 }
 
 .form-input-text-sm {
-  height: 1.1rem;
-  width: 200px;
+  height: 1.5rem;
+  width: 300px;
+  font-size: 0.8rem;
 }
 
 .form-input-text-med {
   height: 1.3rem;
-  width: 275px;
+  width: 450px;
 }
 
 .form-input-text-lg {
   height: 2rem;
-  width: 400px;
+  width: 600px;
 }
 
 .form-rating-range {
