@@ -4,14 +4,17 @@ import { RatingsBreakdown } from './RatingsBreakdown.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 import { serverRequests } from '../../utils/serverRequests.js';
 let { getProductReviews } = serverRequests;
-import { reviewsList } from '../../dummyData/reviewsList.js';
+import { reviewsList, reviewsEmptyList } from '../../dummyData/reviewsList.js';
+import { ReviewForm } from './ReviewForm.jsx';
+import { Modal } from '../Modal/Modal.jsx';
 
 import './RatingsReviews.css';
 
 export const RatingsReviews = (props) =>{
-  const { productID } = useContext(ProductContext);
+  const { productID, reviewsMetadata } = useContext(ProductContext);
   const [filter, setFilter] = useState({});
   const [reviewsData, setReviewsData] = useState(reviewsList);
+  const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
 
   useEffect(() => {
@@ -24,13 +27,25 @@ export const RatingsReviews = (props) =>{
     .catch(err => console.log('Error in RatingsReviews getProductReviews(): ', err) );
   }, [productID, sort]);
 
+  const openReviewModal = () => {
+    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
+  };
+
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
     <h3>Ratings and Reviews</h3>
-    <div className='container-2-col'>
-      <RatingsBreakdown filter={filter} setFilter={setFilter} />
-      <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+    {reviewsData.results.length === 0 ? null : (
+      <div className='container-2-col'>
+        <RatingsBreakdown filter={filter} setFilter={setFilter} />
+        <ReviewsList reviewslist={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+      </div>
+    )}
+    <div id='add-review-container'>
+      <div>
+        <button onClick={openReviewModal}>Add Your Review</button>
+      </div>
     </div>
+    <Modal component={modalComponent} setComponent={setModalComponent} />
   </div>
   );
 }

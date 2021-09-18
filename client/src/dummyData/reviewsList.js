@@ -89,3 +89,8 @@ export const reviewsList = {
     },
   ]
 }
+
+export const reviewsEmptyList = {
+  ...reviewsList,
+  results: [],
+}
