@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Review from './Review.jsx';
 
 export const ReviewsList = function(props) {
+  let showMoreBtn = null;
+  let displayAmount = 0;
+  let displayedReviews = [];
+  const [maxVisible, setMaxVisible] = useState(2);
   const option = {
     RELEVANT: 'relevant',
     NEWEST: 'newest',
     HELPFUL: 'helpful',
   };
+  
+  const showMoreHandler = () => {
+    setMaxVisible(maxVisible + 2);
+  }
+
+  if (maxVisible < props.reviewslist.results.length) {
+    showMoreBtn = (
+      <button onClick={showMoreHandler} >More Reviews</button>
+    )
+
+    displayAmount = maxVisible;
+  } else {
+    displayAmount = props.reviewslist.results.length;
+  }
+  
+  
+  for (let i = 0; i < displayAmount ; i++) {
+    displayedReviews.push(props.reviewslist.results[i]);
+  }
   
   return (
     <div id='ReviewsList' data-testid='ReviewsList'>
@@ -18,7 +41,7 @@ export const ReviewsList = function(props) {
           <option value={option.HELPFUL} key='helpful'>Helpful</option>
         </select>
       </h3>
-      {props.reviewslist.results.map((reviewdata) => {
+      {displayedReviews.map((reviewdata) => {
         if(Object.keys(props.filter).length > 0) {
           // there is a filter in place, so only let those reviews through
           if(props.filter[reviewdata.rating]){
@@ -32,6 +55,7 @@ export const ReviewsList = function(props) {
           );
         }
       })}
+      {showMoreBtn}
     </div>
   );
 }

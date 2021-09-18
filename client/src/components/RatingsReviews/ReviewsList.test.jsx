@@ -9,8 +9,27 @@ describe('ReviewsList component', () => {
     render( <ReviewsList reviewslist={reviewsList} filter={{}} setFilter={() => {}} /> )
   });
 
-  it('should render two Review components (according to dummy data)', () => {
+  it('should always render max two Review components to start', () => {
     expect( screen.queryAllByTestId('Review') ).toHaveLength(2);
+  });
+
+  it('should render a More Reviews button where are more than two reviews', () => {
+    expect( screen.queryByText(/More Reviews/) ).toBeTruthy();
+  })
+
+  it('should render two more reviews when the More Reviews button is clicked', () => {
+    fireEvent.click(screen.queryByText(/More Reviews/))
+
+    expect( screen.queryByText(/More Reviews/) ).toBeTruthy();
+    expect( screen.queryAllByTestId('Review') ).toHaveLength(4);
+  })
+
+  it('should remove/hide the More Reviews button when there are further reviews to show', () => {
+    // two clicks to show all reviews
+    fireEvent.click(screen.queryByText(/More Reviews/))
+    fireEvent.click(screen.queryByText(/More Reviews/))
+
+    expect( screen.queryByText(/More Reviews/) ).toBeFalsy();
   });
 });
 
