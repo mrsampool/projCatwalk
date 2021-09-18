@@ -21,9 +21,9 @@ export const serverRequests = {
     });
   },
 
-  getProducts: () => {
+  getProducts: (number) => {
     return new Promise( (resolve, reject) => {
-      axios.get(baseUrl + '/products')
+      axios.get(`${baseUrl}/products${number ? '?count=' + number : null}`)
       .then( ({data}) => resolve(data) )
       .catch( reject );
     });

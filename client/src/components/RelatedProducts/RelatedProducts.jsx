@@ -5,16 +5,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext, QueryContext } from '../../contexts/product-context';
 
 // Sub-Components
-import { ProductCard } from '../ProductCard/ProductCard.jsx';
+import { ProductBar } from '../ProductBar/ProductBar.jsx';
 
 // Utilities
 import { serverRequests } from '../../utils/serverRequests';
 
 // Dummy Data
 import { relatedProducts } from '../../dummyData/relatedProducts';
-
-//Stylesheet
-import './RelatedProducts.css'
 
 export const RelatedProducts = (props) =>{
 
@@ -44,32 +41,10 @@ export const RelatedProducts = (props) =>{
   },[currentId])
 
   return (
-    <div id='related-products'>
-      <p id='related-products-title'>Related Products</p>
-      <div id='related-product-list'>
-        {
-          products.map( product =>{
-            return(
-              <ProductCard
-                product={product}
-                key={`relatedProduct${product.id}`}
-              />
-            )
-          })
-        }
-        {
-          !params.noDummy ?
-            products.map( product =>{
-            return(
-                <ProductCard
-                  product={product}
-                  key={`relatedProduct${product.id}`}
-                />
-              )
-            })
-            : null
-        }
-      </div>
-    </div>
+    <ProductBar
+      title='Related Products'
+      products={products}
+      noDummy={params.noDummy}
+    />
   );
 };
