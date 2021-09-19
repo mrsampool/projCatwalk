@@ -15,6 +15,7 @@ export default function Review(props) {
   let showMoreBtn = null;
   let feedbackElements = null;
   let reviewDate = new Date(props.review.date);
+  let staffResponse = null;
   const { setModalComponent } = useContext(ModalContext);
 
   if (props.review.body.length > 1000) {
@@ -78,6 +79,12 @@ export default function Review(props) {
     )
   }
 
+  if (props.review.response !== null && props.review.response !== '') {
+    staffResponse = (
+      <><div style={{backgroundColor: 'var(--light)'}}><p data-testid='reviewresponse'>Staff Response:<br></br>{props.review.response}</p></div><br></br></>
+      )
+  }
+
   return (
     <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
       <div style={{display: 'grid', gridTemplateColumns: '1fr 3fr 3fr'}}>
@@ -91,7 +98,7 @@ export default function Review(props) {
       <br></br>
       {showMoreBtn}
       {props.review.recommend ? (<><p>I recommend this product</p><br></br></>) : null}
-      {props.review.response === '' ? null : (<><div style={{backgroundColor: 'var(--light)'}}><p data-testid='reviewresponse'>Staff Response:<br></br>{props.review.response}</p></div><br></br></>)}
+      {staffResponse}
       <div className='container-review-thumbs'>
         {props.review.photos.map((photoObj) => {return (
           <div className='container-img-thumb' key={photoObj.id} ><img src={photoObj.url} onClick={thumbClickHandler}></img></div>
