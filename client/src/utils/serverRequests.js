@@ -63,14 +63,14 @@ export const serverRequests = {
   },
   putReviewHelpful: (review_id) => {
     return new Promise( (resolve, reject) => {
-      axios.post(baseUrl + '/reviews/' + review_id +'/helpful')
+      axios.put(baseUrl + '/reviews/' + review_id +'/helpful')
       .then( ({data}) => resolve(data) )
       .catch( reject )
     });
   },
   putReviewReport: (review_id) => {
     return new Promise( (resolve, reject) => {
-      axios.post(baseUrl + '/reviews/' + review_id +'/report')
+      axios.put(baseUrl + '/reviews/' + review_id +'/report')
       .then( ({data}) => resolve(data) )
       .catch( reject )
     });
