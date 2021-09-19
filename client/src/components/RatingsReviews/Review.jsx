@@ -91,7 +91,7 @@ export default function Review(props) {
       <br></br>
       {showMoreBtn}
       {props.review.recommend ? (<><p>I recommend this product</p><br></br></>) : null}
-      {props.review.response === '' ? null : (<><p data-testid='reviewresponse'>props.review.response</p><br></br></>)}
+      {props.review.response === '' ? null : (<><div style={{backgroundColor: 'var(--light)'}}><p data-testid='reviewresponse'>Staff Response:<br></br>{props.review.response}</p></div><br></br></>)}
       <div className='container-review-thumbs'>
         {props.review.photos.map((photoObj) => {return (
           <div className='container-img-thumb' key={photoObj.id} ><img src={photoObj.url} onClick={thumbClickHandler}></img></div>
