@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, createContext } from 'react';
 import { ReviewsList } from './ReviewsList.jsx';
 import { RatingsBreakdown } from './RatingsBreakdown.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
@@ -10,13 +10,15 @@ import { Modal } from '../Modal/Modal.jsx';
 
 import './RatingsReviews.css';
 
+export const ModalContext = React.createContext(null);
+
 export const RatingsReviews = (props) =>{
-  let { reviewsMetadata } = useContext(ProductContext);
-  
   const [filter, setFilter] = useState({});
   const [reviewsData, setReviewsData] = useState(dummyReviewsData);
   const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
+  
+  let { reviewsMetadata } = useContext(ProductContext);
 
   useEffect(() => {
     getProductReviews(reviewsMetadata.product_id, sort)
@@ -33,12 +35,14 @@ export const RatingsReviews = (props) =>{
   return (
   <div id='RatingsReviews' data-testid='RatingsReviews'>
     <h3>Ratings and Reviews</h3>
+    <ModalContext.Provider value={{setModalComponent}} >
     {reviewsData.results.length === 0 ? null : (
       <div className='container-2-col'>
         <RatingsBreakdown filter={filter} setFilter={setFilter} />
         <ReviewsList reviewsdata={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
       </div>
     )}
+    </ModalContext.Provider>
     <div id='add-review-container'>
       <div>
         <button onClick={openReviewModal}>Add Your Review</button>
