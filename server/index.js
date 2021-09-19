@@ -13,7 +13,7 @@ axios.defaults.headers.common['Authorization'] = auth;
 const server = express();
 server.use(cors());
 server.use(express.json());
-server.use(express.urlencoded());
+server.use(express.urlencoded({extended: true}));
 var port = 3000;
 
 // API Forwarding
@@ -36,7 +36,7 @@ server.use('/api/', (req, res, next) =>{
     console.log( apiRes.data );
     res.status( apiRes.status ).send(apiRes.data);
   })
-  .catch( err => res.status(500).send(err) );
+  .catch( err => res.status(err.response.status).send(err.response.data) );
 
 });
 

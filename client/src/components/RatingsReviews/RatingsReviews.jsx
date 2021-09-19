@@ -18,7 +18,7 @@ export const RatingsReviews = (props) =>{
   const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
   
-  let { reviewsMetadata } = useContext(ProductContext);
+  let { reviewsMetadata, currentProduct } = useContext(ProductContext);
 
   useEffect(() => {
     getProductReviews(reviewsMetadata.product_id, sort)
@@ -29,7 +29,7 @@ export const RatingsReviews = (props) =>{
   }, [reviewsMetadata, sort]);
 
   const openReviewModal = () => {
-    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} />);
+    setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} productid={reviewsMetadata.product_id} productname={currentProduct.name} />);
   };
 
   return (
