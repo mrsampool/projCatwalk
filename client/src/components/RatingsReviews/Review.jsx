@@ -14,6 +14,7 @@ export default function Review(props) {
   let fullBody;
   let showMoreBtn = null;
   let feedbackElements = null;
+  let reviewDate = new Date(props.review.date);
   const { setModalComponent } = useContext(ModalContext);
 
   if (props.review.body.length > 1000) {
@@ -25,7 +26,7 @@ export default function Review(props) {
   if (fullBody.length > 250 && reviewBody === '') {
     reviewBody = fullBody.slice(0, 250);
     showMoreBtn = (
-      <button onClick={() => setReviewBody(fullBody)} data-testid='showMoreBtn'>Show More</button>
+      <><button onClick={() => setReviewBody(fullBody)} data-testid='showMoreBtn'>Show More</button><br></br></>
     );
   }
 
@@ -79,21 +80,27 @@ export default function Review(props) {
 
   return (
     <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
-      <StarRating rating={props.review.rating} />
-      <h5 data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
-      <h5 data-testid='reviewdate'>{props.review.date}</h5>
+      <div style={{display: 'grid', gridTemplateColumns: '1fr 3fr 3fr'}}>
+        <StarRating rating={props.review.rating} />
+        <h5 data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
+        <h5 data-testid='reviewdate'>{reviewDate.toDateString()}</h5>
+      </div>
       <h3 data-testid='reviewsummary'>{props.review.summary}</h3>
+      <br></br>
       <p>{reviewBody}</p>
+      <br></br>
       {showMoreBtn}
-      <p>{props.review.recommend ? (<p>I recommend this product</p>) : null}</p>
-      <p data-testid='reviewresponse'>{props.review.response}</p>
+      {props.review.recommend ? (<><p>I recommend this product</p><br></br></>) : null}
+      {props.review.response === '' ? null : (<><p data-testid='reviewresponse'>props.review.response</p><br></br></>)}
       <div className='container-review-thumbs'>
         {props.review.photos.map((photoObj) => {return (
           <div className='container-img-thumb' key={photoObj.id} ><img src={photoObj.url} onClick={thumbClickHandler}></img></div>
         )})}
       </div>
+      {props.review.photos.length > 0 ? <br></br> : null}
       {feedbackElements}
       {reviewFeedback ? (<p>Thank you for your feedback!</p>) : null}
+      <hr></hr>
     </div>
   );
   
