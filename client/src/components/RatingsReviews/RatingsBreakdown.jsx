@@ -7,10 +7,11 @@ export const RatingsBreakdown = (props) => {
   let { reviewsMetadata } = useContext(ProductContext);
 
   let clearFilterBtn = null;
+  let wholePercentRecommended;
   let average = 0;
   let totalRatingsQty = 0;
   for (let rating in reviewsMetadata.ratings) {
-    totalRatingsQty += reviewsMetadata.ratings[rating];
+    totalRatingsQty += 1;
     average += (parseInt(rating) * reviewsMetadata.ratings[rating]);
   }
 
@@ -74,18 +75,26 @@ export const RatingsBreakdown = (props) => {
     return group;
   }
 
+  wholePercentRecommended = Math.round( (parseInt(reviewsMetadata.recommended.true)) / totalRatingsQty * 100 )
+
   return (
     <div id='RatingBreakdown' onClick={addFilter} >
-      <h3>Ratings Breakdown</h3>
-      {clearFilterBtn}
-      <div><p>Score: {average}</p></div>
-      <StarRating />
-      <h5>{(reviewsMetadata.recommended['0'] / totalRatingsQty) * 100}% of reviews recommended this product</h5>
-      <h5 id='5stars'>5 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['5'] ? reviewsMetadata.ratings['5'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-      <h5 id='4stars'>4 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['4'] ? reviewsMetadata.ratings['4'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-      <h5 id='3stars'>3 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['3'] ? reviewsMetadata.ratings['3'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-      <h5 id='2stars'>2 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-      <h5 id='1stars'>1 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+      <div style={{display: 'grid', gridTemplateColumns: '60px 1fr'}}>
+        <h2>{average.toFixed(1)}</h2>
+        <StarRating />
+      </div>  
+      <p>{wholePercentRecommended}% of reviews recommended this product</p>
+      <br></br>
+      <div style={{display: 'grid', gridTemplateColumns: '75px 200px'}}>
+        <h5 id='5stars'>5 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['5'] ? reviewsMetadata.ratings['5'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+        <h5 id='4stars'>4 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['4'] ? reviewsMetadata.ratings['4'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+        <h5 id='3stars'>3 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['3'] ? reviewsMetadata.ratings['3'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+        <h5 id='2stars'>2 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+        <h5 id='1stars'>1 stars</h5> <meter min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+      </div>
+      <div style={{height: '20px'}}>
+        {clearFilterBtn}
+      </div>
       {characteristicsBreakdown()}
     </div>
   );
