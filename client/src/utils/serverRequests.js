@@ -61,6 +61,20 @@ export const serverRequests = {
       .catch( reject )
     });
   },
+  putReviewHelpful: (review_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/reviews/' + review_id +'/helpful')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+  putReviewReport: (review_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/reviews/' + review_id +'/report')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
 
   getProductStyles: (product_id) => {
     // get a single product's styles
