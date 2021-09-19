@@ -3,6 +3,7 @@ import React, {useContext, useState} from 'react'
 
 export const EachAnswer = (props) => {
   const ans = props.ans;
+  const isFirst = props.isFirst;
   const abody = ans.body;
   const sellname = ans.answerer_name;
   const [readMore, setReadMore] = useState(false);
@@ -31,15 +32,15 @@ export const EachAnswer = (props) => {
 
   return (
   <div className = "AnswerContenet">
-    <div className="A-statement" >
-      <p>A: {(readMore || abody.length < 20)? abody :`${abody.substring(0,20)}...`}
-        {(abody.length > 20) ?
-        (<u onClick={()=>setReadMore(!readMore)}>{readMore ? '<< hide': 'read more'}</u>)
+    <div className="A-statement">
+      <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 40)? abody :`${abody.substring(0,40)} ...`}
+        {(abody.length > 40) ?
+        (<u onClick={()=>setReadMore(!readMore)}>{readMore ? <span style={{'fontSize':'18px',color:'black'}}>{'<<<hide'}</span>: <span style={{'fontSize':'18px',color:'black'}}>read more</span>}</u>)
         : null}
-      </p>
+      </div>
     </div>
     <div className="A-date" >
-      by {sellname !== "Seller" ? sellname :<strong>Seller</strong>}, {monthNames[month]} {day}, {year} | helpful? <u onClick={addHelpful}>Yes</u> ({helpful}) | <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
+      by {sellname !== "Seller" ? sellname :<strong style={{fontSize:'20px'}}>Seller</strong>}, {monthNames[month]} {day}, {year} &nbsp; | &nbsp; helpful?&nbsp; <u onClick={addHelpful}>Yes</u> ({helpful}) &nbsp; | &nbsp; <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
     </div>
   </div>
   )

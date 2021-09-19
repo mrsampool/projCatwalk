@@ -11,16 +11,18 @@ export const AnswerList = (props) =>{
   const [lastIdx, setLastIdx] = useState(2);
   const aLen = answerKeys.length;
   const loadMoreA = () => {
-    setLastIdx(lastIdx+2);
+    setLastIdx(aLen);
   };
   return (
-  <div id='Answer-List' style={{color: 'blue', background: 'white'}}>
+  <div id='Answer-List'>
       {answerKeys.slice(0, lastIdx).map(eachkey=>{
         var ans = answers[eachkey];
-        return <EachAnswer key = {ans.id} ans = {ans}/>
+        var isFirst= answerKeys.indexOf(eachkey) === 0;
+        console.log(isFirst)
+        return <EachAnswer key = {ans.id} ans = {ans} isFirst={isFirst}/>
       })
       }
-      {(lastIdx < aLen) ? <u onClick = {loadMoreA}>show more answers</u> : null}
+      {(lastIdx < aLen) ? <a className="loadMoreA"onClick = {loadMoreA}><strong>load more answers</strong></a> : null}
   </div>
 
   )

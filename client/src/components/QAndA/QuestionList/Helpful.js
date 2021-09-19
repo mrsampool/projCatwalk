@@ -29,7 +29,7 @@ export const Helpful = (props) => {
 
 
   return(
-  <div className="helpful" >helpful? <a onClick={addHelpful}>Yes</a> ({helpful}) <Modal component = {modalState} setComponent={setModalState}/> <u onClick={ handleModal } >Add an answer </u></div>
+  <div className="helpful" >helpful? &nbsp;<u onClick={addHelpful}>Yes</u> ({helpful}) &nbsp;&nbsp;| &nbsp;&nbsp;<Modal component = {modalState} setComponent={setModalState}/><u onClick={ handleModal } >&nbsp;Add Answer +</u></div>
   )
 
 }

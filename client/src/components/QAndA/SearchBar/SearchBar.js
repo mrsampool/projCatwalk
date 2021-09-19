@@ -11,8 +11,9 @@ export const SearchBar = (props) =>{
 
 
   return (
-  <div id='SearchBar' className = "search container">
+  <div id='SearchBar'>
       <input
+      className = "SearchInput"
       type="text"
       name="QandASearch"
       placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."

@@ -1,0 +1,16 @@
+#QAndA{
+  background-color:white;
+  width: 1300px;
+  position: relative;
+  left: 50%;
+  margin-left: -600px;
+  border-radius: 10px;
+}
+
+#QAndA #Qtitle {
+  height: 50px;
+  line-height: 50px;
+  color: gray;
+  font-size: 20px;
+  font-weight: normal;
+}
