@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const baseUrl = 'http://127.0.0.1:3000/api';
+const baseUrl = 'http://localhost:3000/api';
 
 export const serverRequests = {
 
@@ -37,10 +37,10 @@ export const serverRequests = {
     });
   },
 
-  getProductReviews: (product_id, sort = 'newest') => {
+  getProductReviews: (product_id, sort = 'newest', count = 10) => {
     // get a single product's reviews
     return new Promise( (resolve, reject) => {
-      axios.get( baseUrl + '/reviews?product_id=' + product_id + '&sort=' + sort )
+      axios.get( baseUrl + '/reviews?product_id=' + product_id + '&sort=' + sort + '&count=' + count )
       .then( ({data}) => resolve(data) )
       .catch( reject );
     });
@@ -56,6 +56,9 @@ export const serverRequests = {
 
   postReview: (formData) => {
     return new Promise( (resolve, reject) => {
+      console.log('axios POST attempt: ');
+      console.log(baseUrl + '/reviews');
+      console.log(formData);
       axios.post(baseUrl + '/reviews', formData)
       .then( ({data}) => resolve(data) )
       .catch( reject )

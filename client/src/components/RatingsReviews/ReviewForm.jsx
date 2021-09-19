@@ -13,6 +13,7 @@ export class ReviewForm extends React.Component {
     this.formChangeHandler = this.formChangeHandler.bind(this);
 
     this.state = {
+      product_id: this.props.productid,
       rating: '3',
       recommend: null,
       Size: '',
@@ -45,26 +46,7 @@ export class ReviewForm extends React.Component {
   }
 
   formSubmitHandler(e) {
-    /* 
-    API Body parameters
-    product_id: integer
-    rating: int
-    summary: text
-    body: text
-    recommend: bool
-    name: text
-    email: text
-    photos: [text] array of text urls that link to images to be shown
-    characteristics: {
-      Size id: int (value of rating)
-      Width id: int
-      Comfort id: int
-      Quality id: int
-      Length id: int
-      Fit id: int
-    }
-
-      */
+  
     e.preventDefault();
     
     /*
@@ -77,14 +59,15 @@ export class ReviewForm extends React.Component {
     {
       let characteristics = {}
       for (let chrctrstc in this.props.characteristics) {
-        characteristics[this.props.characteristics[chrctrstc].id] = this.state[chrctrstc];
+        characteristics[this.props.characteristics[chrctrstc].id] = parseInt(this.state[chrctrstc]);
       }
-  
+
       let formData = {
-        rating: this.state.rating,
+        product_id: parseInt(this.state.product_id),
+        rating: parseInt(this.state.rating),
         summary: this.state.summary,
         body: this.state.body,
-        recommend: this.state.recommend,
+        recommend: this.state.recommend === 'true',
         name: this.state.nickname,
         email: this.state.email,
         photos: this.state.photos,
@@ -144,10 +127,10 @@ export class ReviewForm extends React.Component {
       <div id='ReviewForm'>
         <form onSubmit={this.formSubmitHandler}>
           <h2>Write Your Review</h2>
-          <h3>About the -Product Name-</h3>
+          <h3>About the {this.props.productname}</h3>
 
           <label>Overall rating (mandatory)</label><br></br>
-          <input required name='rating' type='range' min='0' max='5' className='form-rating-range' value={this.state.rating} onChange={this.formChangeHandler} ></input><br></br>
+          <input required name='rating' type='range' min='1' max='5' className='form-rating-range' value={this.state.rating} onChange={this.formChangeHandler} ></input><br></br>
 
           <label>Do you recommend this product? (mandatory)</label>
           <div id='recommendradio'>

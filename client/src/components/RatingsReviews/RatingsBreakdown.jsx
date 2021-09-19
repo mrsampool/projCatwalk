@@ -11,8 +11,8 @@ export const RatingsBreakdown = (props) => {
   let average = 0;
   let totalRatingsQty = 0;
   for (let rating in reviewsMetadata.ratings) {
-    totalRatingsQty += 1;
-    average += (parseInt(rating) * reviewsMetadata.ratings[rating]);
+    totalRatingsQty += parseInt( reviewsMetadata.ratings[rating] );
+    average += (parseInt(rating) * parseInt( reviewsMetadata.ratings[rating]) );
   }
 
   average = average / totalRatingsQty;
