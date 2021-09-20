@@ -16,6 +16,9 @@ server.use(express.json());
 server.use(express.urlencoded({extended: true}));
 var port = 3000;
 
+// Serve Static Assets
+server.use( express.static(path.join(__dirname, '..', 'client', 'dist')) )
+
 // API Forwarding
 server.use('/api/', (req, res, next) =>{
 
@@ -40,16 +43,7 @@ server.use('/api/', (req, res, next) =>{
 
 });
 
-// React App Static Files
-server.get('*/bundle.js', (req, res)=>{
-    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.js') );
-});
-server.get('*/bundle.css', (req, res)=>{
-    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'bundle.css') );
-});
-server.get('*/reset.css', (req, res)=>{
-    res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'reset.css') );
-});
+// Serve client app for all other routes
 server.get('*', (req, res, next) => {
   res.sendFile( path.resolve(__dirname, '..', 'client', 'dist', 'index.html') );
 });
