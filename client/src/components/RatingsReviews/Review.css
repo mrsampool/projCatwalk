@@ -4,8 +4,8 @@
 }
 
 .container-review-thumbs {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: flex-start;
 }
 
 .container-img-thumb {
