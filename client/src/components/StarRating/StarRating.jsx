@@ -14,6 +14,7 @@ export const StarRating = (props) => {
   let emptyStars = [];
   let remainderStar = null;
   let starSize = '1rem';
+  let starColor = '#DBD94E';
   
 
   if (props.rating) {
@@ -34,21 +35,20 @@ export const StarRating = (props) => {
   }
 
   for (var i = 0; i < Math.floor(rating); i++) {
-    fullStars.push( <Icon type='starFull' size={starSize} /> );
+    fullStars.push( <Icon type='starFull' size={starSize} fillColor={starColor} /> );
   }
 
   for (let i = 0; i < Math.floor(5 - rating); i++ ) {
-    emptyStars.push( <Icon type='starEmpty' size={starSize} /> )
+    emptyStars.push( <Icon type='starEmpty' size={starSize} fillColor={starColor} /> )
   }
 
   let remainder = rating - Math.floor(rating);
-  if (0 < remainder && remainder <= .25 ) remainderStar = (<Icon type='starOneQuart' size={starSize} />);
-  if (.25 < remainder && remainder <= .50 ) remainderStar = (<Icon type='starHalf' size={starSize} />);
-  if (.50 < remainder && remainder < 1 )  remainderStar = (<Icon type='starThreeQuart' size={starSize} />); 
+  if (0 < remainder && remainder <= .25 ) remainderStar = (<Icon type='starOneQuart' size={starSize} fillColor={starColor} />);
+  if (.25 < remainder && remainder <= .50 ) remainderStar = (<Icon type='starHalf' size={starSize} fillColor={starColor} />);
+  if (.50 < remainder && remainder < 1 )  remainderStar = (<Icon type='starThreeQuart' size={starSize} fillColor={starColor} />); 
 
   return (
     <div className='StarRating' data-testid='starrating'>
-      <meter min='0' max='5' value={rating} data-testid='starmeter'></meter>
       {fullStars}{remainderStar}{emptyStars}
     </div>
   )
