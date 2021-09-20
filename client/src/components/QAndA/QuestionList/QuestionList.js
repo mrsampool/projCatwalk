@@ -37,21 +37,24 @@ export const QuestionList = (props) =>{
   }
 
   return (
-  <div id='QuestionList' style={{color: 'yellow', background: 'green'}}>
+  <div id='QuestionList'>
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
           <div key={q.question_id}>
-            <div className="Q-statement" >Q: {q.question_body}</div>
+            <div className="Q-Helpful">
+            <span className="Q-statement" >Q: {q.question_body}</span>
+            </div>
             <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
+
 
             <AnswerList key={AnsId} question = {q}/>
           </div>
         )
       })
       }
-      {lastIndex < qLen ? <a onClick = {loadMore}>load more</a>:null}
+      {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
       <Modal component = {modalState} setComponent={setModalState}/>
-      <button onClick={ handleModal } >Ask a question</button>
+      <button className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
   </div>
   )
 };

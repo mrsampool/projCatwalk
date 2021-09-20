@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {QuestionList} from './QuestionList/QuestionList'
 import {QuestionForm} from './QuestionList/QuestionForm'
 import {SearchBar} from './SearchBar/SearchBar'
-import {TwoButtons} from './TwoButtons/TwoButtons'
 import QuestionContextProvider from './QuestionContext.js'
+import './QAndA.css'
 
 export const QAndA = (props) =>{
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,7 +13,7 @@ export const QAndA = (props) =>{
   }
   return (
   <div id='QAndA' data-testid='QAndA'>
-    <p>QUESTIONS & ANSWERS</p>
+    <p id= 'Qtitle'>QUESTIONS & ANSWERS</p>
     <SearchBar changeSearchTerm={changeSearchTerm}/>
 
     <QuestionContextProvider>

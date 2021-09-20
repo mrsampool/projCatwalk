@@ -1,0 +1,68 @@
+#QuestionList {
+  margin-top: 20px;
+  height: 700px;
+  margin-bottom: 50px;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.Q-Helpful{
+  background-color: white;
+  width: 75%;
+  word-break: break-all;
+  float: left;
+  margin-bottom: 10px;
+}
+.Q-statement{
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  font-size: 25px;
+}
+
+.helpful{
+  width: 25%;
+  text-align: right;
+  background-color: white;
+  float: right;
+  font-weight: normal;
+  font-size: 15px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.A-statement{
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 8px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color:black;
+  font-size: 25px;
+
+}
+
+.A-date{
+  float: left;
+  width: 100%;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.loadMoreA{
+  margin-left: 40px;
+  float: left;
+  width: 100%;
+  margin-bottom:10px;
+}
+.loadMore{
+  float: left;
+  margin-right: 10px;
+  width:20%;
+}
+
+.addAbtn{
+  margin-left:50px;
+  position: relative;
+}
