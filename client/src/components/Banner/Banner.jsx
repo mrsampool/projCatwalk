@@ -7,7 +7,10 @@ import './Banner.css'
 export const Banner = (props) =>{
   return(
     <div className='banner'>
-      <span id='logo'>ASCENT SQUAD</span>
+      <nav>
+        <a href='/' id='logo'>ASCENT SQUAD</a>
+        <a href='/products'>PRODUCTS</a>
+      </nav>
     </div>
   )
 };
