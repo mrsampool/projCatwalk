@@ -25,6 +25,9 @@ export const QuestionList = (props) =>{
     })
     qLen = questionsfiltered.length
   }
+  questionsfiltered = questionsfiltered.sort((a,b)=>{
+    return b.question_helpfulness - a.question_helpfulness;
+  })
   const loadMore = () => {
     setLastIndex(lastIndex+2);
   };
@@ -38,7 +41,8 @@ export const QuestionList = (props) =>{
   }
 
   return (
-  <div id='QuestionList'>
+  <div>
+    <div id='QuestionList'>
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
           <div key={q.question_id}>
@@ -53,9 +57,12 @@ export const QuestionList = (props) =>{
         )
       })
       }
-      {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
+  </div>
+  <div id="twoButton">
+    {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
       <Modal component = {modalState} setComponent={setModalState}/>
       <button className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
+  </div>
   </div>
   )
 };

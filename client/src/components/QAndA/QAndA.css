@@ -1,9 +1,9 @@
 #QAndA{
   background-color:white;
-  width: 1300px;
+ /*  width: 1300px; */
   position: relative;
-  left: 50%;
-  margin-left: -600px;
+  /* left: 50%; */
+  /* margin-left: -600px; */
   border-radius: 10px;
 }
 
