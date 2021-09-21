@@ -23,7 +23,7 @@ export const Products = (props) =>{
 
   function changeCategory(categoryName){
     setFeaturedCategory(categoryName);
-    document.getElementById('product-list').scrollIntoView(true);
+    document.getElementById('product-list').scrollIntoView({behavior: 'smooth'});
   }
 
   function fetchProducts(){
