@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RatingsBreakdown } from '../RatingsBreakdown';
-import {render, screen} from '@testing-library/react';
+import {render, screen, cleanup} from '@testing-library/react';
+import { dummyReviewsMetadata2 } from '../../../dummyData/dummyReviewsMetadata';
 
+// RatingsBreakdown gets data from a Context, so pass in dummy data
+// through that Context.
 jest.mock('react', () => {
   const { dummyReviewsMetadata } = jest.requireActual('../../../dummyData/dummyReviewsMetadata');
   
@@ -11,18 +14,29 @@ jest.mock('react', () => {
   };
 });
 
-describe('RatingsBreakdown component', () => {
+jest.mock('../../StarRating/StarRating.jsx', () => {
+  return {
+    StarRating: () => {
+      return (<div data-testid='mockStarRating'></div>)
+    },
+  }
+})
+
+describe('RatingsBreakdown unit test', () => {
   beforeEach(() => {
     render( <RatingsBreakdown filter={{}} />);
   });
 
+  
   it('Overall average review score is rendered', () => {
-    expect( screen.queryByText(/Score: 3.6/) ).toBeTruthy();
-  });
 
-  it('StarRating component is rendered', () => {
-    expect( screen.queryByTestId(/starrating/) ).toBeTruthy();
-    expect( screen.queryByTestId(/starmeter/) ).toBeTruthy();
+    // average.toFixed(1) is used, which rounds the number as well as
+    // limiting the value to 1 decimal place
+    expect( screen.queryByText(/3.6/) ).toBeTruthy();
+  });
+  
+  it('StarRating component is used', () => {
+    expect( screen.queryByTestId(/mockStarRating/) ).toBeTruthy();
   });
   
   it('"Percentage of reviews that recommend" is rendered', () => {
@@ -38,12 +52,24 @@ describe('RatingsBreakdown component', () => {
     expect( screen.queryAllByTestId(/starcountmeter/) ).toHaveLength(5);
   });
 
-  it('Average size rating is rendered', () => {
-    expect( screen.queryByTestId(/sizemeter/) ).toBeTruthy();
+  it('Displayed factors/characteristics depend on what exists in data', () => {
+    expect( screen.queryByText(/Size/) ).toBeTruthy();
+    expect( screen.queryByText(/Width/) ).toBeTruthy();
+    expect( screen.queryByText(/Comfort/) ).toBeTruthy();
+    expect( screen.queryByText(/Quality/) ).toBeFalsy();
+    expect( screen.queryByText(/Length/) ).toBeFalsy();
   });
 
-  it('Average comfort rating is rendered', () => {
-    expect( screen.queryByTestId(/comfortmeter/) ).toBeTruthy();
+  it('should depend on the data from useContext', () => {
+    // beforeEach is being used, to clear that render() first:
+    cleanup();
+    // use a different set of dummy data, and check for that
+    useContext.mockReturnValue({reviewsMetadata: dummyReviewsMetadata2});
+    render( <RatingsBreakdown filter={{}} /> );
+
+    expect( screen.queryByText(/3.3/) ).toBeTruthy();
+    expect( screen.queryByText(/Quality/) ).toBeTruthy();
+    expect( screen.queryByText(/Comfort/) ).toBeFalsy();
   });
 
 });
