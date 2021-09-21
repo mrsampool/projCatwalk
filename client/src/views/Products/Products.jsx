@@ -23,7 +23,7 @@ export const Products = (props) =>{
   console.log(params);
 
   function fetchProducts(){
-    serverRequests.getProducts(100)
+    serverRequests.getProducts(50)
     .then( products => {
       let categories = {};
       products.forEach( product => {
@@ -59,20 +59,22 @@ export const Products = (props) =>{
   return (
     <div id='Products'>
       <Banner/>
-      {
-        products.length ?
-        products.map( category =>{
-          return(
-            <ProductBar
-              title={category.name}
-              products={category.list}
-              key={`ProductCategory-${category.name}`}
-              noDummy={'true'}
-            />
-          )
-        })
-        : null
-      }
+      <div id='product-list'>
+        {
+          products.length ?
+          products.map( category =>{
+            return(
+              <ProductBar
+                title={category.name}
+                products={category.list}
+                key={`ProductCategory-${category.name}`}
+                noDummy={'true'}
+              />
+            )
+          })
+          : null
+        }
+      </div>
     </div>
   );
 };

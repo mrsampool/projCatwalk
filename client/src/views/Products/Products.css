@@ -1,3 +1,6 @@
 #Products{
-  background-color: var(--dark);
+  background-color: white;
+}
+#product-list{
+  margin: 1rem 5rem;
 }
