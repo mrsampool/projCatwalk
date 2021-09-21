@@ -25,6 +25,9 @@ export const QuestionList = (props) =>{
     })
     qLen = questionsfiltered.length
   }
+  questionsfiltered = questionsfiltered.sort((a,b)=>{
+    return b.question_helpfulness - a.question_helpfulness;
+  })
   const loadMore = () => {
     setLastIndex(lastIndex+2);
   };

@@ -18,7 +18,9 @@ const QuestionContextProvider = (props) =>{
     .then( questionData => {
       console.log(questionData);//real data 44388
       console.log('xxx');
-      setQuestions(questionData.results);
+      setQuestions(questionData.results.sort((a,b)=>{
+        return b.question_helpfulness - a.question_helpfulness;
+      }));
     })
     .catch( err => console.log('err') );
   }
@@ -27,7 +29,9 @@ const QuestionContextProvider = (props) =>{
     if (currentProduct !== null){
       fetchQandAData();
     } else {
-      setQuestions(listQuestions.results);
+      setQuestions(listQuestions.results.sort((a,b)=>{
+        return b.question_helpfulness - a.question_helpfulness;
+      }));
     }
 
   }, [currentProduct]);
@@ -60,6 +64,7 @@ const QuestionContextProvider = (props) =>{
     questions[index] = targetedObj[0];
     setQuestions([...questions])
   }
+
   return (
   <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID}}>
     {props.children}
