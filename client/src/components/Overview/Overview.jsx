@@ -19,7 +19,7 @@ import { singleProductStyles } from '../../dummyData/productsList';
 
 export const Overview = (props) =>{
 
-  let currentProduct, reviewsMeta;
+  let currentProduct;
   let productContext = useContext(ProductContext);
   if ( productContext ){
     currentProduct = productContext.currentProduct;
