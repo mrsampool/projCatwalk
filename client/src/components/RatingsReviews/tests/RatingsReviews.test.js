@@ -1,13 +1,13 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { RatingsReviews } from './RatingsReviews';
+import { RatingsReviews } from '../RatingsReviews';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
-import {serverRequests} from '../../utils/serverRequests.js';
+import {serverRequests} from '../../../utils/serverRequests.js';
 
 jest.mock('../../utils/serverRequests.js');
 
 jest.mock('react', () => {
-  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/dummyReviewsMetadata');
+  const { dummyReviewsMetadata } = jest.requireActual('../../../dummyData/dummyReviewsMetadata');
   
   return {
     ...jest.requireActual('react'),
