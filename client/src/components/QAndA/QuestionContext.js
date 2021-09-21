@@ -10,12 +10,27 @@ export const QuestionContext = createContext();
 
 const QuestionContextProvider = (props) =>{
 
-  let { QandAdata } = useContext(ProductContext);
-  const [questions, setQuestions] = useState(QandAdata.results) //
+  const [questions, setQuestions] = useState(listQuestions.results)
+  let { currentProduct } = useContext(ProductContext);
 
-  useEffect(() => {
-    setQuestions(QandAdata.results)
-  }, [QandAdata]);
+  function fetchQandAData(){
+    serverRequests.getProductQuestions(currentProduct.id)
+    .then( questionData => {
+      console.log(questionData);//real data 44388
+      console.log('xxx');
+      setQuestions(questionData.results);
+    })
+    .catch( err => console.log('err') );
+  }
+
+  useEffect( ()=>{
+    if (currentProduct !== null){
+      fetchQandAData();
+    } else {
+      setQuestions(listQuestions.results);
+    }
+
+  }, [currentProduct]);
 
 
   const [AnsId, setAnsId] = useState(300)

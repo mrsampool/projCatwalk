@@ -9,7 +9,10 @@ import { ProductContext } from '../../contexts/product-context.js';
 import './QAndA.css'
 
 
+
 export const QAndA = (props) =>{
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const changeSearchTerm = (term) => {
     setSearchTerm(term);
