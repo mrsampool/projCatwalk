@@ -3,17 +3,19 @@ import React, {useState, createContext, useEffect, useContext} from 'react';
 import {listQuestions, answersList} from '../../dummyData/answersList'
 
 //newly added
-import { ProductContext, QueryContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/product-context';
 import { serverRequests } from '../../utils/serverRequests.js';
 
 export const QuestionContext = createContext();
 
 const QuestionContextProvider = (props) =>{
 
-  
+  let { QandAdata } = useContext(ProductContext);
+  const [questions, setQuestions] = useState(QandAdata.results) //
 
-  const [questions, setQuestions] = useState(listQuestions.results) //
-
+  useEffect(() => {
+    setQuestions(QandAdata.results)
+  }, [QandAdata]);
 
 
   const [AnsId, setAnsId] = useState(300)

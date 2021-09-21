@@ -13,6 +13,7 @@ import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.js
 // Dummy Data
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { dummyReviewsMetadata } from './dummyData/dummyReviewsMetadata';
+import { listQuestions } from './dummyData/answersList';
 
 // Contexts
 import { ProductContext, QueryContext } from './contexts/product-context';
@@ -31,6 +32,7 @@ export const App = (props) => {
 
   let [currentProduct, setCurrentProduct] = useState(null);
   let [reviewsMetadata, setReviewsMetadata] = useState(dummyReviewsMetadata);
+  let [QandAdata, setQandAdata] = useState(listQuestions);
   let [queryParams, setQueryParams] = useState(queries || {});
 
   function fetchProductData(){
@@ -45,19 +47,27 @@ export const App = (props) => {
     .catch( err => console.log(err) );
   }
 
+  function fetchQandAData(){
+    serverRequests.getProductQuestions(productId)
+    .then( questionData => setQandAdata(questionData) )
+    .catch( err => console.log(err) );
+  }
+
   useEffect( ()=>{
     if (queryParams.noDummy){
       fetchProductData();
       fetchReviewsMeta();
+      fetchQandAData();
     } else {
       setCurrentProduct( singleProduct );
       setReviewsMetadata( dummyReviewsMetadata );
+      setQandAdata(listQuestions)
     }
   }, []);
 
   return (
     <div id='App'>
-      <ProductContext.Provider value={{currentProduct, reviewsMetadata}}>
+      <ProductContext.Provider value={{currentProduct, reviewsMetadata, QandAdata}}>
         <QueryContext.Provider value={ queryParams }>
           <AnalyticWrapper>
 

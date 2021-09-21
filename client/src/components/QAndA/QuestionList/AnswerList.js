@@ -18,7 +18,6 @@ export const AnswerList = (props) =>{
       {answerKeys.slice(0, lastIdx).map(eachkey=>{
         var ans = answers[eachkey];
         var isFirst= answerKeys.indexOf(eachkey) === 0;
-        console.log(isFirst)
         return <EachAnswer key = {ans.id} ans = {ans} isFirst={isFirst}/>
       })
       }
