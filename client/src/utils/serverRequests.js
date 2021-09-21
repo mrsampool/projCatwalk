@@ -36,6 +36,72 @@ export const serverRequests = {
       .catch( reject );
     });
   },
+  getProductQuestions: (product_id, count=5) =>{
+    //get one product's question list
+    return new Promise((resolve, reject)=>{
+      axios.get(baseUrl + '/qa/questions?product_id='+ product_id + '&count='+count)
+      .then(({data})=>resolve(data))
+      .catch(reject);
+    });
+  },
+  getAnswerList: (question_id) => {
+    //get answert list or particular
+    return new Promise ((resolve, reject)=>{
+      axios.get(baseUrl + `/qa/questions/${question_id}/answers`)
+      .then(({data})=>resolve(data))
+      .catch(reject);
+    })
+  },
+  postQuestion: (formData) => {
+    return new Promise( (resolve, reject) => {
+      console.log('axios POST attempt: ');
+      console.log(baseUrl + `/qa/questions/${formData.question_id}/answers`);
+      console.log(formData);
+      axios.post(baseUrl + `/qa/questions/${formData.question_id}/answers`, formData)
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+  postAnswer: (formData) => {
+    return new Promise( (resolve, reject) => {
+      console.log('axios POST attempt: ');
+      console.log(baseUrl + `/qa/questions`);
+      console.log(formData);
+      axios.post(baseUrl + `/qa/questions`, formData)
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+
+  putQHelpful: (question_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/qa/questions/' + question_id +'/helpful')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+  putQReport: (question_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/qa/question/' + question_id +'/report')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+  putAHelpful: (answer_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/qa/anwers/' + answer_id +'/helpful')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+  putAReport: (answer_id) => {
+    return new Promise( (resolve, reject) => {
+      axios.put(baseUrl + '/qa/anwers/' + answer_id +'/report')
+      .then( ({data}) => resolve(data) )
+      .catch( reject )
+    });
+  },
+
 
   getProductReviews: (product_id, sort = 'newest', count = 10) => {
     // get a single product's reviews

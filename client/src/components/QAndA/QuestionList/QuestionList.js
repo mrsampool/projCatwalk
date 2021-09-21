@@ -1,5 +1,5 @@
 //React
-import React, {useContext,useState} from 'react';
+import React, {useContext,useState, useEffect} from 'react';
 import {QuestionContext} from '../QuestionContext';
 import {AnswerList} from './AnswerList';
 import {Helpful} from './Helpful';
@@ -14,6 +14,7 @@ export const QuestionList = (props) =>{
   const [modalState, setModalState] = useState(null);
   const {questions, addQuestion, AnsId} = useContext(QuestionContext);
   const [lastIndex, setLastIndex] = useState(2);
+
   var qLen = questions.length;
   var questionsfiltered = questions;
   if (searchTerm.length >= 3) {

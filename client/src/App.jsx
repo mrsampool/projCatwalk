@@ -13,6 +13,7 @@ import { RelatedProducts } from './components/RelatedProducts/RelatedProducts.js
 // Dummy Data
 import { productList, singleProduct, singleProductStyles } from './dummyData/productsList';
 import { dummyReviewsMetadata } from './dummyData/dummyReviewsMetadata';
+import { listQuestions } from './dummyData/answersList';
 
 // Contexts
 import { ProductContext, QueryContext } from './contexts/product-context';
@@ -57,7 +58,7 @@ export const App = (props) => {
 
   return (
     <div id='App'>
-      <ProductContext.Provider value={{currentProduct, reviewsMetadata}}>
+      <ProductContext.Provider value={{currentProduct, reviewsMetadata/* , QandAdata */}}>
         <QueryContext.Provider value={ queryParams }>
           <AnalyticWrapper>
 
