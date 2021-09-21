@@ -141,15 +141,26 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 
 The Ratings & Reviews section is the last/bottom-most section on the page. It displays the reviews of the product that other people have submitted, some brief statistics on their reviews/ratings and product characteristics, and where you'll find the ability to submit your own review.
 
-The structure of the Ratings & Reviews section is as follows:
-
 - 'RatingsReviews' parent component
-  - 'RatingsBreakdown'
-    - 'ReviewForm'
-  - 'ReviewsList' child component
-    - 'Review' component
+  - Gathers review data via API call
+  - Houses a Modal component usage by reviews' images, and review form
+- 'ReviewForm'
+  - Confirms that mandatory fields are filled out before data is POSTed to an API endpoint
+- 'RatingsBreakdown'
+  - Displays various product statistics via an intuitive visual
+  - Allows for filtering review data via score/rating
+- 'ReviewsList'
+  - Allows user to select a sort/order for the reviews
+  - Houses/creates an individual 'Review' component for each user review
+- 'Review' 
+  - Displays the actual content of a single user review: username, date, summary and body, images, overall rating/score
+  - Users also have the ability to provide feedback when a review is helpful; or report a review if it's not.
 
-The components' code reside in the /client/src/components/RatingsReviews/ subfolder
+The components reside in the /client/src/components/RatingsReviews/ subfolder
+
+Screenshot:
+
+  ![screenshot of RatingsReviews component](./screenshots/RatingsReviews.jpg "The RatingsReviews component")
 
 ---
 

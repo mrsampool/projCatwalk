@@ -5,7 +5,7 @@ import { serverRequests } from '../../utils/serverRequests.js';
 const { putReviewHelpful, putReviewReport } = serverRequests;
 import { Icon } from '../Icon/Icon.jsx';
 
-import './Review.css';
+import './styles/Review.css';
 
 export default function Review(props) {
   let feedBackKey = props.review.review_id + '_feedback';

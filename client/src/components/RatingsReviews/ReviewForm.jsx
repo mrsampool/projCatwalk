@@ -2,7 +2,7 @@ import React from 'react';
 import { serverRequests } from '../../utils/serverRequests.js';
 let { postReview } = serverRequests;
 
-import './ReviewForm.css';
+import './styles/ReviewForm.css';
 
 export class ReviewForm extends React.Component {
   constructor(props) {

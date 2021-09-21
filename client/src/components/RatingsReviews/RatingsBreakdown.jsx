@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 
-import './RatingsBreakdown.css'
+import './styles/RatingsBreakdown.css'
 
 
 export const RatingsBreakdown = (props) => {
