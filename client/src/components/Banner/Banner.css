@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 8rem;
+  min-height: 8rem;
   padding: 1rem 3rem;
   background-color: var(--dark);
   border-bottom: 0.5rem solid var(--light);
@@ -11,14 +11,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 #logo{
   font-weight: 900;
   font-size: 3rem;
   color: var(--light);
   text-decoration: none;
+  text-align: center;
+  line-height: 1em;
 }
-a{
+.banner a{
   font-size: 2rem;
   color: var(--med);
+  font-weight: 900;
+}
+
+@media screen and (max-width: 992px){
+  .banner nav{
+    flex-direction: column;
+  }
 }

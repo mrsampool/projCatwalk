@@ -14,22 +14,11 @@ export const ProductBar = (props) =>{
   return (
     <div id='related-products'>
       <p id='related-products-title'>{title}</p>
-      <div id='related-product-list'>
-        {
-          products.map( product =>{
-            return(
-              <ProductCard
-                product={product}
-                key={`relatedProduct${product.id}`}
-                noDummy={noDummy}
-              />
-            )
-          })
-        }
-        {
-          !noDummy ?
+      <div id='product-bar-scroll'>
+        <div id='related-product-list'>
+          {
             products.map( product =>{
-            return(
+              return(
                 <ProductCard
                   product={product}
                   key={`relatedProduct${product.id}`}
@@ -37,8 +26,21 @@ export const ProductBar = (props) =>{
                 />
               )
             })
-            : null
-        }
+          }
+          {
+            !noDummy ?
+              products.map( product =>{
+              return(
+                  <ProductCard
+                    product={product}
+                    key={`relatedProduct${product.id}`}
+                    noDummy={noDummy}
+                  />
+                )
+              })
+              : null
+          }
+        </div>
       </div>
     </div>
   )
