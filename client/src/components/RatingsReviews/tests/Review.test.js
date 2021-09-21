@@ -1,15 +1,30 @@
 import React from 'react';
-import { ReviewsList } from '../ReviewsList';
+import { Review } from '../Review.jsx';
 import {render, screen, fireEvent} from '@testing-library/react';
 import { dummyReviewsData } from '../../../dummyData/dummyReviewsData';
 
-describe('Review component', () => {
+jest.mock('react', () => {
+  return {
+    ...jest.requireActual('react'),
+    useContext: () => {
+      return ({setModalComponent: () => {}})
+    },
+}});
+
+jest.mock('../../StarRating/StarRating.jsx', () => {
+  return {
+    StarRating: () => <div data-testid='mockStarRating'></div>,
+  }
+})
+
+describe('Review: basic rendering of given review data', () => {
   beforeEach(() => {
-    render( <ReviewsList reviewsdata={dummyReviewsData} filter={{}} setFilter={() => {}}/> )
+    render( <Review review={dummyReviewsData.results[0]}/> )
   });
 
   it('Test for star rating', () => {
-    expect( screen.queryAllByTestId(/starmeter/)).toHaveLength(2);
+    expect( screen.queryByTestId(/mockStarRating/) ).toBeTruthy();
+    expect( screen.queryAllByTestId(/mockStarRating/)).toHaveLength(1);
   });
 
   it('Test for summary', () => {
@@ -17,7 +32,10 @@ describe('Review component', () => {
   });
 
   it('Test for date', () => {
-    expect( screen.queryByText(/2019-04-14T00:00:00.000Z/) ).toBeTruthy();
+    screen.debug();
+    // This date can change due to locale, so we can't
+    // necessarily just query for the exact date.
+    expect( screen.queryByTestId(/reviewdate/).innerHTML ).toBeTruthy();
   });
 
   it('Test for reviewer_name', () => {
@@ -33,7 +51,7 @@ describe('Review component', () => {
   });
 
   it('Test for recommend', () => {
-    expect( screen.queryAllByText(/Recommend: False/) ).toHaveLength(2);
+    expect( screen.queryByText(/I recommend this product/) ).toBeFalsy();
   });
 
   it('Test for response', () => {
@@ -41,7 +59,7 @@ describe('Review component', () => {
   });
 
   it('Test for helpfulness', () => {
-    expect( screen.queryAllByText(/Helpfulness: \d/) ).toHaveLength(2);
+    expect( screen.queryByText(/(5)/) ).toBeTruthy();
   });
 
   it('should not show beyond 250 characters in the body, initially', () => {
