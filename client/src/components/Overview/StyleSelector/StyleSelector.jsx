@@ -12,7 +12,7 @@ export const StyleSelector = (props) =>{
   function setDefaultStyle(){
     let def = styles.find( style => {
       return !!style['default?'];
-    })
+    }) || styles[0];
     setCurrentStyle(def);
   }
 
