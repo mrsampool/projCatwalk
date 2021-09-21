@@ -1,8 +1,9 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
 import { ModalContext } from './RatingsReviews.jsx';
 import { serverRequests } from '../../utils/serverRequests.js';
 const { putReviewHelpful, putReviewReport } = serverRequests;
+import { Icon } from '../Icon/Icon.jsx';
 
 import './Review.css';
 
@@ -75,7 +76,7 @@ export default function Review(props) {
   }
   if (reviewFeedback === null) {
     feedbackElements = (
-      <p>Helpful?<span onClick={() => reviewHelpfulHandler(props.review.review_id)} >Yes{'(' + props.review.helpfulness + ')'}</span><span> | </span><span onClick={() => reviewReportHandler(props.review.review_id)}>Report</span></p>
+      <p>Helpful?&nbsp;&nbsp;<span onClick={() => reviewHelpfulHandler(props.review.review_id)} ><u>Yes</u>&nbsp;{'(' + props.review.helpfulness + ')'}</span><span> | </span><span onClick={() => reviewReportHandler(props.review.review_id)}><u>Report</u></span></p>
     )
   }
 
@@ -87,17 +88,17 @@ export default function Review(props) {
 
   return (
     <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
-      <div style={{display: 'grid', gridTemplateColumns: '1fr 3fr 3fr'}}>
+      <div style={{display: 'grid', gridTemplateColumns: '5rem 1fr 1fr'}}>
         <StarRating rating={props.review.rating} />
-        <h5 data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
-        <h5 data-testid='reviewdate'>{reviewDate.toDateString()}</h5>
-      </div>
-      <h3 data-testid='reviewsummary'>{props.review.summary}</h3>
+        <h5 className='review-author' data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
+        <h5 className='review-author' data-testid='reviewdate'>{reviewDate.toDateString()}</h5>
+      </div><br></br>
+      <h3 className='review-summary' data-testid='reviewsummary'>{props.review.summary}</h3>
       <br></br>
       <p>{reviewBody}</p>
       <br></br>
       {showMoreBtn}
-      {props.review.recommend ? (<><p>I recommend this product</p><br></br></>) : null}
+      {props.review.recommend ? (<><p><Icon type='check' size='1rem' />&nbsp;&nbsp;I recommend this product</p><br></br></>) : null}
       {staffResponse}
       <div className='container-review-thumbs'>
         {props.review.photos.map((photoObj) => {return (

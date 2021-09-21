@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
 import { ProductContext } from '../../contexts/product-context.js';
 
+import './RatingsBreakdown.css'
+
 
 export const RatingsBreakdown = (props) => {
   let { reviewsMetadata } = useContext(ProductContext);
@@ -64,11 +66,23 @@ export const RatingsBreakdown = (props) => {
     );
   }
 
+  const characteristicLegend = {
+    Size: (<div className='characteristic-legend' ><span>A size too small</span><span>Perfect!</span><span>A size too wide</span></div>),
+    Width: (<div className='characteristic-legend' ><span>Too narrow</span><span>Perfect!</span><span>Too wide</span></div>),
+    Comfort: (<div className='characteristic-legend' ><span>Uncomfortable</span><span>Perfect!</span></div>),
+    Quality: (<div className='characteristic-legend' ><span>Poor</span><span>Perfect!</span></div>),
+    Length: (<div className='characteristic-legend' ><span>Runs short</span><span>Perfect!</span><span>Runs long</span></div>),
+    Fit: (<div className='characteristic-legend' ><span>Runs tight</span><span>Perfect!</span><span>Runs tight</span></div>),
+  }
+
   const characteristicsBreakdown = () => {
     let group = [];
     for (let name in reviewsMetadata.characteristics) {
       let row = (
-        <div key={name + 'breakdown'}><h5>{name}:</h5> <meter min='0' max='5' value={reviewsMetadata.characteristics[name].value} data-testid={name + 'meter'}></meter></div>
+        <div key={name + 'breakdown'} className='characteristic-unit'>
+          <h5>{name}:</h5> <input type='range' min='0' max='4' value={reviewsMetadata.characteristics[name].value} className='characteristic-bar' data-testid={name + 'meter'}></input>
+          {characteristicLegend[name]}
+        </div>
       );
       group.push(row);
     }
