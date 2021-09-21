@@ -24,7 +24,6 @@ export const Overview = (props) =>{
   if ( productContext ){
     currentProduct = productContext.currentProduct;
   }
-  //const {currentProduct} = useContext(ProductContext);
   const params = useContext(QueryContext);
 
   const {id, category, name, slogan, description} = currentProduct || '';
@@ -65,7 +64,7 @@ export const Overview = (props) =>{
         />
 
         <div id='overview-controls'>
-          {/* <StarRating/> */}
+          <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
           <Price style={currentStyle} />
