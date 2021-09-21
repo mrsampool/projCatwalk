@@ -1,11 +1,20 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useEffect, useContext} from 'react';
 
 import {listQuestions, answersList} from '../../dummyData/answersList'
+
+//newly added
+import { ProductContext, QueryContext } from '../../contexts/product-context';
+import { serverRequests } from '../../utils/serverRequests.js';
+
 export const QuestionContext = createContext();
 
 const QuestionContextProvider = (props) =>{
 
+  
+
   const [questions, setQuestions] = useState(listQuestions.results) //
+
+
 
   const [AnsId, setAnsId] = useState(300)
   const [newQId, setnewQId] = useState(500)
