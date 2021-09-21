@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
 import { ModalContext } from './RatingsReviews.jsx';
 import { serverRequests } from '../../utils/serverRequests.js';
