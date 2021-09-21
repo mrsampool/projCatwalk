@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ReviewsList.css';
+import './styles/ReviewsList.css';
 
 import Review from './Review.jsx';
 
