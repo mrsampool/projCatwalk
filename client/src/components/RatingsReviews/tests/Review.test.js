@@ -1,7 +1,7 @@
 import React from 'react';
-import { ReviewsList } from './ReviewsList';
+import { ReviewsList } from '../ReviewsList';
 import {render, screen, fireEvent} from '@testing-library/react';
-import { dummyReviewsData } from '../../dummyData/dummyReviewsData';
+import { dummyReviewsData } from '../../../dummyData/dummyReviewsData';
 
 describe('Review component', () => {
   beforeEach(() => {

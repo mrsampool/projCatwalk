@@ -169,6 +169,14 @@ export const serverRequests = {
       .then( values => resolve(values))
       .catch( reject );
     });
+  },
+
+  postInteraction: (dataObj) => {
+    return new Promise( (resolve, reject) => {
+      console.log(dataObj);
+      axios.post(`${baseUrl}/interactions`, dataObj)
+      .catch( reject );
+    })
   }
 
 };

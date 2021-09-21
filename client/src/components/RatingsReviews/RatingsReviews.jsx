@@ -8,7 +8,7 @@ import { dummyReviewsData } from '../../dummyData/dummyReviewsData';
 import { ReviewForm } from './ReviewForm.jsx';
 import { Modal } from '../Modal/Modal.jsx';
 
-import './RatingsReviews.css';
+import './styles/RatingsReviews.css';
 
 export const ModalContext = React.createContext(null);
 

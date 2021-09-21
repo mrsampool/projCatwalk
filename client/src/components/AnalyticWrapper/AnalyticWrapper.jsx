@@ -1,4 +1,5 @@
 import React from 'react';
+import { serverRequests } from '../../utils/serverRequests';
 
 export function AnalyticWrapper(props){
 
@@ -9,7 +10,7 @@ export function AnalyticWrapper(props){
     if (props.exportEvent){
       props.exportEvent(recorded);
     }
-    events.push(recorded);
+    serverRequests.postInteraction( recorded );
   }
 
   return props.children.length ?
@@ -50,8 +51,8 @@ function WrappedComponent(props){
 
 class analyticEvent{
   constructor(event, component){
-    this.element = event.target;
-    this.module = component.type.name;
+    this.element = event.target.nodeName;
+    this.widget = component.type.name;
     this.time = new Date();
   }
 }
