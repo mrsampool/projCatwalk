@@ -10,12 +10,12 @@ import { AddToCart } from './AddToCart/AddToCart.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
 // Contexts
-import { ProductContext, QueryContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/ProductContext';
+import {QueryContext} from "../../contexts/QueryContext";
 
 //Style Sheet
 import './Overview.css';
 import { serverRequests } from '../../utils/serverRequests';
-import { singleProductStyles } from '../../dummyData/productsList';
 
 export const Overview = (props) =>{
 

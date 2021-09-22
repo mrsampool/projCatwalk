@@ -4,7 +4,7 @@ import { RatingsReviews } from '../RatingsReviews';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {serverRequests} from '../../../utils/serverRequests.js';
 
-jest.mock('../../utils/serverRequests.js');
+jest.mock('../../../utils/serverRequests.js');
 
 jest.mock('react', () => {
   const { dummyReviewsMetadata } = jest.requireActual('../../../dummyData/dummyReviewsMetadata');

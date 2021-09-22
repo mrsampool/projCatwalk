@@ -3,7 +3,7 @@ import React, {useState, createContext, useEffect, useContext} from 'react';
 import {listQuestions, answersList} from '../../dummyData/answersList'
 
 //newly added
-import { ProductContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/ProductContext';
 import { serverRequests } from '../../utils/serverRequests.js';
 
 export const QuestionContext = createContext();

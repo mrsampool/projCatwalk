@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { StarRating } from '../StarRating/StarRating.jsx';
-import { ProductContext } from '../../contexts/product-context.js';
+import { ProductContext } from '../../contexts/ProductContext.js';
 
 import './styles/RatingsBreakdown.css'
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 //Context
-import { QueryContext } from '../../contexts/product-context';
+import { QueryContext } from '../../contexts/ProductContext';
 
 // Sub-Components
 import { ProductBar } from '../../components/ProductBar/ProductBar.jsx';
@@ -69,7 +69,6 @@ export const Products = (props) =>{
 
   return (
     <div id='Products'>
-      <Banner/>
       <div id='product-list'>
         {
           products.length ?

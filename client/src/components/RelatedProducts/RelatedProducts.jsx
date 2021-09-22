@@ -2,7 +2,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 //Context
-import { ProductContext, QueryContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/ProductContext';
+import { QueryContext } from "../../contexts/QueryContext";
 
 // Sub-Components
 import { ProductBar } from '../ProductBar/ProductBar.jsx';

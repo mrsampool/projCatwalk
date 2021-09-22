@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
 import { ReviewsList } from './ReviewsList.jsx';
 import { RatingsBreakdown } from './RatingsBreakdown.jsx';
-import { ProductContext } from '../../contexts/product-context.js';
+import { ProductContext } from '../../contexts/ProductContext.js';
 import { serverRequests } from '../../utils/serverRequests.js';
 const { getProductReviews } = serverRequests;
 import { dummyReviewsData } from '../../dummyData/dummyReviewsData';

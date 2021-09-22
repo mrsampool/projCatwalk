@@ -1,6 +1,7 @@
 node_modules
+coverage
+.idea
 bundle.js
 bundle.css
 config.js
-coverage
 .DS_Store
