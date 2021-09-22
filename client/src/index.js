@@ -1,37 +1,21 @@
 // Libraries
-import React, { useState, useLocation } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-// Views
-import { App } from './App.jsx';
-import { Products } from './views/Products/Products.jsx';
-import { Landing } from './views/Landing/Landing.jsx';
+// Parent Component
+import { App } from "./App";
 
 // Global Style Sheets
 import './globalStyles/text.css';
 import './globalStyles/colors.css';
 import './globalStyles/elements.css';
 
-export const Wrap = props =>{
+const root = document.getElementById('root');
 
-  return(
-    <Router>
-
-      <Route exact path='/products'>
-        <Products/>
-      </Route>
-
-      <Route exact path='/products/:productId'>
-        <App />
-      </Route>
-
-      <Route exact path='/'>
-        <Landing/>
-      </Route>
-
-    </Router>
-  );
-}
-
-ReactDOM.render(<Wrap/>, document.getElementById('root') );
+ReactDOM.render(
+  <Router>
+    <App/>
+  </Router>,
+  root
+);
