@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ReviewsList.css';
 
-import Review from './Review.jsx';
+import { Review } from './Review.jsx';
 
-export const ReviewsList = function(props) {
+export const ReviewsList = (props) => {
   let showMoreBtn = null;
   let displayAmount = 0;
   let displayedReviews = [];

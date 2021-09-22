@@ -2,7 +2,7 @@
 import React from 'react';
 import { RatingsReviews } from '../RatingsReviews';
 import { ReviewsList } from '../ReviewsList';
-import {render, screen, fireEvent} from '@testing-library/react';
+import {render, screen, fireEvent, act, waitFor, cleanup} from '@testing-library/react';
 import { dummyReviewsData } from '../../../dummyData/dummyReviewsData';
 
 // Need to mock react's useContext (JUST useContext) to supply dummyReviewsMetadata
@@ -45,106 +45,91 @@ describe('ReviewsList component', () => {
   });
 });
 
-describe('Filtering reviews', () => {
-  beforeEach(() => {
-    render( <RatingsReviews testing={true} /> );
-  });
+describe('The selected sort option depends on props.sort', () => {
+  
+  it('"Relevant" option/dropdown choice is selected when props.sort="relevant"', () => {
+    render(<ReviewsList reviewsdata={dummyReviewsData} sort={'relevant'} setSort={() => {}}  filter={{}} setFilter={() => {}} />);
 
-  it('should only show 4 star reviews when the 4 star label is clicked', () => {
-    fireEvent(
-      screen.queryByText(/^4 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    // order of the dropdown options
+    let dropdown = screen.queryByTestId('select');
+    expect( dropdown.children[0].textContent ).toBe('Relevant');
+    expect( dropdown.children[1].textContent ).toBe('Newest');
+    expect( dropdown.children[2].textContent ).toBe('Helpful');
 
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeFalsy();
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeTruthy();
-  });
-
-  it('should only show 3 star reviews when the 3 star label is clicked', () => {
-    fireEvent(
-      screen.queryByText(/^3 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeFalsy();
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeTruthy();
-  });
-
-  it('should restore 3 star reviews when the 3 star label is clicked a second time', () => {
-    fireEvent(
-      screen.queryByText(/^3 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeFalsy();
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeTruthy();
-
-    fireEvent(
-      screen.queryByText(/^3 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeTruthy();
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeTruthy();
-  });
-
-  it('should clear all filters when the Clear Filter button is clicked', () => {
-    fireEvent(
-      screen.queryByText(/^3 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeFalsy();
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeTruthy();
-
-    fireEvent(
-      screen.queryByText(/^Clear filters$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    expect( screen.queryByText(/They are very dark. But that's good/) ).toBeTruthy();
-    expect( screen.queryByText(/Sonic X-treme was a platform game/) ).toBeTruthy();
-  });
-
-  it('"Clear filters" button should appear only when filters are applied', () => {
-    expect( screen.queryByText(/Clear filters/) ).toBeFalsy();
+    // first option is selected by default
+    expect( dropdown.children[0].selected ).toBeTruthy();
+    expect( dropdown.children[1].selected ).toBeFalsy()
+    expect( dropdown.children[2].selected ).toBeFalsy();
     
-    fireEvent(
-      screen.queryByText(/^3 stars$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+  });
 
-    expect( screen.queryByText(/Clear filters/) ).toBeTruthy();
+  it('"Newest" option is selected when props.sort="newest"', () => {
+    render(<ReviewsList reviewsdata={dummyReviewsData} sort={'newest'} setSort={() => {}}  filter={{}} setFilter={() => {}} />);
 
-    fireEvent(
-      screen.queryByText(/^Clear filters$/),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    // order of the dropdown options
+    let dropdown = screen.queryByTestId('select');
+    expect( dropdown.children[0].textContent ).toBe('Relevant');
+    expect( dropdown.children[1].textContent ).toBe('Newest');
+    expect( dropdown.children[2].textContent ).toBe('Helpful');
 
-    expect( screen.queryByText(/Clear filters/) ).toBeFalsy();
+    // first option is selected by default
+    expect( dropdown.children[0].selected ).toBeFalsy();
+    expect( dropdown.children[1].selected ).toBeTruthy()
+    expect( dropdown.children[2].selected ).toBeFalsy();
+  });
+
+  it('"Helpful" option is selected when props.sort="helpful"', () => {
+    render(<ReviewsList reviewsdata={dummyReviewsData} sort={'helpful'} setSort={() => {}}  filter={{}} setFilter={() => {}} />);
+
+    // order of the dropdown options
+    let dropdown = screen.queryByTestId('select');
+    expect( dropdown.children[0].textContent ).toBe('Relevant');
+    expect( dropdown.children[1].textContent ).toBe('Newest');
+    expect( dropdown.children[2].textContent ).toBe('Helpful');
+
+    // first option is selected by default
+    expect( dropdown.children[0].selected ).toBeFalsy();
+    expect( dropdown.children[1].selected ).toBeFalsy()
+    expect( dropdown.children[2].selected ).toBeTruthy();
+  });
+
+
+});
+
+
+describe('props.setSort is called when using the sort options', () => {
+  let mockSetSort = jest.fn();
+
+  beforeEach(() => {
+    render(<ReviewsList reviewsdata={dummyReviewsData} sort={'relevant'} setSort={mockSetSort}  filter={{}} setFilter={() => {}} />);
+  });
+
+  it('when "helpful" is selected in the dropdown, setSort is called with "helpful" as the parameter', () => {
+    let dropdown = screen.queryByTestId('select');
+    
+    // 'value' should be the *key* of the desired option
+    fireEvent.change( dropdown, {target: {value: 'helpful'}} ); 
+
+    expect( mockSetSort.mock.calls[0][0] ).toBe('helpful');
+  });
+
+  it('when "newest" is selected in the dropdown, setSort is called with "newest" as the parameter', () => {
+    let dropdown = screen.queryByTestId('select');
+    act(() => {
+      // 'value' should be the *key* of the desired option
+      fireEvent.change( dropdown, {target: {value: 'newest'}} ); 
+    })
+
+    expect( mockSetSort.mock.calls[0][0] ).toBe('newest');
+  });
+
+  it('when "relevant" is selected in the dropdown, setSort is called with "relevant" as the parameter', () => {
+    let dropdown = screen.queryByTestId('select');
+    act(() => {
+      // 'value' should be the *key* of the desired option
+      fireEvent.change( dropdown, {target: {value: 'relevant'}} ); 
+    })
+
+    expect( mockSetSort.mock.calls[0][0] ).toBe('relevant');
   });
 });
