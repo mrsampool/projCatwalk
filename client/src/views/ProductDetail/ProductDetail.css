@@ -1,3 +1,9 @@
 #product-etc{
   margin: 0 5rem;
 }
+
+@media screen and (max-width: 992px){
+  #product-etc{
+    margin: 0;
+  }
+}

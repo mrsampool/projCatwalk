@@ -7,7 +7,6 @@ import { Banner } from '../../components/Banner/Banner.jsx';
 export const Landing = props => {
   return(
     <div id='Landing'>
-      <Banner/>
       <a href='/products' id='landing-shop'>Shop</a>
       <img
         id='LandingImg'
