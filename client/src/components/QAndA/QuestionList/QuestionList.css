@@ -78,5 +78,29 @@
   .Q-Helpful{
     flex-direction: column;
   }
+}
 
+#QForm {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-weight: bold;
+
+}
+#QForm textarea{
+  resize: none;
+  width: fit-content;
+  height: 10rem;
+}
+#answerForm {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+#answerForm textarea{
+  resize: none;
+  width: fit-content;
+  height:10rem;
 }
