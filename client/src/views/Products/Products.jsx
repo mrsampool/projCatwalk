@@ -10,6 +10,7 @@ import { serverRequests } from '../../utils/serverRequests';
 
 //Stylesheet
 import './Products.css'
+import {loadingProductCards} from "../../dummyData/placeholderData";
 
 export const Products = (props) =>{
 
@@ -51,7 +52,6 @@ export const Products = (props) =>{
         setProducts( categoryList );
 
       });
-
     });
   }
 
@@ -59,8 +59,7 @@ export const Products = (props) =>{
     if (!products.length){
       fetchProducts();
     }
-  })
-
+  }, []);
 
   return (
     <div id='Products'>
@@ -75,7 +74,11 @@ export const Products = (props) =>{
             key={`featCategoryCard`}
             noDummy={'true'}
           />
-          : null
+          :
+          <ProductBar
+            title='Featured Products'
+            products={loadingProductCards}
+          />
         }
         <div id='prod-categories'>
           <p id='categories-heading'>Browse All Products</p>
@@ -91,7 +94,16 @@ export const Products = (props) =>{
                   />
                 )
               })
-              : null
+              :
+              loadingProductCategories.map( (emptyCategory, index) =>{
+                return(
+                  <ProductCategory
+                    category={emptyCategory}
+                    setFeatured={null}
+                    key={`empty-category=${index}`}
+                  />
+                )
+              })
             }
           </div>
         </div>
