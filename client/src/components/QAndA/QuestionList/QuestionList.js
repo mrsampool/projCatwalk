@@ -45,15 +45,15 @@ export const QuestionList = (props) =>{
     <div id='QuestionList'>
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
-          <div key={q.question_id}>
-            <div className="Q-Helpful">
-            <span className="Q-statement" >Q: {q.question_body}</span>
+          <React.Fragment >
+            <div className="Q-Helpful" key={q.question_id}>
+              <span className="Q-statement" >Q: {q.question_body}</span>
+              <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
             </div>
-            <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
 
 
             <AnswerList key={AnsId} question = {q}/>
-          </div>
+          </React.Fragment>
         )
       })
       }

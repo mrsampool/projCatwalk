@@ -31,7 +31,7 @@ export const EachAnswer = (props) => {
   }
 
   return (
-  <div className = "AnswerContenet">
+  <React.Fragment>
     <div className="A-statement">
       <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 40)? abody :`${abody.substring(0,40)} ...`}
         {(abody.length > 40) ?
@@ -42,6 +42,6 @@ export const EachAnswer = (props) => {
     <div className="A-date" >
       by {sellname !== "Seller" ? sellname :<strong style={{fontSize:'20px'}}>Seller</strong>}, {monthNames[month]} {day}, {year} &nbsp; | &nbsp; helpful?&nbsp; <u onClick={addHelpful}>Yes</u> ({helpful}) &nbsp; | &nbsp; <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
     </div>
-  </div>
+  </React.Fragment>
   )
 }
