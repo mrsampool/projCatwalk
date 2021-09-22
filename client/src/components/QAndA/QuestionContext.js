@@ -16,8 +16,6 @@ const QuestionContextProvider = (props) =>{
   function fetchQandAData(){
     serverRequests.getProductQuestions(currentProduct.id)
     .then( questionData => {
-      console.log(questionData);//real data 44388
-      console.log('xxx');
       setQuestions(questionData.results.sort((a,b)=>{
         return b.question_helpfulness - a.question_helpfulness;
       }));
@@ -66,7 +64,7 @@ const QuestionContextProvider = (props) =>{
   }
 
   return (
-  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID}}>
+  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID, currentProduct}}>
     {props.children}
   </QuestionContext.Provider>
   );

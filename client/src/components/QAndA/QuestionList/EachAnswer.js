@@ -33,8 +33,8 @@ export const EachAnswer = (props) => {
   return (
   <React.Fragment>
     <div className="A-statement">
-      <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 40)? abody :`${abody.substring(0,40)} ...`}
-        {(abody.length > 40) ?
+      <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 70)? abody :`${abody.substring(0,40)} ...`}
+        {(abody.length > 70) ?
         (<u onClick={()=>setReadMore(!readMore)}>{readMore ? <span style={{'fontSize':'18px',color:'black'}}>{'<<<hide'}</span>: <span style={{'fontSize':'18px',color:'black'}}>read more</span>}</u>)
         : null}
       </div>

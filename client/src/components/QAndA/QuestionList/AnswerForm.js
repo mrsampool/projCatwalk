@@ -5,9 +5,9 @@ export const AnswerForm = (props) =>{
   const questions = props.questions;
   const addQuestion = props.addQuestion;
   const ModalFinished = props.finished;
-  const {addAnswer, AnsId, storeAnsID} = useContext(QuestionContext);
+  const {addAnswer, AnsId, storeAnsID, currentProduct} = useContext(QuestionContext);
+  const ProductName = currentProduct === null ? 'product' : currentProduct.name
   const {Qid, Qbody} = props;
-  const ProductName = 'product'; //todo
   const [body, setContent] = useState('');
   const [answerer_name, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -28,19 +28,21 @@ export const AnswerForm = (props) =>{
       setEmail('');
       ModalFinished();
     } else {
-      alert('Invalid, please complete all entries')
+      let arr = ['answer', 'name', 'email'];
+      let index = [body, answerer_name, email].indexOf('');
+      alert(`Invalid, please complete ${arr[index]} entries`)
     }
 
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="answerForm">
       <h1>Submit your answer</h1>
-      <h2>{ProductName}:{Qbody}</h2>
+      <h2>{ProductName}:{Qbody.length<50?Qbody:Qbody.slice(0,40)+'...'}</h2>
       <textarea maxLength="1000" placeholder="your answer" onChange={(e)=>{setContent(e.target.value)} } value={body}/>
 
       <input type = "text" placeholder="jack543!" onChange={(e)=>{setUsername(e.target.value)}} value={answerer_name}/>
 
-      <input type = "text" placeholder="jack@email.com" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
+      <input type = "email" placeholder="jack@email.com" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
 
       <button type="submit" value="Submit">Submit</button>
     </form>
