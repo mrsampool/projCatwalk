@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 import { ProductDetail } from './views/ProductDetail/ProductDetail.jsx';
 import { Products } from './views/Products/Products.jsx';
 import { Landing } from './views/Landing/Landing.jsx';
-import { Cart } from "./views/Cart/Cart";
+import { Cart } from "./views/Cart/Cart.jsx";
 
 // Components
 import {Banner} from "./components/Banner/Banner.jsx";
@@ -18,16 +18,29 @@ import {CartContext} from "./contexts/CartContext";
 
 // Utils
 import {parseQueries} from "./utils/parseQueries";
+import {serverRequests} from "./utils/serverRequests";
 
 export const App = props =>{
 
   let queries = parseQueries( useLocation().search );
+
   let [queryParams, setQueryParams] = useState(queries || {});
+  let [cart, setCart] = useState([]);
+
+  function fetchCart(){
+    serverRequests.getCart()
+    .then( cartData => setCart(cartData) )
+    .catch( err => console.log(err) );
+  }
+
+  useEffect( ()=> {
+    fetchCart()
+  }, []);
 
   return(
     <div id={'App'}>
       <QueryContext.Provider value={queryParams}>
-        <CartContext.Provider>
+        <CartContext.Provider value={{cart, fetchCart}}>
 
           <Banner/>
 

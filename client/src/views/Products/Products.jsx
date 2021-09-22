@@ -1,9 +1,6 @@
 //React
 import React, { useState, useEffect, useContext } from 'react';
 
-//Context
-import { QueryContext } from '../../contexts/ProductContext';
-
 // Sub-Components
 import { ProductBar } from '../../components/ProductBar/ProductBar.jsx';
 import { Banner } from '../../components/Banner/Banner.jsx';
@@ -18,8 +15,6 @@ export const Products = (props) =>{
 
   const [products, setProducts] = useState([]);
   const [featCategory, setFeaturedCategory] = useState('Featured Products');
-
-  let params = useContext(QueryContext);
 
   function changeCategory(categoryName){
     setFeaturedCategory(categoryName);
@@ -123,7 +118,6 @@ export const ProductCategory = (props) => {
       let featuredStyle = styleData.results.find( style =>{
         return style['default?'];
       }) || styleData.results[0];
-      console.log(featuredItem, featuredStyle);
       if (featuredStyle.photos){
         setThumbnail(featuredStyle.photos[0].thumbnail_url);
       }
@@ -143,7 +137,7 @@ export const ProductCategory = (props) => {
     >
       <p>{name}</p>
       <div id='category-thumbnail'>
-        <img src={thumbnail}/>
+        <img src={thumbnail} alt=''/>
       </div>
     </div>
   )

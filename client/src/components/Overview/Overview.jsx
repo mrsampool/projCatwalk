@@ -46,7 +46,6 @@ export const Overview = (props) =>{
 
   useEffect( ()=>{
     if (params && params.noDummy && id){
-      console.log('fetched');
       fetchStyles();
     } else {
       //setStyles(props.styles || singleProductStyles.results)
