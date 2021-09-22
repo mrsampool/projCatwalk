@@ -7,7 +7,7 @@ import { Icon } from '../Icon/Icon.jsx';
 
 import './styles/Review.css';
 
-export default function Review(props) {
+export const Review = (props) => {
   let feedBackKey = props.review.review_id + '_feedback';
   let [reviewBody, setReviewBody] = useState('');
   let [reviewFeedback, setReviewFeedback] = useState( localStorage.getItem(feedBackKey) );
