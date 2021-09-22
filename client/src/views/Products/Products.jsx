@@ -1,9 +1,6 @@
 //React
 import React, { useState, useEffect, useContext } from 'react';
 
-//Context
-import { QueryContext } from '../../contexts/ProductContext';
-
 // Sub-Components
 import { ProductBar } from '../../components/ProductBar/ProductBar.jsx';
 import { Banner } from '../../components/Banner/Banner.jsx';
@@ -13,13 +10,12 @@ import { serverRequests } from '../../utils/serverRequests';
 
 //Stylesheet
 import './Products.css'
+import {loadingProductCards} from "../../dummyData/placeholderData";
 
 export const Products = (props) =>{
 
   const [products, setProducts] = useState([]);
   const [featCategory, setFeaturedCategory] = useState('Featured Products');
-
-  let params = useContext(QueryContext);
 
   function changeCategory(categoryName){
     setFeaturedCategory(categoryName);
@@ -56,7 +52,6 @@ export const Products = (props) =>{
         setProducts( categoryList );
 
       });
-
     });
   }
 
@@ -64,8 +59,7 @@ export const Products = (props) =>{
     if (!products.length){
       fetchProducts();
     }
-  })
-
+  }, []);
 
   return (
     <div id='Products'>
@@ -80,7 +74,11 @@ export const Products = (props) =>{
             key={`featCategoryCard`}
             noDummy={'true'}
           />
-          : null
+          :
+          <ProductBar
+            title='Featured Products'
+            products={loadingProductCards}
+          />
         }
         <div id='prod-categories'>
           <p id='categories-heading'>Browse All Products</p>
@@ -96,7 +94,16 @@ export const Products = (props) =>{
                   />
                 )
               })
-              : null
+              :
+              loadingProductCategories.map( (emptyCategory, index) =>{
+                return(
+                  <ProductCategory
+                    category={emptyCategory}
+                    setFeatured={null}
+                    key={`empty-category=${index}`}
+                  />
+                )
+              })
             }
           </div>
         </div>
@@ -123,7 +130,6 @@ export const ProductCategory = (props) => {
       let featuredStyle = styleData.results.find( style =>{
         return style['default?'];
       }) || styleData.results[0];
-      console.log(featuredItem, featuredStyle);
       if (featuredStyle.photos){
         setThumbnail(featuredStyle.photos[0].thumbnail_url);
       }
@@ -143,7 +149,7 @@ export const ProductCategory = (props) => {
     >
       <p>{name}</p>
       <div id='category-thumbnail'>
-        <img src={thumbnail}/>
+        <img src={thumbnail} alt=''/>
       </div>
     </div>
   )

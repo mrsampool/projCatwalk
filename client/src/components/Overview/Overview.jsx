@@ -13,9 +13,16 @@ import { StarRating } from '../StarRating/StarRating.jsx';
 import { ProductContext } from '../../contexts/ProductContext';
 import {QueryContext} from "../../contexts/QueryContext";
 
+//Placeholder Data
+import {loadingPhotos, loadingStyles} from "../../dummyData/placeholderData";
+
 //Style Sheet
 import './Overview.css';
 import { serverRequests } from '../../utils/serverRequests';
+
+
+
+
 
 export const Overview = (props) =>{
 
@@ -46,7 +53,6 @@ export const Overview = (props) =>{
 
   useEffect( ()=>{
     if (params && params.noDummy && id){
-      console.log('fetched');
       fetchStyles();
     } else {
       //setStyles(props.styles || singleProductStyles.results)
@@ -59,25 +65,23 @@ export const Overview = (props) =>{
       <div id='Overview-main'>
 
         <ImgGallery
-          photos={currentStyle ? currentStyle.photos : null}
+          photos={currentStyle ? currentStyle.photos : loadingPhotos}
           toggleFull={toggleFullScreenImg}
           fullScreen={fullScreenImg}
         />
 
         <div id='overview-controls'>
           <StarRating/>
-          <p id='prod-category'>{category}</p>
-          <p id='prod-title'>{name}</p>
+          <p id='prod-category' className={!category ? 'loading-category' : ''} >{category || 'Category'}</p>
+          <p id='prod-title' className={!category ? 'loading-title' : ''}>{name || 'Title'}</p>
           <Price style={currentStyle} />
-          {
-            styles ?
-            <StyleSelector
-              styles={styles}
-              currentStyle={currentStyle}
-              setCurrentStyle={setCurrentStyle}
-            />
-            : null
-          }
+
+          <StyleSelector
+            styles={styles || loadingStyles}
+            currentStyle={currentStyle}
+            setCurrentStyle={setCurrentStyle}
+          />
+
           <div>
             <SizeSelector
               skus={currentStyle ? currentStyle.skus : null}
