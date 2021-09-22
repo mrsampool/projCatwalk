@@ -81,8 +81,8 @@ describe('RatingsReviews data responsibilities', () => {
 
   it('passes the <ReviewsList /> component the needed data', () => {
     let propsObject = ReviewsList.mock.calls[0][0];
-    expect( propsObject.filter ).toStrictEqual({});
     expect( propsObject.reviewsdata.results[0].summary ).toMatch(/I'm enjoying wearing these shades/);
+    expect( propsObject.filter ).toStrictEqual({});
     expect( typeof propsObject.setFilter ).toBe('function');
     expect( propsObject.sort ).toBe('relevant');
     expect( typeof propsObject.setSort ).toBe('function');
