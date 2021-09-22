@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 //Context
-import { QueryContext } from '../../contexts/product-context';
+import { QueryContext } from '../../contexts/ProductContext';
 
 // Utilities
 import { serverRequests } from '../../utils/serverRequests';

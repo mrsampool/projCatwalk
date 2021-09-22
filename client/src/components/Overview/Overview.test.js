@@ -7,7 +7,7 @@ import {Overview} from './Overview.jsx';
 
 // Mock Data
 import { singleProduct as currentProduct, singleProductStyles as styles } from '../../dummyData/productsList';
-import { ProductContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/ProductContext';
 
 describe("Overview", ()=>{
 

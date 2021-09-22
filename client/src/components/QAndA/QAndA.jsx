@@ -4,7 +4,7 @@ import {QuestionList} from './QuestionList/QuestionList'
 import {QuestionForm} from './QuestionList/QuestionForm'
 import {SearchBar} from './SearchBar/SearchBar'
 import QuestionContextProvider from './QuestionContext.js'
-import { ProductContext } from '../../contexts/product-context.js';
+import { ProductContext } from '../../contexts/ProductContext.js';
 //Css
 import './QAndA.css'
 

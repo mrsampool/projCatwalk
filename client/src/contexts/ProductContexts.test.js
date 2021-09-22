@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProductContextProvider, ProductContext } from './product-context';
+import { ProductContextProvider, ProductContext } from './ProductContext';
 
 import {render, screen } from '@testing-library/react';
 
