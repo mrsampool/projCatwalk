@@ -10,8 +10,10 @@ export const Banner = (props) =>{
     <div className='banner'>
       <nav>
         <a href='/' id='logo'>ASCENT SQUAD</a>
-        <a href='/products'>PRODUCTS</a>
-        <BannerCart/>
+        <span id='bannerMisc'>
+          <a href='/products'>PRODUCTS</a>
+          <BannerCart/>
+        </span>
       </nav>
     </div>
   )
