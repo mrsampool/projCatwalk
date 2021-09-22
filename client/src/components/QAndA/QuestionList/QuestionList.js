@@ -1,5 +1,5 @@
 //React
-import React, {useContext,useState} from 'react';
+import React, {useContext,useState, useEffect} from 'react';
 import {QuestionContext} from '../QuestionContext';
 import {AnswerList} from './AnswerList';
 import {Helpful} from './Helpful';
@@ -14,6 +14,7 @@ export const QuestionList = (props) =>{
   const [modalState, setModalState] = useState(null);
   const {questions, addQuestion, AnsId} = useContext(QuestionContext);
   const [lastIndex, setLastIndex] = useState(2);
+
   var qLen = questions.length;
   var questionsfiltered = questions;
   if (searchTerm.length >= 3) {
@@ -24,6 +25,9 @@ export const QuestionList = (props) =>{
     })
     qLen = questionsfiltered.length
   }
+  questionsfiltered = questionsfiltered.sort((a,b)=>{
+    return b.question_helpfulness - a.question_helpfulness;
+  })
   const loadMore = () => {
     setLastIndex(lastIndex+2);
   };
@@ -37,24 +41,28 @@ export const QuestionList = (props) =>{
   }
 
   return (
-  <div id='QuestionList'>
+  <div>
+    <div id='QuestionList'>
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
-          <div key={q.question_id}>
-            <div className="Q-Helpful">
-            <span className="Q-statement" >Q: {q.question_body}</span>
+          <React.Fragment >
+            <div className="Q-Helpful" key={q.question_id}>
+              <span className="Q-statement" >Q: {q.question_body}</span>
+              <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
             </div>
-            <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
 
 
             <AnswerList key={AnsId} question = {q}/>
-          </div>
+          </React.Fragment>
         )
       })
       }
-      {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
+  </div>
+  <div id="twoButton">
+    {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
       <Modal component = {modalState} setComponent={setModalState}/>
       <button className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
+  </div>
   </div>
   )
 };

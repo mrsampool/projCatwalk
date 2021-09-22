@@ -1,16 +1,19 @@
 #QuestionList {
   margin-top: 20px;
-  height: 700px;
   margin-bottom: 50px;
+  max-height: 70vh;
   overflow-y:auto;
   overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .Q-Helpful{
+  display: flex;
+  flex-direction: row; /*(display flex defaultst to row) */
+  justify-content: space-between;
   background-color: white;
-  width: 75%;
   word-break: break-all;
-  float: left;
   margin-bottom: 10px;
 }
 .Q-statement{
@@ -21,29 +24,31 @@
 }
 
 .helpful{
-  width: 25%;
+  width: fit-content;
+  margin: 0px 1rem;
   text-align: right;
   background-color: white;
-  float: right;
   font-weight: normal;
   font-size: 15px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .A-statement{
-  float: left;
-  width: 100%;
+  /* float: left;
+  width: 100%; */
   margin-top: 5px;
   margin-bottom: 8px;
   font-family:Georgia, 'Times New Roman', Times, serif;
   color:black;
   font-size: 25px;
+  display: flex;
+  flex-direction: column;
 
 }
 
 .A-date{
-  float: left;
-  width: 100%;
+  /* float: left;
+  width: 100%; */
   margin-left: 40px;
   margin-bottom: 10px;
   font-size: 15px;
@@ -52,8 +57,10 @@
 
 .loadMoreA{
   margin-left: 40px;
-  float: left;
-  width: 100%;
+  /* float: left;
+  width: 100%; */
+  display: flex;
+  flex-direction: column;
   margin-bottom:10px;
 }
 .loadMore{
@@ -65,4 +72,35 @@
 .addAbtn{
   margin-left:50px;
   position: relative;
+}
+
+@media screen and (max-width: 992px){
+  .Q-Helpful{
+    flex-direction: column;
+  }
+}
+
+#QForm {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-weight: bold;
+
+}
+#QForm textarea{
+  resize: none;
+  width: fit-content;
+  height: 10rem;
+}
+#answerForm {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+#answerForm textarea{
+  resize: none;
+  width: fit-content;
+  height:10rem;
 }

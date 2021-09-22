@@ -7,7 +7,6 @@ import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {serverRequests} from '../../../utils/serverRequests.js';
 let { getProductReviews } = serverRequests;
 
-
 jest.mock('../../../utils/serverRequests.js');
 
 jest.mock('react', () => {

@@ -1,11 +1,39 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useEffect, useContext} from 'react';
 
 import {listQuestions, answersList} from '../../dummyData/answersList'
+
+//newly added
+import { ProductContext } from '../../contexts/ProductContext';
+import { serverRequests } from '../../utils/serverRequests.js';
+
 export const QuestionContext = createContext();
 
 const QuestionContextProvider = (props) =>{
 
-  const [questions, setQuestions] = useState(listQuestions.results) //
+  const [questions, setQuestions] = useState(listQuestions.results)
+  let { currentProduct } = useContext(ProductContext);
+
+  function fetchQandAData(){
+    serverRequests.getProductQuestions(currentProduct.id)
+    .then( questionData => {
+      setQuestions(questionData.results.sort((a,b)=>{
+        return b.question_helpfulness - a.question_helpfulness;
+      }));
+    })
+    .catch( err => console.log('err') );
+  }
+
+  useEffect( ()=>{
+    if (currentProduct !== null){
+      fetchQandAData();
+    } else {
+      setQuestions(listQuestions.results.sort((a,b)=>{
+        return b.question_helpfulness - a.question_helpfulness;
+      }));
+    }
+
+  }, [currentProduct]);
+
 
   const [AnsId, setAnsId] = useState(300)
   const [newQId, setnewQId] = useState(500)
@@ -34,8 +62,9 @@ const QuestionContextProvider = (props) =>{
     questions[index] = targetedObj[0];
     setQuestions([...questions])
   }
+
   return (
-  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID}}>
+  <QuestionContext.Provider value={{questions, addQuestion, addAnswer, AnsId, newQId, storeAnsID, storeNewQID, currentProduct}}>
     {props.children}
   </QuestionContext.Provider>
   );

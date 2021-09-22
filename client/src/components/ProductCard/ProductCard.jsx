@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 //Context
-import { QueryContext } from '../../contexts/product-context';
+import { QueryContext } from '../../contexts/ProductContext';
 
 // Utilities
 import { serverRequests } from '../../utils/serverRequests';
@@ -28,7 +28,7 @@ export const ProductCard = (props) =>{
     .then( stylesData => {
       let defaultStyle = stylesData.results.find( style =>{
         return style['default?'];
-      })
+      }) || stylesData.results[0];
       setStyle( defaultStyle );
     })
     .catch( err => console.log(err) );

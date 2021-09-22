@@ -9,7 +9,7 @@ import { Overview } from '../Overview.jsx';
 //Dummy Data
 import { singleProductStyles } from '../../../dummyData/productsList';
 import { singleProduct as currentProduct } from '../../../dummyData/productsList';
-import { ProductContext } from '../../../contexts/product-context';
+import { ProductContext } from '../../../contexts/ProductContext';
 let styles = singleProductStyles.results;
 
 

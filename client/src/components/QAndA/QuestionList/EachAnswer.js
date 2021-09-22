@@ -31,10 +31,10 @@ export const EachAnswer = (props) => {
   }
 
   return (
-  <div className = "AnswerContenet">
+  <React.Fragment>
     <div className="A-statement">
-      <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 40)? abody :`${abody.substring(0,40)} ...`}
-        {(abody.length > 40) ?
+      <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 70)? abody :`${abody.substring(0,40)} ...`}
+        {(abody.length > 70) ?
         (<u onClick={()=>setReadMore(!readMore)}>{readMore ? <span style={{'fontSize':'18px',color:'black'}}>{'<<<hide'}</span>: <span style={{'fontSize':'18px',color:'black'}}>read more</span>}</u>)
         : null}
       </div>
@@ -42,6 +42,6 @@ export const EachAnswer = (props) => {
     <div className="A-date" >
       by {sellname !== "Seller" ? sellname :<strong style={{fontSize:'20px'}}>Seller</strong>}, {monthNames[month]} {day}, {year} &nbsp; | &nbsp; helpful?&nbsp; <u onClick={addHelpful}>Yes</u> ({helpful}) &nbsp; | &nbsp; <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
     </div>
-  </div>
+  </React.Fragment>
   )
 }

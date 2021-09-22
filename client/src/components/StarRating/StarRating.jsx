@@ -5,7 +5,7 @@ import { Icon } from '../Icon/Icon.jsx';
 //Stylesheet
 import './StarRating.css'
 
-import { ProductContext } from '../../contexts/product-context'
+import { ProductContext } from '../../contexts/ProductContext'
 
 export const StarRating = (props) => {
 

@@ -2,10 +2,10 @@ import React from 'react';
 import {render, screen} from '@testing-library/react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import {App} from './App.jsx';
-import { RatingsReviews } from './components/RatingsReviews/RatingsReviews.jsx';
+import {ProductDetail} from './ProductDetail.jsx';
+import { RatingsReviews } from '../../components/RatingsReviews/RatingsReviews.jsx';
 
-jest.mock('./components/RatingsReviews/RatingsReviews.jsx', () => {
+jest.mock('../../components/RatingsReviews/RatingsReviews.jsx', () => {
   return {
     RatingsReviews: () => (<div data-testid='RatingsReviews'></div>),
   }
@@ -16,7 +16,7 @@ describe("App", ()=>{
 
   const {container} = render(
     <Router>
-      <App/>
+      <ProductDetail/>
     </Router>
   );
 
@@ -30,7 +30,7 @@ describe("App", ()=>{
   it(`Renders each major widget`, ()=>{
     render(
       <Router>
-        <App/>
+        <ProductDetail/>
       </Router>
     );
 

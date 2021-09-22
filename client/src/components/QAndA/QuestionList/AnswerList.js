@@ -8,6 +8,12 @@ import './QuestionList.css'
 export const AnswerList = (props) =>{
   const answers = props.question.answers;
   const answerKeys = Object.keys(answers);
+  const arrayofObj = answerKeys.map(key=>{
+    return answers[key];
+  })
+  var sortedAnsArr = arrayofObj.sort((a,b)=>{
+    return b.helpfulness - a.helpfulness;
+  })
   const [lastIdx, setLastIdx] = useState(2);
   const aLen = answerKeys.length;
   const loadMoreA = () => {
@@ -15,10 +21,8 @@ export const AnswerList = (props) =>{
   };
   return (
   <div id='Answer-List'>
-      {answerKeys.slice(0, lastIdx).map(eachkey=>{
-        var ans = answers[eachkey];
-        var isFirst= answerKeys.indexOf(eachkey) === 0;
-        console.log(isFirst)
+      {sortedAnsArr.slice(0, lastIdx).map(ans=>{
+        var isFirst= sortedAnsArr.indexOf(ans) === 0;
         return <EachAnswer key = {ans.id} ans = {ans} isFirst={isFirst}/>
       })
       }

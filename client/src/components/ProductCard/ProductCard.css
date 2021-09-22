@@ -11,6 +11,9 @@
   background-color: white;
   text-decoration: none;
 }
+.product.noPhoto{
+  display: none;
+}
 
 .productImg{
   object-fit: cover;

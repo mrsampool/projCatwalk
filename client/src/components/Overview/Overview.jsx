@@ -10,12 +10,12 @@ import { AddToCart } from './AddToCart/AddToCart.jsx';
 import { StarRating } from '../StarRating/StarRating.jsx';
 
 // Contexts
-import { ProductContext, QueryContext } from '../../contexts/product-context';
+import { ProductContext } from '../../contexts/ProductContext';
+import {QueryContext} from "../../contexts/QueryContext";
 
 //Style Sheet
 import './Overview.css';
 import { serverRequests } from '../../utils/serverRequests';
-import { singleProductStyles } from '../../dummyData/productsList';
 
 export const Overview = (props) =>{
 
@@ -24,7 +24,6 @@ export const Overview = (props) =>{
   if ( productContext ){
     currentProduct = productContext.currentProduct;
   }
-  //const {currentProduct} = useContext(ProductContext);
   const params = useContext(QueryContext);
 
   const {id, category, name, slogan, description} = currentProduct || '';
@@ -47,9 +46,10 @@ export const Overview = (props) =>{
 
   useEffect( ()=>{
     if (params && params.noDummy && id){
+      console.log('fetched');
       fetchStyles();
     } else {
-      setStyles(props.styles || singleProductStyles.results)
+      //setStyles(props.styles || singleProductStyles.results)
     }
   }, [currentProduct])
 
@@ -65,7 +65,7 @@ export const Overview = (props) =>{
         />
 
         <div id='overview-controls'>
-          {/* <StarRating/> */}
+          <StarRating/>
           <p id='prod-category'>{category}</p>
           <p id='prod-title'>{name}</p>
           <Price style={currentStyle} />

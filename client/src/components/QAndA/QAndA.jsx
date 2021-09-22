@@ -1,16 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import {QuestionList} from './QuestionList/QuestionList'
 import {QuestionForm} from './QuestionList/QuestionForm'
 import {SearchBar} from './SearchBar/SearchBar'
 import QuestionContextProvider from './QuestionContext.js'
+import { ProductContext } from '../../contexts/ProductContext.js';
+//Css
 import './QAndA.css'
 
+
+
 export const QAndA = (props) =>{
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const changeSearchTerm = (term) => {
     setSearchTerm(term);
   }
+
   return (
   <div id='QAndA' data-testid='QAndA'>
     <p id= 'Qtitle'>QUESTIONS & ANSWERS</p>
