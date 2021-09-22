@@ -4,7 +4,7 @@ import { ReviewForm } from '../ReviewForm.jsx';
 import { serverRequests } from '../../../utils/serverRequests.js';
 import { dummyReviewsMetadata } from '../../../dummyData/dummyReviewsMetadata'
 
-jest.mock('../../utils/serverRequests.js');
+jest.mock('../../../utils/serverRequests.js');
 
 describe('"Write Your Review" form fields', () => {
   beforeEach(() => {
