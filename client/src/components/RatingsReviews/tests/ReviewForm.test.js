@@ -4,7 +4,7 @@ import { ReviewForm } from '../ReviewForm.jsx';
 import { serverRequests } from '../../../utils/serverRequests.js';
 import { dummyReviewsMetadata } from '../../../dummyData/dummyReviewsMetadata'
 
-jest.mock('../../utils/serverRequests.js');
+jest.mock('../../../utils/serverRequests.js');
 
 describe('"Write Your Review" form fields', () => {
   beforeEach(() => {
@@ -62,12 +62,12 @@ describe('Form submission', () => {
     expect( serverRequests.postReview.mock.calls.length ).toBe(1);
 
     let formData = {
-      rating: '3',
-      recommend: "true",
+      rating: 3,
+      recommend: true,
       characteristics: {
-        14: '2',
-        15: '4',
-        16: '1',
+        14: 2,
+        15: 4,
+        16: 1,
       },
       summary: '',
       body: sampleText,
