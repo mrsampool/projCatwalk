@@ -8,7 +8,7 @@ import { dummyReviewsData } from '../../../dummyData/dummyReviewsData';
 // Need to mock react's useContext (JUST useContext) to supply dummyReviewsMetadata
 
 jest.mock('react', () => {
-  const { dummyReviewsMetadata } = jest.requireActual('../../dummyData/dummyReviewsMetadata');
+  const { dummyReviewsMetadata } = jest.requireActual('../../../dummyData/dummyReviewsMetadata');
   
   return {
     ...jest.requireActual('react'),
