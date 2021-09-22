@@ -11,7 +11,7 @@
 
 #overview-controls{
   padding: 2rem;
-  width: var(--controls-width);
+  max-width: var(--controls-width);
 }
 
 #prod-category{
