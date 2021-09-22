@@ -34,14 +34,15 @@ export const StyleSelector = (props) =>{
       <div id='styles-list' data-testid='styles-list'>
         {
           styles && styles.length ?
-            styles.map( style =>{
+            styles.map( (style, index) =>{
               return(
                 <StyleOption
                   style={style}
                   changeStyle={setCurrentStyle}
-                  key={style.style_id}
+                  key={style.style_id || index}
                   active={
                     currentStyle &&
+                    currentStyle.style_id &&
                     currentStyle.style_id === style.style_id
                   }
                 />
