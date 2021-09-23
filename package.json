@@ -7,7 +7,7 @@
     "test": "jest",
     "dev-build": "webpack --env ENV=DEV --config webpack.config.js -w",
     "dev-server": "nodemon ./server/index.js",
-    "build": "webpack --env ENV=PROD --config webpack.config.js",
+    "build": "webpack --env ENV=PROD --config webpack.config.js --mode production",
     "start": "forever start server"
   },
   "repository": {
