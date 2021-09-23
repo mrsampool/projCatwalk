@@ -5,10 +5,14 @@ orbs:
   node: circleci/node@4.7
 
 workflows:
-  run_tests:
+  "Run Jest tests":
     jobs:
       - node/test:
           version: '16.5.0'
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
           # https://circleci.com/developer/images/image/cimg/node
+      - "Save coverage report":
+        steps:
+          - store_artifacts:
+              path: /coverage
