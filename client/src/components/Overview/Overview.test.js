@@ -7,12 +7,13 @@ import {Overview} from './Overview.jsx';
 
 // Mock Data
 import { singleProduct as currentProduct, singleProductStyles as styles } from '../../dummyData/productsList';
+import { dummyReviewsMetadata as reviewsMetadata } from "../../dummyData/dummyReviewsMetadata";
 import { ProductContext } from '../../contexts/ProductContext';
 
 describe("Overview", ()=>{
 
   const {container} = render(
-    <ProductContext.Provider value={{currentProduct}}>
+    <ProductContext.Provider value={{currentProduct, reviewsMetadata}}>
       <Overview />
     </ProductContext.Provider>
   );
@@ -30,7 +31,7 @@ describe("Overview", ()=>{
   ].forEach( text => {
     it(`Should display product ${ text }`, ()=>{
       render(
-        <ProductContext.Provider value={{currentProduct}}>
+        <ProductContext.Provider value={{currentProduct, reviewsMetadata}}>
           <Overview />
         </ProductContext.Provider>
       );
@@ -48,7 +49,7 @@ describe("Overview", ()=>{
 
     it(`Renders a ${element} component`, ()=>{
       render(
-        <ProductContext.Provider value={{currentProduct}}>
+        <ProductContext.Provider value={{currentProduct, reviewsMetadata}}>
           <Overview />
         </ProductContext.Provider>
       );

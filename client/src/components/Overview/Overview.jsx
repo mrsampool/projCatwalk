@@ -52,7 +52,7 @@ export const Overview = (props) =>{
   }
 
   useEffect( ()=>{
-    if (params && params.noDummy && id){
+    if (id){
       fetchStyles();
     } else {
       //setStyles(props.styles || singleProductStyles.results)
