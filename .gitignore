@@ -1,8 +1,8 @@
 node_modules
 coverage
 .idea
-bundle.js
-bundle.js.LICENSE.txt
+bundle.js*
 bundle.css
+*.gz
 config.js
 .DS_Store
