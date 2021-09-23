@@ -8,6 +8,7 @@ const cors = require('cors');
 const baseUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-den';
 const { auth } = require('./config.js');
 axios.defaults.headers.common['Authorization'] = auth;
+const {forwardRequest} = require('./apiRequest');
 
 // Server Config
 const server = express();
@@ -19,28 +20,14 @@ var port = 3000;
 // Serve Static Assets
 server.use( express.static(path.join(__dirname, '..', 'client', 'dist')) )
 
+let cached = {};
+
 // API Forwarding
-server.use('/api/', (req, res, next) =>{
+server.use('/api/', (req, res, next) => forwardRequest(req, res, next, cached));
 
-  console.log(`\nReceived ${req.method} request at endpoint: ${req.path}\nRequest body:`);
-  console.log(req.body);
-  console.log('req.query', req.query);
-  let url = baseUrl + req.path;
-  console.log(`\nSending API ${req.method} request: \n${url}`);
-
-  axios({
-    method: req.method,
-    url: url,
-    data: req.body,
-    params: req.query,
-  })
-  .then( apiRes => {
-    console.log('\nAPI response body:');
-    console.log( apiRes.data );
-    res.status( apiRes.status ).send(apiRes.data);
-  })
-  .catch( err => res.status(err.response.status).send(err.response.data) );
-
+// Cache Queries
+server.get('/cache', (req, res, next) => {
+  res.status(200).send(cached);
 });
 
 // Serve client app for all other routes
