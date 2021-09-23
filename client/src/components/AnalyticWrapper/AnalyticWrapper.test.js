@@ -7,10 +7,10 @@ import { AnalyticWrapper } from './AnalyticWrapper.jsx';
 
 describe('AnalyticWrapper', ()=>{
 
+  let exported = null;
   const recordExported = (recordedEvent) => {
     exported = recordedEvent;
   }
-  let exported = null;
 
   it('should record component for each click', ()=>{
 
@@ -24,7 +24,7 @@ describe('AnalyticWrapper', ()=>{
 
     fireEvent.click(comp1);
 
-    expect(exported.module).toEqual('TestComponent1');
+    expect(exported.widget).toEqual('TestComponent1');
 
   })
 
@@ -57,7 +57,7 @@ describe('AnalyticWrapper', ()=>{
 
     fireEvent.click(comp1);
 
-    expect(exported.element.id ).toEqual( 'tc1' );
+    expect(exported.element ).toEqual( 'P' );
   })
 
 });
