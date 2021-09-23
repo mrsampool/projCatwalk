@@ -29,7 +29,7 @@ export const Helpful = (props) => {
 
 
   return(
-  <div className="helpful" >
+  <div className="helpful">
     <span>
     helpful? &nbsp;
     <u onClick={addHelpful}>Yes</u>
