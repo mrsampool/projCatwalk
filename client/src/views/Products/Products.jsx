@@ -10,6 +10,8 @@ import { serverRequests } from '../../utils/serverRequests';
 
 //Stylesheet
 import './Products.css'
+import {loadingProductCards} from "../../dummyData/placeholderData";
+import {loadingProductCategories} from "../../dummyData/placeholderData";
 
 export const Products = (props) =>{
 
@@ -51,7 +53,6 @@ export const Products = (props) =>{
         setProducts( categoryList );
 
       });
-
     });
   }
 
@@ -59,8 +60,7 @@ export const Products = (props) =>{
     if (!products.length){
       fetchProducts();
     }
-  })
-
+  }, []);
 
   return (
     <div id='Products'>
@@ -75,7 +75,11 @@ export const Products = (props) =>{
             key={`featCategoryCard`}
             noDummy={'true'}
           />
-          : null
+          :
+          <ProductBar
+            title='Featured Products'
+            products={loadingProductCards}
+          />
         }
         <div id='prod-categories'>
           <p id='categories-heading'>Browse All Products</p>
@@ -91,7 +95,16 @@ export const Products = (props) =>{
                   />
                 )
               })
-              : null
+              :
+              loadingProductCategories.map( (emptyCategory, index) =>{
+                return(
+                  <ProductCategory
+                    category={emptyCategory}
+                    setFeatured={null}
+                    key={`empty-category=${index}`}
+                  />
+                )
+              })
             }
           </div>
         </div>
@@ -118,14 +131,14 @@ export const ProductCategory = (props) => {
       let featuredStyle = styleData.results.find( style =>{
         return style['default?'];
       }) || styleData.results[0];
-      if (featuredStyle.photos){
+      if (featuredStyle && featuredStyle.photos){
         setThumbnail(featuredStyle.photos[0].thumbnail_url);
       }
     })
   }
 
   useEffect( ()=>{
-    if (!thumbnail){
+    if (!thumbnail && featuredItem.id){
       fetchItem();
     }
   },[props.category])

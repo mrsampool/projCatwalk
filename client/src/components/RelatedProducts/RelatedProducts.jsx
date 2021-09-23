@@ -14,9 +14,12 @@ import { serverRequests } from '../../utils/serverRequests';
 // Dummy Data
 import { relatedProducts } from '../../dummyData/relatedProducts';
 
+// Placeholder Data
+import {loadingProductCards} from "../../dummyData/placeholderData";
+
 export const RelatedProducts = (props) =>{
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(loadingProductCards);
 
   let currentId;
   let context = useContext(ProductContext);
@@ -32,7 +35,7 @@ export const RelatedProducts = (props) =>{
   }
 
   useEffect( ()=>{
-    if (currentId && !products.length){
+    if (currentId){
       if (params.noDummy){
         fetchProducts();
       } else {

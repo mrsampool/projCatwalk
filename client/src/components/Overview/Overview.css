@@ -19,12 +19,20 @@
   text-transform: uppercase;
   font-weight: lighter;
 }
+#prod-category.loading-category{
+  background-color: lightgray;
+  color: transparent;
+}
 
 #prod-title{
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1em;
+}
+#prod-title.loading-title{
+  background-color: lightgray;
+  color: transparent;
 }
 
 #prod-copy{
