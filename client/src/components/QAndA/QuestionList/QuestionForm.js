@@ -38,12 +38,14 @@ export const QuestionForm = (props) =>{
     <form onSubmit={handleSubmit} id="QForm">
       <h1>Ask Your Question</h1>
       <h2>About the {ProductName}</h2>
+
       <textarea maxLength="1000" placeholder="your question" onChange={(e)=>{setContent(e.target.value)} } value={question_body}/>
-
+      <label> Name
       <input type = "text" placeholder="Name (Example:jackson11)!" onChange={(e)=>{setUsername(e.target.value)}} value={asker_name}/>
-
+      </label>
+      <label> Email
       <input type = "email" placeholder="email" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
-
+      </label>
       <button type="submit" value="Submit">Submit</button>
     </form>
   );
