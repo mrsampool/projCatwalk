@@ -1,6 +1,10 @@
 const axios = require('axios');
 
-const baseUrl = 'http://localhost:3000/api';
+const baseUrl = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:3000/api'
+  : 'http://3.101.57.130/api';
+
+console.log(process.env.NODE_ENV);
 
 export const serverRequests = {
 
