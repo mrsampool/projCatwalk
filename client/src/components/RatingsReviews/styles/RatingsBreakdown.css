@@ -65,3 +65,8 @@ input[type='range']::-moz-range-track {
   display: flex;
   justify-content: space-between;
 }
+
+.characteristic-label {
+  font-size: 1.2rem;
+  
+}

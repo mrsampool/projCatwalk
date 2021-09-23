@@ -80,7 +80,7 @@ export const RatingsBreakdown = (props) => {
     for (let name in reviewsMetadata.characteristics) {
       let row = (
         <div key={name + 'breakdown'} className='characteristic-unit'>
-          <h5>{name}:</h5> <input type='range' min='0' max='4' value={reviewsMetadata.characteristics[name].value} className='characteristic-bar' data-testid={name + 'meter'}></input>
+          <label htmlFor={name + 'meter'} className='characteristic-label' >{name}:</label> <input id={name + 'meter'} type='range' min='0' max='4' value={reviewsMetadata.characteristics[name].value} readOnly className='characteristic-bar' data-testid={name + 'meter'}></input>
           {characteristicLegend[name]}
         </div>
       );
