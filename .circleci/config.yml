@@ -2,13 +2,22 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.1
+  node: circleci/node@4.7
+
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '16.5.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+      - store_artifacts:
+          path: /coverage
 
 workflows:
-  sample:
+  "Run tests":
     jobs:
-      - node/test:
-          version: '16.5.0'
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
+      - test
