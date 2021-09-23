@@ -39,11 +39,12 @@ export const AnswerForm = (props) =>{
       <h1>Submit your answer</h1>
       <h2>{ProductName}:{Qbody.length<50?Qbody:Qbody.slice(0,40)+'...'}</h2>
       <textarea maxLength="1000" placeholder="your answer" onChange={(e)=>{setContent(e.target.value)} } value={body}/>
-
+      <label> name
       <input type = "text" placeholder="jack543!" onChange={(e)=>{setUsername(e.target.value)}} value={answerer_name}/>
-
+      </label>
+      <label> email
       <input type = "email" placeholder="jack@email.com" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
-
+      </label>
       <button type="submit" value="Submit">Submit</button>
     </form>
   );
