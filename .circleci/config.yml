@@ -15,7 +15,7 @@ jobs:
       - run:
           command: npm run test
       - store_artifacts:
-          path: /coverage
+          path: coverage
 
 workflows:
   "Run tests":
