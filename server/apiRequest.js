@@ -12,7 +12,7 @@ module.exports.forwardRequest = (req, res, next, cached) => {
   let url = baseUrl + req.path;
 
   if (
-    req.method === 'GET' && req.path.index !== '/cart'
+    req.method === 'GET' && req.path !== '/cart'
     && cached[req.path]
     && cached[req.path][JSON.stringify(req.query)]
     && cached[req.path][JSON.stringify(req.query)][JSON.stringify(req.body)] ){
