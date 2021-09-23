@@ -11,6 +11,7 @@ import { serverRequests } from '../../utils/serverRequests';
 //Stylesheet
 import './Products.css'
 import {loadingProductCards} from "../../dummyData/placeholderData";
+import {loadingProductCategories} from "../../dummyData/placeholderData";
 
 export const Products = (props) =>{
 
@@ -130,14 +131,14 @@ export const ProductCategory = (props) => {
       let featuredStyle = styleData.results.find( style =>{
         return style['default?'];
       }) || styleData.results[0];
-      if (featuredStyle.photos){
+      if (featuredStyle && featuredStyle.photos){
         setThumbnail(featuredStyle.photos[0].thumbnail_url);
       }
     })
   }
 
   useEffect( ()=>{
-    if (!thumbnail){
+    if (!thumbnail && featuredItem.id){
       fetchItem();
     }
   },[props.category])
