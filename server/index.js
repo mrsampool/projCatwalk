@@ -3,6 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const cors = require('cors');
+const expressStaticGzip = require('express-static-gzip');
 
 // API
 const baseUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-den';
@@ -17,8 +18,9 @@ server.use(express.json());
 server.use(express.urlencoded({extended: true}));
 var port = 3000;
 
-// Serve Static Assets
-server.use( express.static(path.join(__dirname, '..', 'client', 'dist')) )
+// Serve Static Assets (serve the gzipped version first, if possible)
+server.use( expressStaticGzip( path.join(__dirname, '..', 'client', 'dist')) );
+server.use( express.static( path.join(__dirname, '..', 'client', 'dist')) );
 
 let cached = {};
 
