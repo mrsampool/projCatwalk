@@ -90,8 +90,8 @@ export const Review = (props) => {
     <div id='Review' data-testid='Review' reviewid={props.review.review_id}>
       <div style={{display: 'grid', gridTemplateColumns: '5rem 1fr 1fr'}}>
         <StarRating rating={props.review.rating} />
-        <h5 className='review-author' data-testid='reviewer_name'>{props.review.reviewer_name}</h5>
-        <h5 className='review-author' data-testid='reviewdate'>{reviewDate.toDateString()}</h5>
+        <span className='review-author' data-testid='reviewer_name'>{props.review.reviewer_name}</span>
+        <span className='review-author' data-testid='reviewdate'>{reviewDate.toDateString()}</span>
       </div><br></br>
       <h3 className='review-summary' data-testid='reviewsummary'>{props.review.summary}</h3>
       <br></br>
