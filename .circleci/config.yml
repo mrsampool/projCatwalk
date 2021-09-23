@@ -16,4 +16,3 @@ workflows:
         steps:
           - store_artifacts:
               path: /coverage
-              
