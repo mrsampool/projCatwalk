@@ -36,11 +36,7 @@ export const ProductCard = (props) =>{
 
   useEffect( ()=>{
     if (id){
-      if (props.noDummy){
-        fetchStyles();
-      } else {
-        setStyle( singleProductStyles.results[0] )
-      }
+      fetchStyles();
     }
   }, [props.product])
 
@@ -48,7 +44,7 @@ export const ProductCard = (props) =>{
     <a
       className='product'
       target='_blank'
-      href={`/products/${id}${props.noDummy ? '?noDummy' : ''}`}
+      href={`/products/${id}`}
     >
       <img
         className='productImg'
