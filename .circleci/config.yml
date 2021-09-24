@@ -31,4 +31,4 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: release
+              only: master
