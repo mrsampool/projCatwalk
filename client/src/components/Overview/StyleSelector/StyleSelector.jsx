@@ -57,7 +57,7 @@ export const StyleSelector = (props) =>{
 
 export const StyleOption = props => {
 
-  const {style_id, photos} = props.style;
+  const {style_id, photos, name } = props.style;
   let thumbnail = photos[0].thumbnail_url;
 
   function handleClick() {
@@ -84,6 +84,7 @@ export const StyleOption = props => {
         <img
           src={thumbnail}
           data-testid={thumbnail}
+          alt={`${name || ''} Style Photo`}
           />
       </div>
 

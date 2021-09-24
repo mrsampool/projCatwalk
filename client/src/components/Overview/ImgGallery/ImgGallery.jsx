@@ -8,6 +8,7 @@ import { Icon } from '../../Icon/Icon.jsx';
 
 //Stylesheet
 import './ImgGallery.css'
+import {ProductContext} from "../../../contexts/ProductContext";
 
 export const ImgGallery = (props) =>{
 
@@ -15,6 +16,8 @@ export const ImgGallery = (props) =>{
 
   const [curPhotoIndex, setCurPhotoIndex] = useState(0);
   const [ zoom, setZoom ] = useState(false);
+
+  const {currentProduct} = useContext(ProductContext);
 
   function prevPhoto(){
     setCurPhotoIndex( curPhotoIndex - 1 );
@@ -111,6 +114,7 @@ export const ImgGallery = (props) =>{
           id='fullscreen'
           onClick={props.toggleFull}
           data-testid='fullscreen'
+          aria-label={'Fullscreen Image'}
         >
           <Icon type={!fullScreen ? 'fullscreen' : 'fullscreenExit'}/>
         </button>
@@ -119,6 +123,7 @@ export const ImgGallery = (props) =>{
           photos={photos}
           index={curPhotoIndex}
           setPhotoIndex={setCurPhotoIndex}
+          styleName={props.styleName}
         />
 
         <ImgArrow
@@ -126,6 +131,8 @@ export const ImgGallery = (props) =>{
           change={prevPhoto}
           type={'prev'}
           testId={'prev-photo'}
+          altLabel={'Previous Image'}
+          buttonId={'previous-photo'}
         />
 
         <div id='featured-photo'>
@@ -135,6 +142,7 @@ export const ImgGallery = (props) =>{
             className={zoom ? 'zoom' : 'nozoom'}
             onLoad={checkZoom}
             onClick={ ()=>{ setZoom(!zoom)} }
+            alt={`${currentProduct ? currentProduct.name : ''} Product Photo`}
           />
         </div>
 
@@ -144,6 +152,8 @@ export const ImgGallery = (props) =>{
           type={'next'}
           length={photos.length}
           testId={'next-photo'}
+          altLabel={'Next Image'}
+          buttonId={'next-photo'}
         />
 
       </div>
