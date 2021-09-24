@@ -29,26 +29,7 @@ describe("Star Rating Defaults", ()=>{
   it('should render 5 <Icon /> components', () => {
     expect( screen.queryAllByTestId(/mockIcon/).length ).toBe(5);
 
-    /* 
-    The structure of the invocations of <Icon /> here 
-    are not exactly what I expected.
-    Icon.mock.calls returns this:
-    
-    [
-      [], 
-      [{"fillColor": "#DBD94E", "size": "1rem", "type": "starFull"}, {}], 
-      [{"fillColor": "#DBD94E", "size": "1rem", "type": "starFull"}, {}], 
-      [{"fillColor": "#DBD94E", "size": "1rem", "type": "starFull"}, {}], 
-      [{"fillColor": "#DBD94E", "size": "1rem", "type": "starThreeQuart"}, {}], 
-      [{"fillColor": "#DBD94E", "size": "1rem", "type": "starEmpty"}, {}]
-    ]
-
-    I see there are 6 invocations, with the first being with no parameters...
-    is that first invocation the import?
-    For now, I'll go with the flow and adapt the test. The actual render of quantity of icons
-    is correct.
-    */    
-    expect( Icon.mock.calls.length  ).toBe(6);
+    expect( Icon.mock.calls.length  ).toBe(5);
     expect( screen.queryAllByTestId(/mockIcon/).length ).toBe(5);
   });
   
