@@ -36,11 +36,7 @@ export const RelatedProducts = (props) =>{
 
   useEffect( ()=>{
     if (currentId){
-      if (params.noDummy){
-        fetchProducts();
-      } else {
-        setProducts( relatedProducts )
-      }
+      fetchProducts();
     }
   },[currentId])
 
@@ -48,7 +44,6 @@ export const RelatedProducts = (props) =>{
     <ProductBar
       title='Related Products'
       products={products}
-      noDummy={params.noDummy}
     />
   );
 };
