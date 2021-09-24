@@ -28,7 +28,7 @@ workflows:
       - test:
           filters:
             branches:
-              only: /^(?!pull\/).*$/
+              only: /^(pull\/).*$/
   "Deploy to machine":
     jobs:
       - deploy:
