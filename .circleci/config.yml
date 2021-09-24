@@ -25,10 +25,7 @@ jobs:
 workflows:
   "Run tests on PRs":
     jobs:
-      - test:
-          filters:
-            branches:
-              only: /^(pull\/).*$/
+      - test
   "Deploy to machine":
     jobs:
       - deploy:
