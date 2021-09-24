@@ -19,6 +19,7 @@ export const ImgArrow = props => {
     ) {
       return(
         <button
+          aria-label = "arrow down or up"
           id={`${type}-img`}
           onClick={change}
           className={`img-arrow ${className || ''} `}

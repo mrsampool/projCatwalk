@@ -108,6 +108,7 @@ export const ImgGallery = (props) =>{
       >
 
         <button
+          aria-label = "fullscreen"
           id='fullscreen'
           onClick={props.toggleFull}
           data-testid='fullscreen'
