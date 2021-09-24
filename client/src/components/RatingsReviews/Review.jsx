@@ -102,7 +102,7 @@ export const Review = (props) => {
       {staffResponse}
       <div className='container-review-thumbs'>
         {props.review.photos.map((photoObj) => {return (
-          <div className='container-img-thumb' key={photoObj.id} ><img src={photoObj.url} onClick={thumbClickHandler}></img></div>
+          <div className='container-img-thumb' key={photoObj.id} ><img src={photoObj.url} onClick={thumbClickHandler} alt='An image a person uploaded alongside their review' ></img></div>
         )})}
       </div>
       {props.review.photos.length > 0 ? <br></br> : null}
