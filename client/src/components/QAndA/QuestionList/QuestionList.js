@@ -59,9 +59,9 @@ export const QuestionList = (props) =>{
       }
   </div>
   <div id="twoButton">
-    {lastIndex < qLen ? <button id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
+    {lastIndex < qLen ? <button aria-label="LoadMoreQ" id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
       <Modal component = {modalState} setComponent={setModalState}/>
-      <button className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
+      <button aria-label ="addQuestion"className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
   </div>
   </div>
   )
