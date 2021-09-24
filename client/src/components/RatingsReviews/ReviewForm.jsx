@@ -137,8 +137,10 @@ export class ReviewForm extends React.Component {
             <label htmlFor='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true} onChange={this.formChangeHandler} data-testid='recommendyes' ></input>
             <label htmlFor='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false} onChange={this.formChangeHandler} data-testid='recommendno' ></input>
           </div>
-
+          <br></br>
           <label>Please choose a rating for each of this product's characteristics (mandatory):</label>
+          <br></br>
+          <br></br>
           <div id='characteristics'> 
             {this.radioGroup()}
           </div>
