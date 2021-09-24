@@ -1,9 +1,12 @@
 #ReviewForm {
-  height: 95%;
-  width: 70%;
-  background: var(--dark);
-  border-width: 2px;
-  padding: 15px 30px;
+  max-height: 85vh;
+  width: 70vh;
+  overflow-y: scroll;
+  padding: 1rem 2rem;
+  background: white;
+  border-width: 4px;
+  border-style: solid;
+
 }
 
 #characteristics {
