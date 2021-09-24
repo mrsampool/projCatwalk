@@ -20,10 +20,6 @@ import {loadingPhotos, loadingStyles} from "../../dummyData/placeholderData";
 import './Overview.css';
 import { serverRequests } from '../../utils/serverRequests';
 
-
-
-
-
 export const Overview = (props) =>{
 
   let currentProduct;
@@ -68,6 +64,7 @@ export const Overview = (props) =>{
           photos={currentStyle ? currentStyle.photos : loadingPhotos}
           toggleFull={toggleFullScreenImg}
           fullScreen={fullScreenImg}
+          styleName={currentStyle ? currentStyle.name : ''}
         />
 
         <div id='overview-controls'>

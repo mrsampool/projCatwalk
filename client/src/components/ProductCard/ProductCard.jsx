@@ -49,6 +49,7 @@ export const ProductCard = (props) =>{
       <img
         className='productImg'
         src={ style && style.photos ? style.photos[0].thumbnail_url : ''}
+        alt={`${props.product.name} Product Photo`}
       />
       <div className='product-text'>
         <p className='product-card-category'>{category}</p>
