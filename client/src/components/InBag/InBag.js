@@ -12,11 +12,14 @@ export const InBag = (props) =>{
   const [bagCount, setBagCount] = useState( 0 );
 
   function bagItemCount(items){
-    if (props.sku && props.sku[0]){
-      let inBag = items.find( item => {
-        return item.sku === props.sku[0];
+    if (props.prodId ){
+      let count = 0;
+      items.forEach( item =>{
+        if (item.prodId === props.prodId){
+          count += item.qty;
+        }
       })
-      if (inBag){ return inBag.qty; }
+      return count;
     }
     else { return 0; }
   }
