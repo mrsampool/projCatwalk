@@ -25,7 +25,7 @@ export const Cart = (props) => {
           <thead>
           <tr>
             {
-              ['', 'Product', 'Style', 'Sku', 'Size', 'Quantity', 'Price',  'Item Total', '']
+              ['', 'Product', 'Style', 'Size', 'Quantity', 'Price',  'Item Total', 'Sku', 'Style ID', 'Product ID', '']
               .map( heading =>{
                 return <td>{heading}</td>
               })
@@ -52,10 +52,12 @@ export const Cart = (props) => {
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
             <td>{cartAccess.size}</td>
             <td></td>
             <td>${cartAccess.getTotalPrice()}</td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
           </tr>
           </tfoot>
@@ -73,6 +75,12 @@ const CartTableRow = props => {
     cartAccess.removeItem(props.item.sku);
   }
 
+  let productLink;
+
+  if (props.item){
+    productLink = `/products/${props.item.prodId}?styleId=${props.item.styleId}`;
+  }
+
   return (
     props.item ?
       <tr>
@@ -84,6 +92,7 @@ const CartTableRow = props => {
               <TableData
                 field={field}
                 data={props.item[field]}
+                link={productLink}
               />
             )
           })
@@ -119,9 +128,9 @@ const TableData = (props) => {
     } else if (field === 'pricePer' || field === 'priceTotal') {
       return `$${data}`;
     } else if (field === 'quantity') {
-      return 
-    } else {
       return data;
+    } else {
+      return <a href={props.link}>{data}</a>;
     }
   }
   return(
