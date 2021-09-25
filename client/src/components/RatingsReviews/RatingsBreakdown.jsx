@@ -99,12 +99,12 @@ export const RatingsBreakdown = (props) => {
       </div>  
       <p>{wholePercentRecommended}% of reviews recommended this product</p>
       <br></br>
-      <div style={{display: 'grid', gridTemplateColumns: '5rem 70%'}}>
-        <label id='5stars' htmlFor='5starmeter' className='label-starmeter' >5 stars</label> <meter id='5starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['5'] ? reviewsMetadata.ratings['5'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-        <label id='4stars' htmlFor='4starmeter' className='label-starmeter' >4 stars</label> <meter id='4starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['4'] ? reviewsMetadata.ratings['4'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-        <label id='3stars' htmlFor='3starmeter' className='label-starmeter' >3 stars</label> <meter id='3starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['3'] ? reviewsMetadata.ratings['3'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-        <label id='2stars' htmlFor='2starmeter' className='label-starmeter' >2 stars</label> <meter id='2starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
-        <label id='1stars' htmlFor='1starmeter' className='label-starmeter' >1 stars</label> <meter id='1starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter>
+      <div style={{display: 'grid', gridTemplateColumns: '5rem 0 70% 0'}}>
+        <label id='5stars' htmlFor='5starmeter' className='label-starmeter' >5 stars</label><br></br><meter id='5starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['5'] ? reviewsMetadata.ratings['5'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter><br></br>
+        <label id='4stars' htmlFor='4starmeter' className='label-starmeter' >4 stars</label><br></br><meter id='4starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['4'] ? reviewsMetadata.ratings['4'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter><br></br>
+        <label id='3stars' htmlFor='3starmeter' className='label-starmeter' >3 stars</label><br></br><meter id='3starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['3'] ? reviewsMetadata.ratings['3'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter><br></br>
+        <label id='2stars' htmlFor='2starmeter' className='label-starmeter' >2 stars</label><br></br><meter id='2starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['2'] ? reviewsMetadata.ratings['2'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter><br></br>
+        <label id='1stars' htmlFor='1starmeter' className='label-starmeter' >1 stars</label><br></br><meter id='1starmeter' className='meter-starcount' min='0' max='1' value={reviewsMetadata.ratings['1'] ? reviewsMetadata.ratings['1'] / totalRatingsQty : 0} data-testid='starcountmeter'></meter><br></br>
       </div>
       <div style={{height: '20px'}}>
         {clearFilterBtn}

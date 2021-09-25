@@ -159,12 +159,12 @@ export class ReviewForm extends React.Component {
           <br></br>
           <label htmlFor='reviewnickname' >What is your nickname? (mandatory)</label>
           <br></br>
-          <input required id='reviewnickname' name='nickname' type='text' value={this.state.nickname} placeholder='jackson11!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldnickname'></input>
+          <input required id='reviewnickname' name='nickname' type='text' value={this.state.nickname} placeholder='cool_nickname!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldnickname'></input>
           <br></br>
           <p>For privacy reasons, do not use your full name or email address</p>
           <label htmlFor='reviewemail' >Your email (mandatory)</label>
           <br></br>
-          <input required id='reviewemail' name='email' type='text' value={this.state.email} placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldemail'></input><br></br>
+          <input required id='reviewemail' name='email' type='text' value={this.state.email} placeholder='example@domain.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldemail'></input><br></br>
           <p>For authentication reasons, you will not be emailed</p>
 
           <button type='submit' >Submit</button>
