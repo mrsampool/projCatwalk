@@ -17,6 +17,8 @@ export const RatingsReviews = () =>{
   const [reviewsData, setReviewsData] = useState(dummyReviewsData);
   const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
+
+  let childWidgets = null;
   
   const { reviewsMetadata, currentProduct } = useContext(ProductContext);
 
@@ -32,22 +34,30 @@ export const RatingsReviews = () =>{
     setModalComponent(<ReviewForm characteristics={reviewsMetadata.characteristics} productid={reviewsMetadata.product_id} productname={currentProduct.name} />);
   };
 
-  return (
-  <div id='RatingsReviews' data-testid='RatingsReviews'>
-    <h3>Ratings and Reviews</h3>
-    <ModalContext.Provider value={{setModalComponent}} >
-    {reviewsData.results.length === 0 ? null : (
+  if (reviewsData.results.length === 0) {
+    childWidgets = (
+      <p>There are currently no reviews for this product. Make sure to come back and write one when your purchase arrives!</p>
+    );
+  } else {
+    childWidgets = (
       <div className='container-2-col'>
         <RatingsBreakdown filter={filter} setFilter={setFilter} />
         <ReviewsList reviewsdata={reviewsData} filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
       </div>
-    )}
-    </ModalContext.Provider>
-    <div id='add-review-container'>
-      <div>
-        <button onClick={openReviewModal}>Add Your Review</button>
+    )
+  }
+
+  return (
+  <div id='RatingsReviews' data-testid='RatingsReviews'>
+    <h3>Ratings and Reviews</h3>
+    <ModalContext.Provider value={{setModalComponent}} >
+      {childWidgets}
+      <div id='add-review-container'>
+        <div>
+          <button onClick={openReviewModal}>Add Your Review</button>
+        </div>
       </div>
-    </div>
+    </ModalContext.Provider>
     <Modal component={modalComponent} setComponent={setModalComponent} />
   </div>
   );
