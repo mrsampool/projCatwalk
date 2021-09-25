@@ -25,25 +25,13 @@ import {serverRequests} from "./utils/serverRequests";
 
 export const App = props =>{
 
-
   let queries = parseQueries( useLocation().search );
   let [queryParams, setQueryParams] = useState(queries || {});
 
   let cartDAO = new CartDAO();
   let [cart, setCart] = useState( cartDAO.items );
   cartDAO.itemStateSetter = setCart;
-  /*
-  function fetchCart(){
-    serverRequests.getCart()
-    .then( cartData => setCart(cartData) )
-    .catch( err => console.log(err) );
-  }
-
-  useEffect( ()=> {
-    fetchCart()
-  }, []);
-   */
-
+  
   return(
     <div id={'App'}>
       <QueryContext.Provider value={queryParams}>
