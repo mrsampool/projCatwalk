@@ -32,15 +32,15 @@ export const EachAnswer = (props) => {
 
   return (
   <React.Fragment>
-    <div className="A-statement">
+    <div className="A-statement" data-testid="A-statement">
       <div>{<strong>{isFirst ? 'A: ' :<span>&nbsp; &nbsp; &nbsp;</span>}</strong>} {(readMore || abody.length < 70)? abody :`${abody.substring(0,40)} ...`}
         {(abody.length > 70) ?
-        (<u onClick={()=>setReadMore(!readMore)}>{readMore ? <span style={{'fontSize':'18px',color:'black'}}>{'<<<hide'}</span>: <span style={{'fontSize':'18px',color:'black'}}>read more</span>}</u>)
+        (<u data-testid = "ReadMore" onClick={()=>setReadMore(!readMore)}>{readMore ? <span data-testid= "notexpanded" style={{'fontSize':'18px',color:'black'}}>{'<<<hide'}</span>: <span data-testid= "expanded" style={{'fontSize':'18px',color:'black'}}>read more</span>}</u>)
         : null}
       </div>
     </div>
-    <div className="A-date" >
-      by {sellname !== "Seller" ? sellname :<strong style={{fontSize:'20px'}}>Seller</strong>}, {monthNames[month]} {day}, {year} &nbsp; | &nbsp; helpful?&nbsp; <u onClick={addHelpful}>Yes</u> ({helpful}) &nbsp; | &nbsp; <u onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
+    <div className="A-date" data-testid="A-date">
+      by {sellname !== "Seller" ? sellname :<strong style={{fontSize:'20px'}}>Seller</strong>}, {monthNames[month]} {day}, {year} &nbsp; | &nbsp; helpful?&nbsp; <u data-testid="helpfultest" onClick={addHelpful}>Yes</u> ({helpful}) &nbsp; | &nbsp; <u data-testid="report" onClick={addReport}>{reported ? 'Reported' : 'Report'}</u>
     </div>
   </React.Fragment>
   )

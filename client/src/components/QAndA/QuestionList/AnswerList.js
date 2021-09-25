@@ -20,13 +20,13 @@ export const AnswerList = (props) =>{
     setLastIdx(aLen);
   };
   return (
-  <div id='Answer-List'>
+  <div id='Answer-List' data-testid="answer-list">
       {sortedAnsArr.slice(0, lastIdx).map(ans=>{
         var isFirst= sortedAnsArr.indexOf(ans) === 0;
         return <EachAnswer key = {ans.id} ans = {ans} isFirst={isFirst}/>
       })
       }
-      {(lastIdx < aLen) ? <a className="loadMoreA"onClick = {loadMoreA}><strong>load more answers</strong></a> : null}
+      {(lastIdx < aLen) ? <a className="loadMoreA" data-testid='load-Ans' onClick = {loadMoreA}><strong>load more answers</strong></a> : null}
   </div>
 
   )
