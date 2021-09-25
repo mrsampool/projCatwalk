@@ -25,10 +25,14 @@ export const InBag = (props) =>{
     setBagCount( bagItemCount(items) );
   }
 
-  cartAccess.statusStateSetter = checkBagStatus;
+  if (cartAccess){
+    cartAccess.statusStateSetter = checkBagStatus;
+  }
 
   useEffect( ()=>{
-    checkBagStatus( cartAccess.getItems() );
+    if (cartAccess){
+      checkBagStatus( cartAccess.getItems() );
+    }
   }, [props.sku])
 
   return (

@@ -31,7 +31,7 @@ export const App = props =>{
   let cartDAO = new CartDAO();
   let [cart, setCart] = useState( cartDAO.items );
   cartDAO.itemStateSetter = setCart;
-  
+
   return(
     <div id={'App'}>
       <QueryContext.Provider value={queryParams}>

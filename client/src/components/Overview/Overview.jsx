@@ -101,7 +101,7 @@ export const Overview = (props) =>{
           />
           <InBag
             sku={currentSku}
-            cart={cartAccess.items}
+            cart={cartAccess ? cartAccess.items : null}
           />
         </div>
 

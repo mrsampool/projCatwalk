@@ -5,6 +5,8 @@ import {render, screen} from '@testing-library/react';
 import {Cart} from "./Cart";
 import {CartContext} from "../../contexts/CartContext";
 
+import {CartDAO} from "../../utils/CartDAO";
+
 let cart = [];
 
 describe("App", ()=>{
@@ -12,7 +14,7 @@ describe("App", ()=>{
   it("Renders without crashing", ()=>{
 
     render(
-      <CartContext.Provider value={{cart}}>
+      <CartContext.Provider value={{ cartAccess: new CartDAO() }}>
         <Cart/>
       </CartContext.Provider>
     );
