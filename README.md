@@ -1,5 +1,6 @@
-A simple demo of this project can be found (for now...) here:
-ec2-3-101-57-130.us-west-1.compute.amazonaws.com
+A simple demo of this project can be found (for now...) (here)[ec2-3-101-57-130.us-west-1.compute.amazonaws.com]
+
+
 
 # "Project Catwalk" - Ascent Squad
 
