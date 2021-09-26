@@ -1,23 +1,40 @@
 //Libraries
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
+
+
 
 //Stylesheet
 import './StyleSelector.css'
 import { Icon } from '../../Icon/Icon.jsx';
+import {QueryContext} from "../../../contexts/QueryContext";
 
 export const StyleSelector = (props) =>{
 
   const {styles, currentStyle, setCurrentStyle} = props;
+  let queryparams = useContext(QueryContext);
 
   function setDefaultStyle(){
+
     let def = styles.find( style => {
       return !!style['default?'];
     }) || styles[0];
     setCurrentStyle(def);
+
+    if (queryparams && queryparams.styleId){
+      let queryId = Number(queryparams.styleId)
+      let queryStyle = styles.find( style => {
+        return style.style_id === queryId;
+      })
+      if (queryStyle) {
+        setCurrentStyle(queryStyle);
+      }
+    }
   }
 
   useEffect( ()=>{
-    if (!currentStyle && styles && styles.length){ setDefaultStyle(); }
+    if (!currentStyle && styles && styles.length){
+      setDefaultStyle();
+    }
   },[]);
 
   useEffect( ()=>{

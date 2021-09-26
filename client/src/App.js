@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
+//DAO
+import {CartDAO} from './utils/CartDAO';
+
 // Views
 import { ProductDetail } from './views/ProductDetail/ProductDetail.jsx';
 import { Products } from './views/Products/Products.jsx';
@@ -23,24 +26,16 @@ import {serverRequests} from "./utils/serverRequests";
 export const App = props =>{
 
   let queries = parseQueries( useLocation().search );
-
   let [queryParams, setQueryParams] = useState(queries || {});
-  let [cart, setCart] = useState([]);
 
-  function fetchCart(){
-    serverRequests.getCart()
-    .then( cartData => setCart(cartData) )
-    .catch( err => console.log(err) );
-  }
-
-  useEffect( ()=> {
-    fetchCart()
-  }, []);
+  let cartDAO = new CartDAO();
+  let [cart, setCart] = useState( cartDAO.items );
+  cartDAO.itemStateSetter = setCart;
 
   return(
     <div id={'App'}>
       <QueryContext.Provider value={queryParams}>
-        <CartContext.Provider value={{cart, fetchCart}}>
+        <CartContext.Provider value={{ cart, cartAccess: cartDAO }}>
 
           <Banner/>
 
