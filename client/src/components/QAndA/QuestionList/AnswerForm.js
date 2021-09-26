@@ -35,7 +35,7 @@ export const AnswerForm = (props) =>{
 
   }
   return (
-    <form onSubmit={handleSubmit} id="answerForm">
+    <form onSubmit={handleSubmit} id="answerForm" data-testid="aForm">
       <h1>Submit your answer</h1>
       <h2>{ProductName}:{Qbody.length<50?Qbody:Qbody.slice(0,40)+'...'}</h2>
       <textarea maxLength="1000" placeholder="your answer" onChange={(e)=>{setContent(e.target.value)} } value={body}/>
@@ -45,7 +45,7 @@ export const AnswerForm = (props) =>{
       <label> email
       <input type = "email" placeholder="jack@email.com" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
       </label>
-      <button type="submit" value="Submit">Submit</button>
+      <button type="submit" data-testid="answersubmit" value="Submit">Submit</button>
     </form>
   );
 }

@@ -42,12 +42,12 @@ export const QuestionList = (props) =>{
 
   return (
   <div>
-    <div id='QuestionList'>
+    <div id='QuestionList' data-testid="QuestionList">
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
           <React.Fragment >
-            <div className="Q-Helpful" key={q.question_id}>
-              <span className="Q-statement" >Q: {q.question_body}</span>
+            <div className="Q-Helpful" key={q.question_id} data-testid="Q-Helpful">
+              <span data-testid="Q-statement" className="Q-statement" >Q: {q.question_body}</span>
               <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
             </div>
 
@@ -58,10 +58,10 @@ export const QuestionList = (props) =>{
       })
       }
   </div>
-  <div id="twoButton">
-    {lastIndex < qLen ? <button aria-label="LoadMoreQ" id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
+  <div id="twoButton" >
+    {lastIndex < qLen ? <button data-testid="moreQ" aria-label="LoadMoreQ" id='loadMore' onClick = {loadMore}>MORE ANSWERED QUESTIONS</button>:null}
       <Modal component = {modalState} setComponent={setModalState}/>
-      <button aria-label ="addQuestion"className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
+      <button data-testid="addaq" aria-label ="addQuestion"className='addAbtn' onClick={ handleModal } >Ask A QUESTION +</button>
   </div>
   </div>
   )

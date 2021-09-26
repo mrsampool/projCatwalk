@@ -35,7 +35,7 @@ export const QuestionForm = (props) =>{
 
   }
   return (
-    <form onSubmit={handleSubmit} id="QForm">
+    <form onSubmit={handleSubmit} id="QForm" data-testid="QForm">
       <h1>Ask Your Question</h1>
       <h2>About the {ProductName}</h2>
 
@@ -46,7 +46,7 @@ export const QuestionForm = (props) =>{
       <label> Email
       <input type = "email" placeholder="email" onChange={(e)=>{setEmail(e.target.value)}} value={email}/>
       </label>
-      <button type="submit" value="Submit">Submit</button>
+      <button data-testid="Qformbtn" type="submit" value="Submit">Submit</button>
     </form>
   );
 }
