@@ -41,11 +41,11 @@ export const QuestionList = (props) =>{
   }
 
   return (
-  <div>
+  <div >
     <div id='QuestionList' data-testid="QuestionList">
       {(searchTerm.length < 3 ? questions : questionsfiltered).slice(0, lastIndex).map(q=>{
         return (
-          <React.Fragment >
+          <React.Fragment key={q.question_id}>
             <div className="Q-Helpful" key={q.question_id} data-testid="Q-Helpful">
               <span data-testid="Q-statement" className="Q-statement" >Q: {q.question_body}</span>
               <Helpful Qid = {q.question_id} Qbody = {q.question_body} question_helpfulness = {q.question_helpfulness}/>
