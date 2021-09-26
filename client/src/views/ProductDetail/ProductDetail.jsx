@@ -44,13 +44,8 @@ export const ProductDetail = (props) => {
   }
 
   useEffect( ()=>{
-    if (queryParams.noDummy){
-      fetchProductData();
-      fetchReviewsMeta();
-    } else {
-      setCurrentProduct( singleProduct );
-      setReviewsMetadata( dummyReviewsMetadata );
-    }
+    fetchProductData();
+    fetchReviewsMeta();
   }, []);
 
   return (

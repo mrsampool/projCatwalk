@@ -18,21 +18,20 @@
 .arrow-icon{
   fill: var(--dark);
 }
-#next-img{
+.img-arrow.next{
   right: 0.5rem;
 }
-#prev-img{
+.img-arrow.prev{
   left: 7rem;
 }
-#prev-img.up{
+.img-arrow.prev.up{
   position: relative;
   transform: rotate(90deg);
   top: 0;
   right: auto;
   left: auto;
-
 }
-#next-img.down{
+.img-arrow.next.down{
   position: relative;
   transform: rotate(90deg);
   bottom: 0;

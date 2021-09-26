@@ -35,17 +35,17 @@ export const StarRating = (props) => {
   }
 
   for (var i = 0; i < Math.floor(rating); i++) {
-    fullStars.push( <Icon type='starFull' size={starSize} fillColor={starColor} /> );
+    fullStars.push( <Icon type='starFull' size={starSize} fillColor={starColor} key={'starFull' + i} /> );
   }
 
   for (let i = 0; i < Math.floor(5 - rating); i++ ) {
-    emptyStars.push( <Icon type='starEmpty' size={starSize} fillColor={starColor} /> )
+    emptyStars.push( <Icon type='starEmpty' size={starSize} fillColor={starColor} key={'starEmpty' + i} /> )
   }
 
   let remainder = rating - Math.floor(rating);
-  if (0 < remainder && remainder <= .25 ) remainderStar = (<Icon type='starOneQuart' size={starSize} fillColor={starColor} />);
-  if (.25 < remainder && remainder <= .50 ) remainderStar = (<Icon type='starHalf' size={starSize} fillColor={starColor} />);
-  if (.50 < remainder && remainder < 1 )  remainderStar = (<Icon type='starThreeQuart' size={starSize} fillColor={starColor} />); 
+  if (0 < remainder && remainder <= .25 ) remainderStar = (<Icon type='starOneQuart' size={starSize} fillColor={starColor} key={'starOneQuart'} />);
+  if (.25 < remainder && remainder <= .50 ) remainderStar = (<Icon type='starHalf' size={starSize} fillColor={starColor} key={'starHalf'} />);
+  if (.50 < remainder && remainder < 1 )  remainderStar = (<Icon type='starThreeQuart' size={starSize} fillColor={starColor} key={'starThreeQuart'} />); 
 
   return (
     <div className='StarRating' data-testid='starrating'>
@@ -53,4 +53,3 @@ export const StarRating = (props) => {
     </div>
   )
 };
-

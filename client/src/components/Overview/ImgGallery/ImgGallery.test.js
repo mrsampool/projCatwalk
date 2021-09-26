@@ -20,9 +20,11 @@ describe('Img Gallery', ()=>{
     let currentStyle = singleProductStyles.results[0];
 
     render(
-      <ImgGallery
-        photos={currentStyle ? currentStyle.photos : null}
-      />
+      <ProductContext.Provider value={{ currentProduct }}>
+        <ImgGallery
+          photos={currentStyle ? currentStyle.photos : null}
+        />
+      </ProductContext.Provider>
     );
 
     let featPhoto = screen.getByTestId('featured-photo');
@@ -38,9 +40,11 @@ describe('Img Gallery', ()=>{
       let currentStyle = singleProductStyles.results[0];
 
       render(
-        <ImgGallery
-          photos={currentStyle ? currentStyle.photos : null}
-        />
+        <ProductContext.Provider value={{ currentProduct }}>
+          <ImgGallery
+            photos={currentStyle ? currentStyle.photos : null}
+          />
+        </ProductContext.Provider>
       );
 
       let featPhoto = screen.getByTestId('featured-photo');
@@ -64,9 +68,11 @@ describe('Img Gallery', ()=>{
       let currentStyle = singleProductStyles.results[0];
 
       render(
-        <ImgGallery
-          photos={currentStyle ? currentStyle.photos : null}
-        />
+        <ProductContext.Provider value={{ currentProduct }}>
+          <ImgGallery
+            photos={currentStyle ? currentStyle.photos : null}
+          />
+        </ProductContext.Provider>
       );
 
       let featPhoto = screen.getByTestId('featured-photo');
@@ -96,9 +102,11 @@ describe('Img Gallery', ()=>{
       let currentStyle = singleProductStyles.results[0];
 
       render(
-        <ImgGallery
-          photos={currentStyle ? currentStyle.photos : null}
-        />
+        <ProductContext.Provider value={{ currentProduct }}>
+          <ImgGallery
+            photos={currentStyle ? currentStyle.photos : null}
+          />
+        </ProductContext.Provider>
       );
 
       let thumbnail = screen.queryByTestId('carouselImg3');
@@ -120,9 +128,11 @@ describe('Img Gallery', ()=>{
       let currentStyle = singleProductStyles.results[0];
 
       render(
-        <ImgGallery
-          photos={currentStyle ? currentStyle.photos : null}
-        />
+        <ProductContext.Provider value={{ currentProduct }}>
+          <ImgGallery
+            photos={currentStyle ? currentStyle.photos : null}
+          />
+        </ProductContext.Provider>
       );
 
       let bottomThumbnail = screen.queryByTestId('carouselImg5');

@@ -51,7 +51,6 @@ export const Products = (props) =>{
           return a.list.length > b.list.length ? -1 : 1;
         })
         setProducts( categoryList );
-
       });
     });
   }
@@ -73,7 +72,6 @@ export const Products = (props) =>{
               return product.name === featCategory;
             }).list}
             key={`featCategoryCard`}
-            noDummy={'true'}
           />
           :
           <ProductBar

@@ -19,10 +19,8 @@ import {loadingPhotos, loadingStyles} from "../../dummyData/placeholderData";
 //Style Sheet
 import './Overview.css';
 import { serverRequests } from '../../utils/serverRequests';
-
-
-
-
+import {InBag} from "../InBag/InBag";
+import {CartContext} from "../../contexts/CartContext";
 
 export const Overview = (props) =>{
 
@@ -33,13 +31,15 @@ export const Overview = (props) =>{
   }
   const params = useContext(QueryContext);
 
+  const {cartAccess} = useContext(CartContext);
+
   const {id, category, name, slogan, description} = currentProduct || '';
 
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
   const [currentSize, setCurrentSize] = useState(null);
   const [currentSku, setCurrentSku] = useState(null);
-  const [currentQty, setCurrentQty] = useState(null);
+  const [currentQty, setCurrentQty] = useState(1);
   const [fullScreenImg, setFullScreenImg] = useState(false);
 
   function toggleFullScreenImg(){
@@ -68,6 +68,7 @@ export const Overview = (props) =>{
           photos={currentStyle ? currentStyle.photos : loadingPhotos}
           toggleFull={toggleFullScreenImg}
           fullScreen={fullScreenImg}
+          styleName={currentStyle ? currentStyle.name : ''}
         />
 
         <div id='overview-controls'>
@@ -96,6 +97,12 @@ export const Overview = (props) =>{
           <AddToCart
             sku={currentSku}
             qty={currentQty}
+            style={currentStyle}
+          />
+          <InBag
+            sku={currentSku}
+            prodId={id}
+            cart={cartAccess ? cartAccess.items : null}
           />
         </div>
 

@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from "./App";
 
 // Global Style Sheets
+import './globalStyles/reset.css';
 import './globalStyles/text.css';
 import './globalStyles/colors.css';
 import './globalStyles/elements.css';

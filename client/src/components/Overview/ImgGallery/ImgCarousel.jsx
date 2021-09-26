@@ -36,6 +36,8 @@ export const ImgCarousel = props => {
         offSet={offSet}
         change={offSetDown}
         className={`up`}
+        buttonId={'carousel-previous'}
+        altLabel={'Previous Images'}
       />
       <CarouselImg
         index={index}
@@ -84,6 +86,8 @@ export const ImgCarousel = props => {
         offSet={offSet}
         change={offSetUp}
         className={`down`}
+        altLabel={`Next Images`}
+        buttonId={'carousel-next'}
       />
     </span>
   )

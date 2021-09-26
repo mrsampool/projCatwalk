@@ -19,10 +19,11 @@ export const ImgArrow = props => {
     ) {
       return(
         <button
-          id={`${type}-img`}
+          id={props.buttonId}
           onClick={change}
-          className={`img-arrow ${className || ''} `}
+          className={`img-arrow ${type || ''} ${className || ''} `}
           data-testid={props.testId}
+          aria-label={props.altLabel}
         >
           <Icon
             type={

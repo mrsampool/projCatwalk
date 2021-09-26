@@ -1,0 +1,9 @@
+#InBag{
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 1rem;
+}
+#InBag a{
+  color: var(--light);
+  font-weight: 900;
+}

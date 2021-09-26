@@ -12,20 +12,9 @@ import './BannerCart.css'
 
 export const BannerCart = (props) =>{
 
-  const { cart } = useContext(CartContext);
-
-  const [cartCount, setCartCount] = useState(0);
-
-  function calcCartCount(){
-    let cartCount = cart.reduce( (a,b) =>{
-      return a + Number(b.count);
-    }, 0);
-    setCartCount(cartCount);
-  }
-
-  useEffect( ()=>{
-    calcCartCount();
-  }, [cart] );
+  const { cartAccess } = useContext(CartContext);
+  const [cartCount, setCartCount] = useState(cartAccess.size);
+  cartAccess.sizeStateSetter = setCartCount;
 
   return (
     <a href='/cart' className='cart-link'>

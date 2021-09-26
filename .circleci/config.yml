@@ -16,8 +16,19 @@ jobs:
           command: npm run test
       - store_artifacts:
           path: coverage
+  deploy:
+    docker: 
+      - image: arvindr226/alpine-ssh
+    steps:
+      - run: ssh -o StrictHostKeyChecking=no $USER@$SERVER 'projCatwalk/pull_and_deploy.sh'
 
 workflows:
-  "Run tests":
+  "Run tests on PRs":
     jobs:
       - test
+  "Deploy to machine":
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master

@@ -1,22 +1,23 @@
 // React
-import React from 'react';
+import React, {useContext} from 'react';
 
 // Utilities
 import { serverRequests } from '../../../utils/serverRequests';
 
 // Stylesheet
 import './AddToCart.css'
+import {CartContext} from "../../../contexts/CartContext";
+import {ProductContext} from "../../../contexts/ProductContext";
 
 export const AddToCart = (props) =>{
 
-  const {sku, qty} = props;
+  const { cartAccess } = useContext(CartContext);
+  const { currentProduct } = useContext(ProductContext);
+
+  const {sku, qty, style} = props;
 
   function clickHandler(){
-    if (props.statusListener){
-      props.statusListener( serverRequests.addToCart(sku[0], qty) );
-    } else {
-      serverRequests.addToCart(sku[0], qty);
-    }
+    cartAccess.addItem(currentProduct, style, sku, qty);
   }
 
   return (

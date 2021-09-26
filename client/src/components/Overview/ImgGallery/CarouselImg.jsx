@@ -34,6 +34,7 @@ export const CarouselImg = props => {
           data-testid={`carouselImg${props.testId}`}
           onLoad={ imgLoad }
           className='carouselImg'
+          alt={`Alternate Photo - ${props.styleName} Style`}
         />
       </span>
     )

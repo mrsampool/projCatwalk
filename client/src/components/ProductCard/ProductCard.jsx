@@ -36,11 +36,7 @@ export const ProductCard = (props) =>{
 
   useEffect( ()=>{
     if (id){
-      if (props.noDummy){
-        fetchStyles();
-      } else {
-        setStyle( singleProductStyles.results[0] )
-      }
+      fetchStyles();
     }
   }, [props.product])
 
@@ -48,11 +44,12 @@ export const ProductCard = (props) =>{
     <a
       className='product'
       target='_blank'
-      href={`/products/${id}${props.noDummy ? '?noDummy' : ''}`}
+      href={`/products/${id}`}
     >
       <img
         className='productImg'
         src={ style && style.photos ? style.photos[0].thumbnail_url : ''}
+        alt={`${props.product.name} Product Photo`}
       />
       <div className='product-text'>
         <p className='product-card-category'>{category}</p>
