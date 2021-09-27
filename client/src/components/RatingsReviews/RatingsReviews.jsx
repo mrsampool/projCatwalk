@@ -4,7 +4,7 @@ import { RatingsBreakdown } from './RatingsBreakdown.jsx';
 import { ProductContext } from '../../contexts/ProductContext.js';
 import { serverRequests } from '../../utils/serverRequests.js';
 const { getProductReviews } = serverRequests;
-import { dummyReviewsData } from '../../dummyData/dummyReviewsData';
+import { dummyReviewsDataEmpty } from '../../dummyData/dummyReviewsData';
 import { ReviewForm } from './ReviewForm.jsx';
 import { Modal } from '../Modal/Modal.jsx';
 
@@ -14,7 +14,7 @@ export const ModalContext = React.createContext(null);
 
 export const RatingsReviews = () =>{
   const [filter, setFilter] = useState({});
-  const [reviewsData, setReviewsData] = useState(dummyReviewsData);
+  const [reviewsData, setReviewsData] = useState(dummyReviewsDataEmpty);
   const [modalComponent, setModalComponent] = useState();
   const [sort, setSort] = useState('relevant');
 
