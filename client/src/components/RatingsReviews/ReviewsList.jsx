@@ -20,7 +20,7 @@ export const ReviewsList = (props) => {
 
   if (maxVisible < props.reviewsdata.results.length) {
     showMoreBtn = (
-      <button onClick={showMoreHandler} >More Reviews</button>
+      <button id='button-show-more-reviews' onClick={showMoreHandler} >More Reviews</button>
     );
     displayAmount = maxVisible;
   } else {
