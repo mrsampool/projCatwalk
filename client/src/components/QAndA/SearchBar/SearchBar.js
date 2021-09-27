@@ -13,11 +13,12 @@ export const SearchBar = (props) =>{
   return (
   <div id='SearchBar'>
       <input
+      data-testid='search-input'
       className = "SearchInput"
       type="text"
       name="QandASearch"
       placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-      onChange = {(e)=>{setSearchTerm(e.target.value);changeSearchTerm(e.target.value)}}
+      onChange = {(e)=>{setSearchTerm(e.target.value);changeSearchTerm(e.target.value);}}
       />
 
   </div>

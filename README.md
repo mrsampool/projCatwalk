@@ -1,3 +1,7 @@
+A simple demo of this project can be found (for now...) [here](ec2-3-101-57-130.us-west-1.compute.amazonaws.com)
+
+
+
 # "Project Catwalk" - Ascent Squad
 
 ## Background
@@ -134,7 +138,41 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 ### Questions & Answers
 - Developer: Yunfan Gao
 
----
+The Questions & Answers section is the second/middle section on the page. It displays a list of the questions and associated answers related to the product that other people have asked and answered, and where you'll find the ability to ask your own question or to post your own answer.
+
+- 'QuestionContext' component
+  - Gathers question and answer data via API call
+  - Gathers methods that could used to add question and answers
+  - Fetch the data in a sorted way
+- 'QAndA' parent component
+  - Receive the Q&A data from Question Context
+  - Display two sections, search-bar section and question-list section.
+  - Connecting the two child sections via a search keyword
+- 'SearchBar Section'
+  - Displays a search bar used to search keyword within question statement
+  - Include css and test file within the sear
+- 'QuestionList section'
+  - Display the question list and the content within it
+- 'QuestionList component'
+  - The root of QuestionList section, layout the subcomponent within the section
+  - Receive the search key word from search bar
+  - Display the Question statement
+- 'Helpful component'
+  - First sub component within QuestionList
+  - A helpful button and an add-answer button display on the upperright corner.
+- 'AnswerList component'
+  - Second sub component within QuestionList
+  - Used to display a list of answers related to the particular question
+- 'AnswerForm component'
+  - The sub component within Helpful component
+  - A form used to enter the details related to an answer to be posted on broswer
+- 'EachAnswer component'
+  - The sub component within AnswerList component
+  - Used to display the detail of each answer
+- 'QuestionForm component'
+  - A button can be clicked on to add a question, and the QuestionForm component will pop up to let use enter the detail about the question related to product
+
+The above mentioned components reside in the /client/src/components/QAndA/ subfolder
 
 ### Ratings & Reviews
 - Developer: Fanno Chea
@@ -152,7 +190,7 @@ The Ratings & Reviews section is the last/bottom-most section on the page. It di
 - 'ReviewsList'
   - Allows user to select a sort/order for the reviews
   - Houses/creates an individual 'Review' component for each user review
-- 'Review' 
+- 'Review'
   - Displays the actual content of a single user review: username, date, summary and body, images, overall rating/score
   - Users also have the ability to provide feedback when a review is helpful; or report a review if it's not.
 

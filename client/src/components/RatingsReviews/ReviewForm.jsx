@@ -137,27 +137,34 @@ export class ReviewForm extends React.Component {
             <label htmlFor='recommendyes'>Yes</label><input id='recommendyes' type='radio' name='recommend' value={true} onChange={this.formChangeHandler} data-testid='recommendyes' ></input>
             <label htmlFor='recommendno'>No</label><input id='recommendno' type='radio' name='recommend' value={false} onChange={this.formChangeHandler} data-testid='recommendno' ></input>
           </div>
-
+          <br></br>
           <label>Please choose a rating for each of this product's characteristics (mandatory):</label>
+          <br></br>
+          <br></br>
           <div id='characteristics'> 
             {this.radioGroup()}
           </div>
-
-          <label>Review Summary</label><br></br>
-          <input name='summary' type='text' value={this.state.summary} placeholder='Best purchase ever!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input><br></br>
-
-          <label>Review Body (mandatory)</label><br></br>
-          <textarea required name='body' value={this.state.body} placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' rows='5' cols='50' onChange={this.formChangeHandler} data-testid='fieldbody'></textarea><br></br>
-
-          <label>Upload your photos:</label><br></br>
-          <input name='photos' type='file' id='photos' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}} onChange={this.formChangeHandler} ></input><br></br>
-
-          <label>What is your nickname? (mandatory)</label><br></br>
-          <input required name='nickname' type='text' value={this.state.nickname} id='nickname'  placeholder='jackson11!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldnickname'></input><br></br>
+          <br></br>
+          <label htmlFor='reviewsummary'>Review Summary</label>
+          <br></br>
+          <input id='reviewsummary' name='summary' type='text' value={this.state.summary} placeholder='Best purchase ever!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} ></input>
+          <br></br>
+          <label htmlFor='reviewbody'>Review Body (mandatory)</label>
+          <br></br>
+          <textarea required id='reviewbody' name='body' value={this.state.body} placeholder='Why did you like the product, or not?' maxLength='1000' minLength='50' rows='5' cols='50' onChange={this.formChangeHandler} data-testid='fieldbody'></textarea>
+          <br></br>
+          <label htmlFor='reviewphotos'>Upload your photos:</label>
+          <br></br>
+          <input id='reviewphotos' name='photos' type='file' accept='image/png, image/jpeg, image/jpg' style={{width: '25%'}} onChange={this.formChangeHandler} ></input>
+          <br></br>
+          <label htmlFor='reviewnickname' >What is your nickname? (mandatory)</label>
+          <br></br>
+          <input required id='reviewnickname' name='nickname' type='text' value={this.state.nickname} placeholder='cool_nickname!' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldnickname'></input>
+          <br></br>
           <p>For privacy reasons, do not use your full name or email address</p>
-
-          <label>Your email (mandatory)</label><br></br>
-          <input required name='email' type='text' value={this.state.email} id='email' placeholder='example: jackson11@email.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldemail'></input><br></br>
+          <label htmlFor='reviewemail' >Your email (mandatory)</label>
+          <br></br>
+          <input required id='reviewemail' name='email' type='text' value={this.state.email} placeholder='example@domain.com' maxLength='60' className='form-input-text-sm' onChange={this.formChangeHandler} data-testid='fieldemail'></input><br></br>
           <p>For authentication reasons, you will not be emailed</p>
 
           <button type='submit' >Submit</button>

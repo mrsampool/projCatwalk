@@ -4,8 +4,6 @@ const baseUrl = process.env.ENV === 'PROD' ?
   'http://3.101.57.130/api'
   : 'http://localhost:3000/api'
 
-  console.log(baseUrl);
-
 export const serverRequests = {
 
   getCart: () => {
@@ -177,7 +175,6 @@ export const serverRequests = {
 
   postInteraction: (dataObj) => {
     return new Promise( (resolve, reject) => {
-      console.log(dataObj);
       axios.post(`${baseUrl}/interactions`, dataObj)
       .catch( reject );
     })
