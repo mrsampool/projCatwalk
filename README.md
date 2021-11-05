@@ -133,6 +133,14 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
   - Quantities are dependant on quantities currently in stock for selected style and size.
 - Add To Cart
   - Allows the user to add the selected quantity of this product in selected style and size to their shopping cart - accomplished through a POST request to the independent API.
+
+#### Screen Grabs
+![Alt Text](screenshots/Overview.gif)
+***Style Selector***, ***Img Carousel***, & ***Add To Bag*** features
+
+![Alt Text](screenshots/imgGallery.gif)
+Image Gallery's ***Full-Screen*** & ***Zoom View*** features
+
 ---
 
 ### Questions & Answers
