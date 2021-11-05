@@ -138,7 +138,7 @@ The Product Overview widget is the featured "above-the-fold" component showcasin
 ![Overview Screen-grab](screenshots/Overview.gif)
 ***Style Selector***, ***Img Carousel***, & ***Add To Bag*** features
 
-![Img Gallery Screen-grab](screenshots/imgGallery.gif)
+![Img Gallery Screen-grab](screenshots/ImgGallery.gif)
 Image Gallery's ***Full-Screen*** & ***Zoom View*** features
 
 ---
